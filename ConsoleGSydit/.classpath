@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-collections4-4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi-3.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi-ooxml-3.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/gson-2.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/sqlite-jdbc-3.16.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hamcrest-core-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit-4.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jgrapht-core-0.9.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.contenttype_3.5.0.v20150421-2214.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.jobs_3.7.0.v20150330-2103.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.7.0.v20150402-1709.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.preferences_3.5.300.v20150408-1437.jar"/>
+	<classpathentry kind="lib" path="lib/simpack-647-bin.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grapa"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/changedistillerplugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.ibm.wala.cast"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
