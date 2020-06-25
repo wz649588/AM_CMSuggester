@@ -1,0 +1,94 @@
+== Done ==
+
+*General Process*
+1- PPAUtil.getCU (from an ICU)
+2- From a file, put it in a project, get an ICU and return a CU.
+3- Fine-grained options
+4- Clean-up option (removes the file from an ICU or CU that was created).
+
+*Syntax Disambiguation*
+1- SimpleName (SyntaxDisambiguation.java)
+-- If a local declaration, fix local with declared type (e.g., B myVar).
+-- If a single type ref, fix it (e.g., class A extends B).
+-- Else, add to ambiguous node.
+
+2- Fully Qualified Name
+-- In PPATypeRegistry.getTypeBinding: get the type binding (hence the FQN) of a type.
+---- Implement the five FQN rules in PPATypeRegistry.getFullName.
+
+3- Field or Class
+-- Disambiguation done in SyntaxDisambiguation.postProcess()
+---- Indication of a field: PPAUtil.isIndicationOfField()
+---- A Field is more complex than a Class. See SyntaxDisambiguation.addFieldBinding and PPADefaultBindingResolver.fixFieldBinding. 
+
+4- This or Container 
+-- Only applicable for field from Field or Class (although this could be true for static class, but it is impossible to know).
+-- First, problem is encountered in SyntaxDisambiguation.addFieldBinding.
+-- Resolution is done by PPAUtil.getFirstContainerMissingSuperType.
+---- Tries to an unknown super class or super interface (this). Then, tries to get the container.
+
+5- Qualified Name are now disambiguated.
+-- Look for SyntaxDisambiguation class
+
+6- Internal Class or Package are solved (because of Qualified Name disambiguation)
+
+7- Anonymous Classes are now disambiguated.
+-- Look for SyntaxDisambiguation class (and ClassInstanceCreation-related methods).
+
+*Type Member*
+-- Fields are added to unknown containers.
+-- Methods are now created with unknown params and return type.
+-- Methods: find method in existing types.
+-- Find container in hierarchy.
+
+*Type Inference*
+1- Type Facts and various interfaces
+- Type Facts
+- Type merging
+
+2- Algorithm
+-- Seed pass
+-- Type Inference pass
+
+3- Inference Strategy
+-- Assignment
+-- Return
+-- Field access
+-- Qualified name
+-- Method
+-- VariableDeclarationFragment
+
+*Other*
+-- Various operations in PPAUtil such as determining the safety of a TypeBinding (e.g., unknown). Might need to split the operations in multiple classes.
+-- PPAUtil separation
+-- Packaging PPA
+-- GUI Tools
+
+
+== To Do ==
+
+*General Process*
+1- Global option (need to correct resolver and the class that needs a reference to compilation unit).
+2- Code snippet parsing
+
+*Syntax Disambiguation*
+1- Qualified Type (not name) are not disambiguated (but does it really matter? initial testing indicates that it does not).
+
+2- Wrong FQN are not corrected
+-- e.g., if we find that java.util.Collection should be p2.Collection
+
+3- Java 5 constructs:
+-- Generics
+-- Autoboxing (unknown-type-class v.s. unknown v.s. unknown-type-primitive)
+-- for-loop
+
+*Type Inference*
+1- More fine-grained assignment strategy (+= and such)
+2- Binary operation strategy
+3- Array access
+
+*Type Member*
+-- Constructors: find constructor in existing types.
+
+*Other*
+- More testing

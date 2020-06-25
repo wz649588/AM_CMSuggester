@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="ca.mcgill.cs.swevo.ppa.ui.PPAMainPreferencePage"
+            id="ca.mcgill.cs.swevo.ppa.ui.page1"
+            name="PPA">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="ca.mcgill.cs.swevo.ppa.ui.PPAPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="ca.mcgill.cs.swevo.ppa.ui.icuContribution"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPAOnCuAction"
+               id="ca.mcgill.cs.swevo.ppa.ui.PerformPPAOnCU"
+               label="Run PPA (ICompilationUnit)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+         <menu
+               id="ca.mcgill.cs.swevo.ppa.ui.ppaMenu"
+               label="PPA">
+            <groupMarker
+                  name="group1">
+            </groupMarker>
+         </menu>
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPACompileOnCU"
+               id="ca.mcgill.cs.swevo.ppa.ui.PPACompileOnCU"
+               label="PPA Compile (ICompilationUnit)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="ca.mcgill.cs.swevo.ppa.ui.javaFileContribution"
+            nameFilter="*.java"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPAOnFileAction"
+               id="ca.mcgill.cs.swevo.ppa.ui.PerformPPAOnFile"
+               label="Run PPA (File)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+         <menu
+               id="ca.mcgill.cs.swevo.ppa.ui.ppaMenu"
+               label="PPA">
+            <groupMarker
+                  name="group1">
+            </groupMarker>
+         </menu>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="ca.mcgill.cs.swevo.ppa.ui.snippetFileContribution"
+            nameFilter="*.txt"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="ca.mcgill.cs.swevo.ppa.ui.ppaMenu"
+               label="PPA">
+            <groupMarker
+                  name="group1">
+            </groupMarker>
+         </menu>
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPAOnSnippetAction"
+               id="ca.mcgill.cs.swevo.ppa.ui.performPPAOnTypeSnippet"
+               label="Run PPA (Type Body Snippet)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPAOnSnippetAction"
+               id="ca.mcgill.cs.swevo.ppa.ui.performPPAOnMethodSnippet"
+               label="Run PPA (Method Body Snippet)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+      </objectContribution>
+      <viewerContribution
+            id="ca.mcgill.cs.swevo.ppa.ui.javaEditorContribution"
+            targetID="#CompilationUnitEditorContext">
+         <menu
+               id="ca.mcgill.cs.swevo.ppa.ui.ppaMenu"
+               label="PPA">
+            <groupMarker
+                  name="group1">
+            </groupMarker>
+         </menu>
+         <action
+               class="ca.mcgill.cs.swevo.ppa.ui.actions.PPAOnNameAction"
+               id="ca.mcgill.cs.swevo.ppa.ui.performPPAOnName"
+               label="Run PPA (Name)"
+               menubarPath="ca.mcgill.cs.swevo.ppa.ui.ppaMenu/group1">
+         </action>
+      </viewerContribution>
+   </extension>
+
+</plugin>

@@ -36,13 +36,19 @@ public class AfCommitOrder {
 		String path = null;
 		switch (project) {
 		case "aries":
-			path = "/Users/Vito/git/aries/.git";
+			path = "/Users/zijianjiang/Documents/NaM/git/aries/.git";
 			break;
 		case "cassandra":
-			path = "/Users/Vito/git/cassandra/.git";
+			path = "/Users/zijianjiang/Documents/NaM/git/cassandra/.git";
 			break;
 		case "mahout":
-			path = "/Users/Vito/git/mahout/.git";
+			path = "/Users/zijianjiang/Documents/NaM/git/mahout/.git";
+			break;
+		case "activemq":
+			path = "/Users/zijianjiang/Documents/NaM/git/activemq/.git";
+			break;
+		case "uima":
+			path = "/Users/zijianjiang/Documents/NaM/git/uima/.git";
 			break;
 		}
 		return path;
@@ -166,7 +172,7 @@ public class AfCommitOrder {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		String[] projects = {"aries", "cassandra", "derby", "mahout"};
+		String[] projects = {"activemq","uima"};
 		for (String project: projects) {
 			AfCommitOrder order = new AfCommitOrder(project);
 			order.exec();

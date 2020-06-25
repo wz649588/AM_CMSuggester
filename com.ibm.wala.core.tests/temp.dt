@@ -1,0 +1,19 @@
+digraph "DirectedGraph" {
+graph [concentrate = true];center=true;fontsize=6;node [ color=blue,shape="box"fontsize=6,fontcolor=black,fontname=Arial];edge [ color=black,fontsize=6,fontcolor=black,fontname=Arial]; 
+   "EXC_RET_CALLER:Node: synthetic < Primordial, Lcom/ibm/wala/FakeRootClass, fakeRootMethod()V > Context: Everywhere[5]invokestatic < Application, Lslice/Slice4, main([Ljava/lang/String;)V > 3 @5 exception:8" [ ]
+   "EXC_RET_CALLEE:Node: synthetic < Primordial, Lcom/ibm/wala/FakeRootClass, fakeRootMethod()V > Context: Everywhere" [ ]
+   "NORMAL_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[1]5 = invokestatic < Application, Lslice/Slice4, foo(I)I > 3 @1 exception:4" [ ]
+   "invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6\nslice.Slice4.main([Ljava/lang/String;)V" [ ]
+   "PARAM_CALLER 5\nmain\nbar" [ ]
+   "EXC_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[4]invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6" [ ]
+   "EXC_RET_CALLEE:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere" [ ]
+   "PARAM_CALLEE 1\nbar" [ ]
+ "EXC_RET_CALLER:Node: synthetic < Primordial, Lcom/ibm/wala/FakeRootClass, fakeRootMethod()V > Context: Everywhere[5]invokestatic < Application, Lslice/Slice4, main([Ljava/lang/String;)V > 3 @5 exception:8" -> "EXC_RET_CALLEE:Node: synthetic < Primordial, Lcom/ibm/wala/FakeRootClass, fakeRootMethod()V > Context: Everywhere" 
+ "NORMAL_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[1]5 = invokestatic < Application, Lslice/Slice4, foo(I)I > 3 @1 exception:4" -> "invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6\nslice.Slice4.main([Ljava/lang/String;)V" 
+ "NORMAL_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[1]5 = invokestatic < Application, Lslice/Slice4, foo(I)I > 3 @1 exception:4" -> "PARAM_CALLER 5\nmain\nbar" 
+ "invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6\nslice.Slice4.main([Ljava/lang/String;)V" -> "EXC_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[4]invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6" 
+ "PARAM_CALLER 5\nmain\nbar" -> "PARAM_CALLEE 1\nbar" 
+ "EXC_RET_CALLER:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere[4]invokestatic < Application, Lslice/Slice4, bar(I)V > 5 @6 exception:6" -> "EXC_RET_CALLEE:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere" 
+ "EXC_RET_CALLEE:Node: < Application, Lslice/Slice4, main([Ljava/lang/String;)V > Context: Everywhere" -> "EXC_RET_CALLER:Node: synthetic < Primordial, Lcom/ibm/wala/FakeRootClass, fakeRootMethod()V > Context: Everywhere[5]invokestatic < Application, Lslice/Slice4, main([Ljava/lang/String;)V > 3 @5 exception:8" 
+
+}

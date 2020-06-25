@@ -1,0 +1,1336 @@
+org.apache.aries.jmx.blueprint.codec.BPNullMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.ComponentDefinitionRegistryProcessor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.utils.PropertyPlaceholder	1	0.3	
+org.apache.aries.transaction.jms.internal.ConnectionKey	1	1.0	
+org.apache.aries.proxy.impl.gen.UnableToLoadProxyException	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tdescription	1	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.MarketSummaryDataBean	1	1.0	
+org.apache.aries.samples.ariestrader.core.TradeServicesManagerImpl	1	1.0	
+org.osgi.service.blueprint.reflect.Metadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.BlueprintDomainCombiner	1	1.0	
+org.apache.aries.blueprint.jaxb.TinlinedBean	1	1.0	
+org.apache.aries.jmx.blueprint.codec.Util	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.util.ServiceUtilities	1	1.0	
+org.apache.aries.application.utils.service.ServiceCollection	2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.impl.SchemaLocatingHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.ProxyManager	2	0.3	1.0	
+org.apache.aries.jpa.container.unit.impl.ManagedPersistenceUnitInfoFactoryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.GeronimoUserTransaction	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.InvalidFileSetException	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.ExponentialtIntervalRetryScheduler	2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.CapabilityImpl	1	0.1	
+org.apache.aries.subsystem.core.internal.SharingPolicyValidator	1	1.0	
+org.apache.aries.blueprint.testbundlea.TestBean	1	1.0	
+org.apache.aries.blueprint.di.Recipe	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.AbstractPSCachedXADataSourceMCF	1	1.0	
+org.apache.aries.subsystem.core.internal.RawSubsystemResource	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2JNDI	1	1.0	
+org.tranql.connector.UserPasswordHandleFactoryRequestInfo	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.IDVerifierClientActivator	1	1.0	
+org.apache.aries.application.modelling.impl.AbstractParserProxy	1	1.0	
+org.apache.geronimo.transaction.manager.TransactionBranchInfo	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.impl.Activator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPReferenceListMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableBeanArgument	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionLog	4	0.1	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.DefaultInvocationHandler	2	0.3	1.0	
+org.apache.aries.jmx.codec.PropertyData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.ProviderAdminServiceFactory	3	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.Recovery	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.StartResourceComparator	1	1.0	
+org.apache.aries.samples.ariestrader.util.TradeConfig	1	1.0	
+org.apache.geronimo.transaction.manager.LogException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.DeployedContentRequirement	1	1.0	
+org.apache.aries.jndi.services.JdkProxyFactory	1	0.2	
+org.apache.aries.application.runtime.framework.config.BundleFrameworkConfigurationFactoryImpl	2	0.3	1.0	
+org.apache.aries.util.filesystem.IDirectory	2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ExportedBundleImpl	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tprop	1	1.0	
+org.apache.aries.application.management.impl.AriesApplicationManagerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndiurl.itest.beans.SimpleBean	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ImportPackageHeader	1	1.0	
+org.apache.aries.application.impl.DeploymentContentImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.internal.AriesPlatformTransactionManager	1	1.0	
+org.apache.aries.ejb.modelling.impl.EJBModeller	1	1.0	
+org.apache.aries.application.management.spi.runtime.LocalPlatform	2	0.3	1.0	
+org.apache.aries.blueprint.ext.evaluator.PropertyEvaluator	2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ImportedServiceImpl	2	0.3	1.0	
+org.apache.aries.application.ApplicationMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.tracker.hook.BundleHookBundleTracker	1	1.0	
+org.apache.aries.transaction.TransactionAttribute	3	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2Include	1	1.0	
+twitter4j.ExecuteThread	1	1.0	
+org.apache.aries.subsystem.core.internal.Location	1	1.0	
+org.apache.aries.jmx.util.FrameworkUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.url.BlueprintNameParser	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.package-info	1	1.0	
+twitter4j.http.RequestToken	1	1.0	
+org.apache.aries.blueprint.reflect.PassThroughMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.ProxySubclassGenerator	2	0.1	0.2	
+org.apache.aries.transaction.jdbc.internal.XADataSourceMCFFactory	1	1.0	
+org.apache.aries.jndi.url.ServiceRegistryContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.AbstractRequirement	1	1.0	
+javax.transaction.UserTransaction	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerSeven	1	1.0	
+org.apache.aries.blueprint.jaxb.Tbean	1	1.0	
+org.apache.aries.blueprint.jaxb.Tcomponent	1	1.0	
+org.apache.geronimo.transaction.manager.XidImporter	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Bind	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Arg	2	0.3	1.0	
+org.apache.aries.blueprint.container.SatisfiableRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.ObjectFactoryHelper	3	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.api.TradeServicesManager	1	1.0	
+org.apache.aries.transaction.parsing.TxElementHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.BlueprintQuiesceParticipant	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.NamedXAResource	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.GenericResourceManager	1	1.0	
+org.apache.aries.jpa.container.parsing.PersistenceDescriptor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ModellingManagerImpl	2	0.3	1.0	
+org.apache.aries.jmx.codec.ServiceData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.PooledMessageConsumer	1	1.0	
+org.apache.aries.jmx.util.shared.RegistrableStandardEmitterMBean	1	1.0	
+org.apache.aries.application.management.spi.update.UpdateStrategy	2	0.3	1.0	
+org.apache.aries.blueprint.utils.HeaderParser	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.DirObjectFactoryHelper	3	0.2	0.3	1.0	
+org.apache.aries.application.converters.WabConverterService	2	0.3	1.0	
+org.tranql.connector.jdbc.TranqlDataSource	1	1.0	
+org.apache.aries.samples.ariestrader.api.TradeServices	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingJDBCWrite	1	1.0	
+org.osgi.service.repository.RepositoryContent	1	1.0	
+org.apache.aries.subsystem.core.archive.Grammar	1	1.0	
+org.apache.aries.jndi.OSGiInitialContextFactoryBuilder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.BundleWideTxData	3	0.2	0.3	1.0	
+org.tranql.connector.jdbc.ManagedJDBCConnection	1	1.0	
+org.apache.aries.util.tracker.BundleTrackerFactory	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.CommitTask	2	0.3	1.0	
+org.apache.aries.blueprint.ext.AbstractPropertyPlaceholder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.Utils	1	1.0	
+org.apache.aries.subsystem.core.internal.ContentRepository	1	1.0	
+org.apache.aries.samples.ariestrader.api.TradeDBManager	1	1.0	
+org.objectweb.howl.log.ReplayListener	4	0.1	0.2	0.3	1.0	
+twitter4j.TwitterListener	1	1.0	
+org.apache.aries.jmx.codec.RoleData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundleb.TestBean	2	0.3	1.0	
+org.osgi.service.blueprint.container.BlueprintEvent	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemResourceInstaller	1	1.0	
+org.apache.aries.jndi.tracker.ServiceTrackerCustomizers	2	0.3	1.0	
+org.apache.aries.samples.blueprint.helloworld.server.HelloWorldServiceImpl	1	1.0	
+org.apache.aries.blueprint.reflect.ReferenceListMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.parsing.TxBlueprintListener	1	1.0	
+org.objectweb.howl.log.LogBufferManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ModellerException	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.AccountProfileDataBean	1	1.0	
+org.osgi.service.blueprint.reflect.Target	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.InvalidAttributeException	2	0.3	1.0	
+org.apache.aries.blueprint.proxy.ProxyClassInstantiationException	2	0.1	0.2	
+org.apache.aries.subsystem.core.internal.BundleResource	1	1.0	
+org.apache.aries.blueprint.container.SimpleNamespaceHandlerSet	1	1.0	
+org.apache.aries.jndi.startup.Activator	4	0.1	0.2	0.3	1.0	
+org.osgi.service.subsystem.Subsystem	1	1.0	
+org.apache.aries.blueprint.compendium.cm.ManagedObject	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.NestedZipFile	2	0.3	1.0	
+org.apache.aries.blueprint.reflect.RegistrationListenerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.RegionContextBundleHelper	1	1.0	
+org.apache.aries.jmx.cm.ConfigurationAdminMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.AriesFrameworkUtil	2	0.3	1.0	
+org.apache.aries.application.management.BundleInfo	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.codec.GroupData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ResolutionDirective	1	1.0	
+org.apache.aries.application.modelling.impl.ExportedPackageImpl	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2Jsp	1	1.0	
+org.apache.aries.subsystem.core.archive.Header	1	1.0	
+org.apache.geronimo.transaction.manager.XidImpl	4	0.1	0.2	0.3	1.0	
+org.osgi.service.subsystem.SubsystemException	1	1.0	
+org.apache.aries.transaction.jms.internal.SessionKey	1	1.0	
+org.apache.aries.application.modelling.Provider	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.NamedXAResourceFactory	2	0.3	1.0	
+twitter4j.examples.Update	1	1.0	
+twitter4j.Trends	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.CreditQueryRegistrationListener	1	1.0	
+org.apache.aries.jmx.codec.BatchResolveResult	1	1.0	
+org.apache.aries.util.tracker.AbstractBundleTrackerCustomizer	1	0.1	
+org.osgi.service.blueprint.reflect.CollectionMetadata	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.reflect.RefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.ExtendedReferenceMetadata	2	0.3	1.0	
+twitter4j.StatusListener	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.PersonBankBean	1	1.0	
+org.apache.aries.application.runtime.defaults.NoOpResolver	2	0.1	0.2	
+org.apache.aries.samples.ariestrader.util.FinancialUtils	1	1.0	
+org.apache.aries.jmx.whiteboard.MBeanHolder	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.AccountDataBean	1	1.0	
+org.apache.aries.util.filesystem.impl.ZipDirectory	2	0.3	1.0	
+org.apache.aries.unittest.mocks.ReturnTypeHandler	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.persist.jpa.cm.TradeJpaCm	1	1.0	
+org.apache.aries.jmx.permissionadmin.PermissionAdminMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ProvisionResourceRequirement	1	1.0	
+org.apache.aries.jpa.container.impl.DestroyCallback	3	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.StaticAccountFactory	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tref	1	1.0	
+org.apache.aries.blueprint.di.RefRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.IdSpace	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.impl.EarlyParserReturn	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ProvisionResourceHeader	1	1.0	
+javax.resource.spi.XATerminator	4	0.1	0.2	0.3	1.0	
+javax.transaction.Synchronization	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.GenericHeader	1	1.0	
+org.objectweb.howl.log.xa.XALogRecord	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.SingleInterceptorCollaborator	1	1.0	
+org.apache.aries.blueprint.namespace.NamespaceHandlerRegistryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.RequirementHeader	1	1.0	
+org.apache.aries.application.management.spi.resolve.PreResolveHook	1	1.0	
+twitter4j.Paging	1	1.0	
+org.apache.aries.samples.blog.biz.BlogListIterator	1	1.0	
+org.apache.aries.blueprint.container.GenericType	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.DeploymentContent	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.IdRefMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.blueprint.itest.JPATestBean	2	0.3	1.0	
+org.apache.aries.jndi.Utils	3	0.2	0.3	1.0	
+org.apache.geronimo.transaction.log.HOWLLog	4	0.1	0.2	0.3	1.0	
+twitter4j.StatusStream	1	1.0	
+org.apache.aries.application.resolver.internal.MessageUtil	2	0.3	1.0	
+org.apache.aries.jndi.url.Activator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.ServiceMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.web.converter.WarToWabConverter	2	0.3	1.0	
+org.apache.aries.application.impl.ApplicationMetadataFactoryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.TxComponentMetaDataHelperImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.MatchedTxData	3	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.StopAction	1	1.0	
+org.apache.aries.subsystem.core.internal.InstallAction	1	1.0	
+org.apache.aries.versioning.utils.FieldDeclaration	1	1.0	
+org.apache.aries.proxy.impl.common.OSGiFriendlyClassWriter	2	0.3	1.0	
+org.osgi.jmx.service.permissionadmin.PermissionAdminMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.NoOsgiRecipeBuilder	1	1.0	
+org.apache.aries.jndi.url.OsgiNameParser	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.Content	4	0.1	0.2	0.3	1.0	
+org.apache.aries.plugin.eba.EbaMojo	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.CredentialExtractor	1	1.0	
+org.apache.aries.transaction.jdbc.internal.ValidatingGenericConnectionManager	1	1.0	
+org.apache.aries.subsystem.core.archive.BundleManifestVersionHeader	1	1.0	
+org.apache.aries.transaction.jms.internal.JMSExceptionSupport	1	1.0	
+org.apache.aries.application.management.spi.resolve.PostResolveTransformer	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPCollectionMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.utils.manifest.ContentFactory	1	1.0	
+javax.transaction.NotSupportedException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.versioning.check.VersionChange	1	1.0	
+org.apache.aries.ejb.openejb.extender.EJBExtender	1	1.0	
+org.apache.aries.application.resolver.obr.ext.BundleResource	2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableBeanMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.XidFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.PooledProducer	1	1.0	
+org.apache.aries.application.repository.generator.AriesRepositoryGenerator	1	1.0	
+org.tranql.connector.jdbc.ManagedXAConnection	1	1.0	
+org.apache.aries.blueprint.testbundlea.ProcessableBean	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.Closeable	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.codec.BundleEventData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.ext.ModelledBundleResource	1	1.0	
+org.osgi.service.blueprint.container.BlueprintContainer	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPRefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.ext.BundleResourceTransformer	2	0.3	1.0	
+org.apache.aries.blueprint.ParserService	2	0.1	0.2	
+org.apache.aries.blueprint.plugin.model.Matcher	1	1.0	
+org.apache.aries.blueprint.mutable.MutableMapMetadata	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.LogFileManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.RandomIDChoice	1	1.0	
+org.apache.aries.util.filesystem.FileSystem	2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerFive	1	1.0	
+org.tranql.connector.jdbc.PreparedStatementKey	1	1.0	
+org.apache.aries.jndi.ContextProvider	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.ReferenceListener	2	0.3	1.0	
+org.apache.aries.blueprint.di.Repository	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.internal.BundleToClassLoaderAdapter	2	0.3	1.0	
+org.apache.aries.blueprint.sample.DestroyTest	2	0.3	1.0	
+org.objectweb.howl.log.LogException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.ExceptionListener	2	0.3	1.0	
+org.apache.aries.jndi.services.CgLibProxyFactory	1	0.2	
+org.apache.aries.samples.ariestrader.web.TradeAppServlet	1	1.0	
+org.apache.aries.blueprint.sample.Foo	2	0.3	1.0	
+org.tranql.connector.jdbc.PreparedStatementWrapper	1	1.0	
+org.apache.aries.subsystem.core.internal.InstallResourceComparator	1	1.0	
+org.objectweb.howl.log.xa.XALogger	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableBeanProperty	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPPropsMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.internal.ConnectionManagerFactory	1	1.0	
+org.apache.aries.application.filesystem.IDirectory	3	0.1	0.2	0.3	
+org.apache.aries.subsystem.core.archive.VisibilityDirective	1	1.0	
+org.apache.aries.subsystem.core.archive.HeaderFactory	1	1.0	
+org.apache.aries.util.manifest.ManifestHeaderProcessor	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.ComponentMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BasicSubsystem	1	1.0	
+org.apache.aries.blueprint.annotation.impl.BlueprintAnnotationException	1	1.0	
+org.apache.aries.blueprint.jaxb.Treference	1	1.0	
+org.apache.aries.blueprint.utils.threading.impl.DiscardableCallable	2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.Activator	1	1.0	
+org.apache.aries.blueprint.jaxb.TserviceReference	1	1.0	
+org.apache.aries.subsystem.core.archive.TypedAttribute	1	1.0	
+org.apache.aries.blueprint.proxy.AsmInterceptorWrapper	2	0.1	0.2	
+org.apache.aries.blueprint.container.Parser	2	0.1	0.2	
+org.apache.aries.subsystem.core.archive.Parameter	1	1.0	
+org.apache.aries.subsystem.core.archive.ParameterFactory	1	1.0	
+org.apache.aries.blueprint.container.ReferenceListRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.comment.ejb.BlogCommentEJB	1	1.0	
+org.osgi.service.repository.ContentNamespace	1	1.0	
+org.apache.aries.application.management.ResolveConstraint	4	0.1	0.2	0.3	1.0	
+twitter4j.TwitterResponse	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.CreditRecordOperationImpl	1	1.0	
+org.apache.aries.util.filesystem.impl.NestedZipDirectory	2	0.3	1.0	
+org.apache.aries.blueprint.container.ParserContextImpl	2	0.1	0.2	
+org.apache.aries.jpa.container.unit.impl.DataSourceFactoryDataSource	1	1.0	
+org.apache.aries.application.utils.management.SimpleBundleInfo	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.entities.HoldingDataBeanImpl	1	1.0	
+org.apache.aries.samples.blog.web.util.JNDIHelper	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2ServletRcv	1	1.0	
+org.apache.aries.application.runtime.impl.ApplicationContextImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.Processor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.utils.filesystem.impl.FileImpl	3	0.1	0.2	0.3	
+org.apache.aries.samples.ariestrader.util.TimerStat	1	1.0	
+twitter4j.org.json.JSONStringer	1	1.0	
+org.apache.aries.transaction.jms.internal.PooledConnection	1	1.0	
+org.apache.aries.ejb.modelling.impl.StandaloneEJBModeller	1	1.0	
+org.apache.aries.blueprint.utils.ReflectionUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.annotations.InjectSkeleton	2	0.3	1.0	
+org.apache.aries.jpa.container.unit.impl.ManagedPersistenceUnitInfoImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.api.persistence.Entry	1	1.0	
+org.apache.aries.itest.ExtraOptions	2	0.3	1.0	
+org.tranql.connector.jdbc.AbstractXADataSourceMCF	1	1.0	
+org.apache.aries.blueprint.di.PassThroughRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.entities.OrderDataBeanImpl	1	1.0	
+org.osgi.service.blueprint.container.ComponentDefinitionException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.DeploymentMetadataFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.internal.R43Worker	1	1.0	
+org.apache.aries.application.utils.filesystem.impl.ZipFileImpl	3	0.1	0.2	0.3	
+org.apache.aries.application.management.ManagementException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.api.comment.persistence.Comment	1	1.0	
+org.apache.aries.subsystem.core.archive.StartOrderDirective	1	1.0	
+org.apache.aries.samples.blog.api.BlogCommentManager	1	1.0	
+org.apache.aries.subsystem.core.archive.AbstractAttribute	1	1.0	
+org.apache.aries.blueprint.ExtendedServiceReferenceMetadata	4	0.1	0.2	0.3	1.0	
+javax.transaction.HeuristicRollbackException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.di.CollectionRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutablePassThroughMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.parser.ComponentDefinitionRegistryImpl	2	0.3	1.0	
+org.apache.aries.application.management.spi.runtime.AriesApplicationContextManager	2	0.3	1.0	
+org.apache.aries.samples.blog.api.BloggingService	1	1.0	
+org.apache.aries.jmx.whiteboard.Activator	2	0.3	1.0	
+org.apache.aries.blueprint.proxy.ProxyUtils	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.RegionUpdater	1	1.0	
+org.tranql.connector.jdbc.KnownSQLStateExceptionSorter	1	1.0	
+org.apache.aries.samples.ariestrader.api.TradeServiceUtilities	1	1.0	
+org.apache.aries.blueprint.utils.threading.impl.WrappedFuture	2	0.3	1.0	
+org.apache.aries.blueprint.testbundleb.Activator	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.ServiceProperty	2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerTwo	2	0.3	1.0	
+org.apache.aries.application.modelling.internal.BundleBlueprintParser	2	0.3	1.0	
+org.apache.aries.samples.blog.api.BlogEntryManager	1	1.0	
+org.apache.aries.subsystem.core.internal.BasicRequirement	1	1.0	
+org.tranql.connector.ConnectionHandleFactoryRequestInfo	1	1.0	
+org.apache.aries.blueprint.compendium.cm.CmUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.impl.PersistenceDescriptorParserImpl	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.reflect.BeanArgument	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.IORuntimeException	1	1.0	
+org.apache.aries.proxy.impl.gen.ProxySubclassMethodHashSet	2	0.3	1.0	
+org.apache.aries.proxy.impl.common.MethodCopyingClassAdapter	1	1.0	
+org.osgi.service.blueprint.reflect.RegistrationListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.api.Blog	1	1.0	
+org.tranql.connector.jdbc.AbstractLocalDataSourceMCF	1	1.0	
+org.apache.aries.subsystem.core.archive.RequireCapabilityRequirement	1	1.0	
+org.apache.aries.samples.ariestrader.beans.AccountProfileDataBeanImpl	1	1.0	
+org.apache.aries.ejb.modelling.impl.ParsedEJBServices	1	1.0	
+org.apache.aries.subsystem.core.internal.ResourceInstaller	1	1.0	
+twitter4j.org.json.HTTPTokener	1	1.0	
+org.apache.aries.transaction.internal.TransactionManagerService	1	1.0	
+org.apache.aries.blueprint.compendium.cm.CmManagedServiceFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.spi.repository.PlatformRepository	2	0.3	1.0	
+org.apache.aries.versioning.utils.SemanticVersioningUtils	1	1.0	
+org.apache.aries.subsystem.core.archive.BundleVersionHeader	1	1.0	
+org.apache.aries.blueprint.plugin.model.SpringTransactionFactory	1	1.0	
+org.apache.aries.versioning.utils.SerialVersionClassVisitor	1	1.0	
+org.apache.aries.blueprint.ComponentDefinitionRegistry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.ext.DependentComponentFactoryMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.impl.AriesApplicationImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Destroy	2	0.3	1.0	
+org.osgi.service.jndi.JNDIProviderAdmin	3	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.ParsedPersistenceUnit	4	0.1	0.2	0.3	1.0	
+org.apache.aries.ejb.openejb.extender.RunningApplication	1	1.0	
+org.apache.aries.blueprint.fragment.FragmentBean	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.AbstractHeader	1	1.0	
+org.apache.aries.jmx.blueprint.codec.BPBeanArgument	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.ComponentMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.impl.ServiceDeclarationImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.weaving.WovenProxyMethodAdapter	1	0.3	
+org.apache.aries.transaction.jdbc.internal.ValidatingDelegatingManagedConnectionFactory	1	1.0	
+org.apache.aries.blueprint.reflect.RefMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.versioning.mojo.CLVersionCheckerMojo	1	1.0	
+org.apache.aries.jpa.container.ManagedPersistenceUnitInfo	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TservicePropertyEntry	1	1.0	
+org.apache.aries.proxy.impl.weaving.MethodCopyingClassAdapter	1	0.3	
+org.osgi.service.blueprint.reflect.ServiceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.api.BlogEntry	1	1.0	
+org.tranql.connector.ExceptionSorter	1	1.0	
+org.apache.aries.application.modelling.standalone.OfflineModellingFactory	1	1.0	
+org.osgi.service.blueprint.container.NoSuchComponentException	4	0.1	0.2	0.3	1.0	
+twitter4j.SavedSearch	1	1.0	
+org.apache.aries.blueprint.testbundleb.OtherBean	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPNonNullMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.spi.framework.BundleFramework	2	0.3	1.0	
+org.apache.aries.application.modelling.internal.MessageUtil	2	0.3	1.0	
+org.apache.aries.proxy.impl.AsmProxyManager	2	0.3	1.0	
+javax.transaction.HeuristicMixedException	4	0.1	0.2	0.3	1.0	
+javax.transaction.HeuristicCommitException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableCollectionMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.compendium.cm.CmPropertyPlaceholder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.sample.HelloWorldManager	2	0.3	1.0	
+org.apache.aries.web.converter.impl.WarToWabConverterImpl	2	0.3	1.0	
+org.apache.aries.util.tracker.MultiBundleTracker	1	0.1	
+org.apache.aries.jmx.framework.Framework	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.MetadataUtil	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.RepositoryGeneratorImpl	2	0.3	1.0	
+org.apache.aries.application.local.platform.impl.DefaultLocalPlatform	2	0.3	1.0	
+org.apache.aries.application.utils.manifest.BundleManifest	3	0.1	0.2	0.3	
+twitter4j.org.json.XML	1	1.0	
+org.apache.aries.subsystem.core.internal.DependencyCalculator	1	1.0	
+org.apache.aries.blueprint.jaxb.Tkey	1	1.0	
+org.apache.aries.samples.blog.api.BlogAuthorManager	1	1.0	
+org.apache.aries.proxy.impl.ProxyUtils	1	1.0	
+org.apache.aries.application.management.AriesApplicationEvent	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.MBeanServiceTracker	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.ManagedPooledConnection	1	1.0	
+org.apache.aries.unittest.junit.Assert	2	0.3	1.0	
+twitter4j.http.OAuthToken	1	1.0	
+org.apache.aries.transaction.test.TestBean	2	0.3	1.0	
+org.apache.aries.transaction.annotations.Transaction	1	1.0	
+org.apache.aries.samples.ariestrader.util.MDBStats	1	1.0	
+org.apache.aries.application.management.spi.framework.BundleFrameworkManager	2	0.3	1.0	
+org.apache.aries.blueprint.plugin.model.Bean	1	1.0	
+org.osgi.service.blueprint.reflect.ValueMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.AriesSubsystemParentsHeader	1	1.0	
+org.objectweb.howl.log.LogRecordType	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerFour	1	1.0	
+org.apache.aries.application.install.EBAInstaller	4	0.1	0.2	0.3	1.0	
+org.apache.aries.ejb.openejb.extender.OSGiTransactionManager	1	1.0	
+org.apache.aries.samples.blog.web.EditAuthorForm	1	1.0	
+org.apache.aries.blueprint.compendium.cm.CmProperties	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.rmi.Activator	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.ReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemSymbolicNameHeader	1	1.0	
+org.apache.aries.application.runtime.defaults.DefaultLocalPlatform	2	0.1	0.2	
+org.apache.aries.transaction.AriesTransactionManager	1	1.0	
+org.apache.aries.application.management.AriesApplication	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.tx.impl.ConnectionKey	1	1.0	
+org.apache.aries.jmx.blueprint.BlueprintStateMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.codec.UserData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ModelledResource	2	0.3	1.0	
+org.apache.aries.proxy.impl.common.ConstructorFinder	1	1.0	
+org.apache.aries.blueprint.parser.ParserContextImpl	2	0.3	1.0	
+org.apache.aries.web.converter.impl.PackageFinder	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.ServiceProvider	1	1.0	
+org.apache.aries.jmx.framework.RegistrableStandardEmitterMBean	3	0.1	0.2	0.3	
+org.apache.aries.blueprint.proxy.ProxySubclassAdapter	2	0.1	0.2	
+org.apache.aries.transaction.internal.NLS	1	1.0	
+org.apache.aries.blueprint.utils.threading.RWLock	2	0.3	1.0	
+org.apache.aries.application.utils.AppConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.BlueprintMetadataMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.utils.filesystem.impl.DirectoryImpl	3	0.1	0.2	0.3	
+org.apache.aries.blueprint.sample.DateTypeConverter	2	0.3	1.0	
+org.apache.aries.samples.blog.web.ViewAuthor	1	1.0	
+org.apache.aries.blueprint.compendium.cm.CmNamespaceHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndiurl.itest.JndiUrlItestServlet	2	0.3	1.0	
+org.apache.aries.application.utils.ServiceDeclarationFactory	2	0.3	1.0	
+twitter4j.http.Response	1	1.0	
+org.apache.aries.jpa.container.context.impl.NLS	1	1.0	
+org.apache.aries.jndi.legacy.support.LegacyInitialContextFinder	2	0.3	1.0	
+org.apache.aries.jpa.container.context.PersistenceContextProvider	4	0.1	0.2	0.3	1.0	
+javax.transaction.TransactionManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.FooRegistrationListener	2	0.3	1.0	
+org.apache.aries.application.modelling.ExportedPackage	2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.CloseableDirectory	2	0.3	1.0	
+org.apache.aries.jndi.url.OsgiURLContextServiceFactory	3	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPComponentMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPMapEntry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.RepositoryServiceRepository	1	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemResolverHook	1	1.0	
+org.apache.aries.blueprint.annotation.impl.Activator	1	1.0	
+org.apache.aries.jndi.ContextManagerService	3	0.2	0.3	1.0	
+twitter4j.examples.OAuthUpdate	1	1.0	
+org.apache.aries.application.management.spi.repository.BundleRepository	2	0.3	1.0	
+org.apache.aries.proxy.impl.weaving.SyntheticSerialVerUIDAdder	2	0.3	1.0	
+twitter4j.TwitterAdapter	1	1.0	
+org.apache.aries.application.modelling.DeployedBundles	2	0.3	1.0	
+org.apache.aries.samples.blog.api.persistence.BlogPersistenceService	1	1.0	
+org.apache.aries.subsystem.core.archive.ReferenceDirective	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemImportServiceRequirement	1	1.0	
+org.apache.aries.jpa.container.impl.InvalidPersistenceUnitException	4	0.1	0.2	0.3	1.0	
+twitter4j.Version	1	1.0	
+org.apache.aries.subsystem.core.internal.TargetRegion	1	1.0	
+org.apache.aries.samples.ariestrader.persist.jpa.am.TradeJpaAm	1	1.0	
+org.apache.aries.util.internal.EquinoxWorker	2	0.3	1.0	
+org.tranql.connector.ManagedConnectionHandle	1	1.0	
+org.apache.aries.blueprint.container.BlueprintEventDispatcher	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.container.ReifiedType	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.FelixRepositoryAdapter	1	1.0	
+org.apache.aries.proxy.impl.common.OSGiFriendlyClassVisitor	1	1.0	
+org.apache.aries.blueprint.reflect.BeanArgumentImpl	4	0.1	0.2	0.3	1.0	
+org.osgi.service.repository.Repository	1	1.0	
+org.apache.aries.blueprint.compendium.cm.CmManagedProperties	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.NLS	1	1.0	
+org.apache.aries.transaction.jdbc.XADatasourceEnlistingWrapper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.context.transaction.impl.DestroyCallback	3	0.2	0.3	1.0	
+org.apache.aries.ejb.modelling.impl.IDirectoryFinder	1	1.0	
+org.apache.aries.blueprint.ComponentNameAlreadyInUseException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.AccountFactory	2	0.3	1.0	
+org.apache.aries.blueprint.sample.CurrencyTypeConverter	2	0.3	1.0	
+org.apache.aries.blueprint.ext.PlaceholdersUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.RepositoryAdminRepository	1	1.0	
+org.apache.aries.blueprint.di.MapRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.impl.DeploymentMetadataFactoryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Register	2	0.3	1.0	
+org.apache.aries.application.runtime.framework.management.SharedFrameworkPreResolveHook	1	1.0	
+org.apache.aries.jmx.provisioning.ProvisioningServiceMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.services.ProxyFactory	1	0.2	
+org.apache.aries.blueprint.plugin.model.PropertyWriter	1	1.0	
+org.apache.aries.application.management.ResolverException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.api.CreditRecordOperation	1	1.0	
+org.apache.aries.blueprint.PassThroughMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.ObjectFactory	1	1.0	
+org.apache.geronimo.transaction.manager.SetRollbackOnlyException	1	1.0	
+org.apache.aries.blueprint.utils.threading.impl.Discardable	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.RequireBundleRequirement	1	1.0	
+twitter4j.http.BASE64Encoder	1	1.0	
+org.tranql.connector.jdbc.DatabaseMetaDataHandle	1	1.0	
+org.apache.aries.versioning.utils.MethodDeclaration	1	1.0	
+org.osgi.jmx.framework.wiring.BundleWiringStateMBean	1	1.0	
+org.apache.aries.util.filesystem.impl.FileImpl	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemContentRequirement	1	1.0	
+org.apache.aries.application.modelling.ModellingConstants	2	0.3	1.0	
+org.apache.aries.transaction.Activator	3	0.1	0.2	0.3	
+org.apache.aries.samples.blueprint.idverifier.server.ComplexVerifierRegistrationListener	1	1.0	
+org.apache.aries.samples.blog.web.CreateBlogEntry	1	1.0	
+org.apache.aries.samples.blog.biz.BlogImpl	1	1.0	
+javax.transaction.RollbackException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.di.ComponentFactoryRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tprops	1	1.0	
+org.apache.aries.ejb.modelling.impl.EJBServiceExport	1	1.0	
+org.apache.aries.blueprint.di.ArrayRecipe	4	0.1	0.2	0.3	1.0	
+org.osgi.jmx.JmxConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.FragmentBuilder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.BundleConversion	1	0.2	
+org.apache.aries.jmx.framework.PackageState	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogEntryImpl	1	1.0	
+org.apache.aries.subsystem.AriesSubsystem	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemExportServiceHeader	1	1.0	
+org.apache.aries.blueprint.plugin.model.Property	1	1.0	
+org.apache.aries.subsystem.obr.internal.AbstractCapability	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.CreditRecordStore	1	1.0	
+org.apache.aries.subsystem.core.archive.ProvideCapabilityHeader	1	1.0	
+org.apache.aries.blueprint.reflect.MapEntryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.plugin.GenerateMojo	1	1.0	
+org.apache.aries.subsystem.core.archive.FilterDirective	1	1.0	
+org.apache.aries.subsystem.core.internal.UninstallAction	1	1.0	
+org.tranql.connector.jdbc.JDBCDriverMCF	1	1.0	
+org.apache.aries.blueprint.annotation.Blueprint	2	0.3	1.0	
+org.apache.aries.jmx.permissionadmin.PermissionAdmin	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.ProxyClassBytecodeGenerationException	2	0.1	0.2	
+org.apache.aries.transaction.parsing.AnnotationParser	1	1.0	
+org.apache.aries.subsystem.core.internal.AbstractAction	1	1.0	
+org.apache.aries.blueprint.mutable.MutableServiceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.NewAccount	2	0.3	1.0	
+org.osgi.service.blueprint.container.BlueprintListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.utils.filesystem.IOUtils	3	0.1	0.2	0.3	
+org.apache.aries.application.resolver.obr.generator.RepositoryDescriptorGenerator	2	0.1	0.2	
+org.apache.aries.subsystem.core.archive.Manifest	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemVersionHeader	1	1.0	
+org.apache.aries.blueprint.reflect.ReferenceListenerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.plugin.model.Context	1	1.0	
+org.apache.aries.samples.ariestrader.util.Log	1	1.0	
+org.apache.aries.jndi.url.BlueprintName	2	0.3	1.0	
+org.apache.aries.application.modelling.WrappedReferenceMetadata	2	0.3	1.0	
+org.apache.aries.proxy.InvocationListener	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.BeanMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.CreditRecordFactory	1	1.0	
+org.tranql.connector.jdbc.CallableStatementHandle	1	1.0	
+org.apache.aries.jpa.container.tx.impl.XADatasourceEnlistingWrapper	1	1.0	
+org.apache.aries.jndi.url.ServiceRegistryListContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ImportedService	2	0.3	1.0	
+org.apache.aries.blueprint.di.DependentComponentFactoryRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.URLContextProvider	2	0.3	1.0	
+org.apache.aries.proxy.impl.weaving.ProxyWeavingHook	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.Constants	1	1.0	
+javax.transaction.Transaction	4	0.1	0.2	0.3	1.0	
+org.osgi.jmx.framework.PackageStateMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.RequirementImpl	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.AbstractManagedConnection	1	1.0	
+org.objectweb.howl.log.LogRecordSizeException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ExportPackageCapability	1	1.0	
+org.apache.aries.jpa.container.unit.impl.JndiDataSource	1	1.0	
+org.apache.geronimo.transaction.manager.XAWork	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.PooledQueueSender	1	1.0	
+org.apache.aries.blueprint.ParserContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.BeanProcessorTest	2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.OsgiRequirementAdapter	1	1.0	
+org.osgi.service.blueprint.container.ServiceUnavailableException	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.LogObject	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.internal.Activator	1	1.0	
+org.osgi.service.blueprint.reflect.BeanProperty	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Bean	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.ReferenceListener	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.LogConfigurationException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ParsedServiceElements	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Service	2	0.3	1.0	
+org.apache.aries.application.impl.ContentImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.context.impl.ManagedPersistenceContextFactory	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.Logger	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPBeanMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.FileSystemImpl	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.MapEntry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.impl.ApplicationMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.spi.framework.BundleFrameworkConfiguration	2	0.3	1.0	
+org.apache.aries.util.VersionRange	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.ConnectionPool	1	1.0	
+org.apache.aries.application.modelling.Consumer	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.PersonCreditRecords	1	1.0	
+org.apache.aries.subsystem.core.internal.OsgiIdentityCapability	1	1.0	
+org.apache.aries.blueprint.ExtendedBeanMetadata	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.AllExceptionsAreFatalSorter	1	1.0	
+org.apache.aries.application.management.AriesApplicationListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.Activator	2	0.3	1.0	
+org.objectweb.howl.log.Version	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemTypeHeader	1	1.0	
+org.apache.aries.application.modelling.impl.AbstractExportedBundle	2	0.3	1.0	
+org.tranql.connector.jdbc.PSCachedXADataSourceWrapper	1	1.0	
+org.apache.aries.subsystem.core.archive.RequireCapabilityHeader	1	1.0	
+org.apache.aries.subsystem.core.archive.GenericAttribute	1	1.0	
+org.apache.aries.samples.ariestrader.entities.AccountDataBeanImpl	1	1.0	
+org.apache.aries.blueprint.container.BlueprintProtectionDomain	1	1.0	
+org.apache.aries.blueprint.reflect.ReferenceMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.reflect.MapMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.utils.JavaUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.api.persistence.Author	1	1.0	
+org.apache.aries.util.tracker.SingleServiceTracker	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.IDConverter	1	1.0	
+org.apache.aries.application.utils.filesystem.impl.ZipDirectory	3	0.1	0.2	0.3	
+org.apache.aries.jmx.framework.PackageStateMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.impl.PersistenceBundleHelper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPBeanProperty	4	0.1	0.2	0.3	1.0	
+twitter4j.examples.AsyncUpdate	1	1.0	
+org.apache.aries.blueprint.annotation.service.BlueprintAnnotationScanner	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BundleResourceInstaller	1	1.0	
+org.apache.aries.blueprint.mutable.MutableComponentMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemResolverHookFactory	1	1.0	
+org.apache.aries.application.modelling.impl.ImportedPackageImpl	2	0.3	1.0	
+org.apache.aries.ejb.openejb.extender.OSGiFinder	1	1.0	
+org.apache.aries.transaction.jms.RecoverablePooledConnectionFactory	1	1.0	
+org.apache.geronimo.transaction.manager.RetryScheduler	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Reference	2	0.3	1.0	
+org.apache.aries.jpa.container.ManagedPersistenceUnitInfoFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.common.AbstractWovenProxyAdapter	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TtypedCollection	1	1.0	
+org.apache.aries.jndi.SingleContextProvider	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionTimer	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ExportedBundle	2	0.3	1.0	
+org.apache.aries.blueprint.container.NoOsgiBlueprintRepository	1	1.0	
+org.apache.aries.jpa.container.context.impl.GlobalPersistenceManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.DirectoryImpl	2	0.3	1.0	
+org.apache.aries.util.internal.FelixWorker	2	0.3	1.0	
+org.apache.aries.jpa.container.impl.CoundownCallback	3	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ImportedBundle	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.ResourceReferences	1	1.0	
+org.apache.aries.jndi.url.AbstractName	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.ReferenceList	2	0.3	1.0	
+org.apache.aries.application.runtime.framework.utils.EquinoxFrameworkConstants	2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.FelixCapabilityAdapter	1	1.0	
+org.apache.aries.util.manifest.ManifestProcessor	2	0.3	1.0	
+org.apache.aries.jmx.codec.AuthorizationData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.BlueprintConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.ResourceHelper	1	1.0	
+org.objectweb.howl.log.LogFileHeader	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerThree	2	0.3	1.0	
+org.apache.aries.jmx.codec.PackageData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.internal.AbstractMCFFactory	1	1.0	
+org.apache.aries.jpa.container.tx.impl.ConnectionWrapper	1	1.0	
+org.apache.aries.unittest.mocks.MethodCall	2	0.3	1.0	
+org.apache.aries.jndi.api.JNDIConstants	2	0.3	1.0	
+org.apache.aries.blueprint.namespace.ComponentDefinitionRegistryImpl	2	0.1	0.2	
+twitter4j.Configuration	1	1.0	
+org.apache.aries.web.converter.impl.CachedOutputStream	2	0.3	1.0	
+org.apache.aries.util.manifest.BundleManifest	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemResourceUninstaller	1	1.0	
+twitter4j.TwitterException	1	1.0	
+org.apache.aries.jndi.spi.EnvironmentAugmentation	2	0.3	1.0	
+twitter4j.Tweet	1	1.0	
+org.apache.aries.versioning.mojo.VersionCheckerMojo	1	1.0	
+org.apache.aries.jpa.container.context.transaction.impl.SynchronizedEntityManagerWrapper	1	1.0	
+twitter4j.http.AccessToken	1	1.0	
+org.apache.aries.subsystem.core.archive.ProvisionPolicyDirective	1	1.0	
+org.apache.aries.util.filesystem.ICloseableDirectory	2	0.3	1.0	
+org.apache.aries.samples.blog.persistence.jdbc.BlogPersistenceServiceImpl	1	1.0	
+org.apache.geronimo.transaction.log.UnrecoverableLog	4	0.1	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.Skeleton	2	0.3	1.0	
+org.tranql.connector.jdbc.AbstractPooledConnectionDataSourceMCF	1	1.0	
+org.apache.aries.blueprint.utils.threading.impl.DiscardableRunnable	2	0.3	1.0	
+org.apache.aries.jmx.framework.wiring.BundleWiringState	1	1.0	
+org.apache.aries.blueprint.mutable.MutableServiceReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.spi.resolve.DeploymentManifestManager	2	0.3	1.0	
+org.apache.aries.blueprint.di.ValueRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TinlinedService	1	1.0	
+twitter4j.Dispatcher	1	1.0	
+org.apache.aries.blueprint.plugin.OsgiServiceProviderWriter	1	1.0	
+org.apache.aries.blueprint.jaxb.Tcollection	1	1.0	
+org.apache.aries.subsystem.obr.internal.OsgiContentCapability	1	1.0	
+org.apache.aries.blueprint.jaxb.TinlinedReferenceList	1	1.0	
+org.apache.aries.application.management.spi.framework.BundleFrameworkFactory	2	0.3	1.0	
+org.apache.aries.quiesce.manager.QuiesceManager	3	0.2	0.3	1.0	
+org.apache.aries.jndi.DelegateContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.WrappedServiceMetadata	2	0.3	1.0	
+org.apache.aries.transaction.TxComponentMetaDataHelper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.spi.convert.BundleConversion	2	0.3	1.0	
+twitter4j.http.OAuth	1	1.0	
+org.apache.aries.blueprint.container.BlueprintRepository	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.BundleVersionAttribute	1	1.0	
+org.apache.aries.blueprint.container.AbstractTracked	1	1.0	
+org.apache.aries.util.service.registry.ServicePair	2	0.3	1.0	
+org.apache.aries.samples.blog.persistence.jdbc.entity.EntryImpl	1	1.0	
+org.apache.aries.application.modelling.utils.ModellingHelper	2	0.3	1.0	
+org.apache.aries.blueprint.parser.NamespaceHandlerSet	2	0.3	1.0	
+org.apache.aries.blueprint.reflect.ServiceReferenceMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.plugin.Generator	1	1.0	
+org.apache.geronimo.transaction.manager.GeronimoTransactionManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.weavinghook.WeavingHelper	1	1.0	
+org.apache.aries.transaction.GeronimoPlatformTransactionManager	3	0.1	0.2	0.3	
+org.tranql.connector.NoExceptionsAreFatalSorter	1	1.0	
+org.apache.aries.subsystem.core.archive.AbstractDirective	1	1.0	
+org.apache.aries.transaction.TransactionStrategy	1	0.1	
+org.apache.aries.subsystem.core.internal.Subsystems	1	1.0	
+org.apache.aries.application.ServiceDeclaration	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.impl.InvalidRangeCombination	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.dependency.Dependency	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.PersonalInfo	1	1.0	
+org.apache.aries.samples.ariestrader.beans.QuoteDataBeanImpl	1	1.0	
+org.apache.aries.application.management.LocalPlatform	2	0.1	0.2	
+org.apache.aries.blueprint.jaxb.Tnull	1	1.0	
+org.apache.aries.application.resolver.obr.impl.OBRBundleInfo	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogListAdapter	1	1.0	
+org.objectweb.howl.log.InvalidLogHeaderException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.internal.MessageUtil	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.BundleManifest	1	1.0	
+org.apache.aries.unittest.fixture.ArchiveFixture	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPMapMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.ContextHelper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.versioning.utils.BinaryCompatibilityStatus	1	1.0	
+org.osgi.service.subsystem.SubsystemConstants	1	1.0	
+org.apache.aries.util.tracker.AriesBundleTrackerCustomizer	1	0.1	
+org.apache.aries.application.resolver.obr.impl.ApplicationResourceImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemResource	1	1.0	
+twitter4j.examples.FeedMonitor	1	1.0	
+org.apache.aries.application.ApplicationMetadataFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BasicCapability	1	1.0	
+org.apache.aries.blueprint.jaxb.TtypeConverters	1	1.0	
+org.apache.aries.ejb.openejb.extender.EJBServiceFactory	1	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.OrderDataBean	1	1.0	
+org.apache.aries.subsystem.core.archive.ProvideCapabilityCapability	1	1.0	
+org.apache.aries.jmx.blueprint.codec.BPIdRefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.noop.postresolve.process.impl.DefaultPostResolveTransformer	1	0.3	
+org.objectweb.howl.log.BlockLogBuffer	4	0.1	0.2	0.3	1.0	
+org.osgi.jmx.framework.BundleStateMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.runtime.framework.BundleFrameworkImpl	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TmapEntry	1	1.0	
+org.apache.aries.jpa.container.itest.entities.Car	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.PreferredProviderHeader	1	1.0	
+org.apache.aries.blueprint.ExtendedBlueprintContainer	3	0.1	0.2	1.0	
+org.apache.aries.transaction.TxInterceptorImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.runtime.framework.config.BundleFrameworkConfigurationImpl	2	0.3	1.0	
+org.apache.aries.application.management.ConversionException	2	0.1	0.2	
+org.apache.aries.transaction.jdbc.internal.Recovery	1	1.0	
+org.apache.aries.blueprint.container.RecipeBuilder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.InputStreamClosableDirectory	2	0.3	1.0	
+org.apache.aries.jpa.container.impl.CountingEntityManagerFactory	3	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.weaving.WovenProxyAdapter	2	0.3	1.0	
+org.apache.aries.application.resolver.obr.OBRAriesResolver	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.internal.Activator	1	1.0	
+org.apache.aries.application.management.BundleConverter	2	0.1	0.2	
+org.tranql.connector.jdbc.ConnectionPoolDataSourceWrapper	1	1.0	
+org.apache.aries.application.management.spi.convert.ConversionException	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingSession3Object	1	1.0	
+org.tranql.connector.jdbc.XADataSourceWrapper	1	1.0	
+org.apache.aries.blueprint.container.ReferenceRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.impl.JPAHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ImportedPackage	2	0.3	1.0	
+org.apache.aries.blueprint.container.Voidable	1	1.0	
+org.apache.aries.proxy.impl.DefaultWrapper	2	0.3	1.0	
+org.objectweb.howl.log.ConfigurationMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.gen.ProxyClassDefinitionException	2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogCommentManagerImpl	1	1.0	
+org.apache.aries.jmx.whiteboard.JmxWhiteboardSupport	2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.OsgiCapabilityAdapter	1	1.0	
+org.apache.aries.blueprint.annotation.impl.BlueprintAnnotationScannerImpl	1	1.0	
+org.apache.aries.subsystem.core.internal.OsgiIdentityRequirement	1	1.0	
+org.tranql.connector.jdbc.AutocommitSpecCompliant	1	1.0	
+twitter4j.org.json.JSONObject	1	1.0	
+org.apache.aries.ejb.modelling.impl.OpenEJBLocator	1	1.0	
+org.apache.aries.application.runtime.repository.BundleRepositoryManagerImpl	2	0.3	1.0	
+org.apache.aries.jmx.cm.ConfigurationAdmin	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.test.impl.TestBeanImpl	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.TradeConfigServlet	1	1.0	
+org.apache.aries.versioning.check.BundleInfo	1	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemUri	1	1.0	
+org.apache.aries.subsystem.core.archive.SymbolicNameHeader	1	1.0	
+org.apache.aries.blueprint.jaxb.TreferenceListener	1	1.0	
+org.apache.aries.util.manifest.Constants	2	0.3	1.0	
+org.apache.aries.application.utils.service.ArrayServiceList	2	0.3	1.0	
+org.apache.aries.application.management.spi.repository.BundleRepositoryManager	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionManagerMonitor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPReferenceListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.ResourceHelper	1	1.0	
+org.tranql.connector.jdbc.ConfigurableSQLStateExceptionSorter	1	1.0	
+org.apache.aries.application.modelling.utils.impl.ModellingHelperImpl	2	0.3	1.0	
+org.apache.aries.blueprint.sample.Bar	2	0.3	1.0	
+org.apache.aries.blueprint.container.ExecutorServiceWrapper	1	1.0	
+org.apache.aries.samples.blog.web.util.FormServlet	1	1.0	
+org.osgi.service.blueprint.container.EventConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.NestedCloseableDirectory	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.MonitorableTransactionManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.impl.ZipCloseableDirectory	2	0.3	1.0	
+org.apache.aries.blueprint.container.ParserServiceImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.ThreadLocalSubsystem	1	1.0	
+org.apache.aries.unittest.mocks.DefaultReturnTypeHandlers	2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.ResourceWrapper	3	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.BlueprintThreadFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.AbstractServiceReferenceRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.gen.ProxyClassInstantiationException	2	0.3	1.0	
+org.apache.aries.proxy.FinalModifierException	2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableIdRefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.ProxyManagerActivator	2	0.3	1.0	
+twitter4j.DirectMessage	1	1.0	
+org.apache.aries.subsystem.core.archive.DeployedVersionAttribute	1	1.0	
+org.apache.aries.blueprint.di.AbstractRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.ejb.modelling.EJBRegistry	1	1.0	
+org.apache.aries.jndi.url.OsgiName	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ParserProxy	2	0.3	1.0	
+org.apache.aries.jmx.util.ObjectNameUtils	1	1.0	
+org.apache.aries.blueprint.container.AggregateConverter	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.annotation.impl.JPAAnnotationScanner	1	1.0	
+org.apache.aries.mocks.BundleContextMock	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemManifestVersionHeader	1	1.0	
+org.tranql.connector.UserPasswordManagedConnectionFactory	1	1.0	
+org.apache.aries.subsystem.obr.internal.FelixRequirementAdapter	1	1.0	
+org.apache.aries.jmx.agent.JMXAgent	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BundleDirectory	1	1.0	
+org.apache.aries.jndi.url.BlueprintURLContext	2	0.3	1.0	
+org.apache.aries.blueprint.container.QuiesceInterceptor	2	0.3	1.0	
+org.apache.aries.samples.blog.api.BlogComment	1	1.0	
+org.apache.aries.samples.ariestrader.beans.HoldingDataBeanImpl	1	1.0	
+org.apache.aries.application.management.UpdateException	2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.XaPooledConnectionFactory	1	1.0	
+org.apache.aries.subsystem.core.archive.RequireBundleHeader	1	1.0	
+org.apache.aries.util.io.RememberingInputStream	2	0.3	1.0	
+org.apache.aries.application.runtime.isolated.impl.ApplicationContextManagerImpl	2	0.3	1.0	
+org.apache.aries.proxy.impl.NLS	2	0.3	1.0	
+org.apache.aries.application.impl.DeploymentMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.impl.VersionRangeImpl	3	0.1	0.2	0.3	
+org.objectweb.howl.log.LoggerFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.OrdersAlertFilter	1	1.0	
+org.apache.aries.blueprint.NamespaceHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.di.IdRefRecipe	4	0.1	0.2	0.3	1.0	
+org.objectweb.howl.log.LogBuffer	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.ConnectionKey	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.CreditRecord	1	1.0	
+org.apache.aries.subsystem.core.internal.OsgiContentCapability	1	1.0	
+org.apache.aries.application.VersionRange	3	0.1	0.2	0.3	
+org.apache.aries.samples.ariestrader.api.persistence.RunStatsDataBean	1	1.0	
+org.apache.aries.jmx.useradmin.UserAdminMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.TransactionToken	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.common.AbstractWovenProxyMethodAdapter	2	0.3	1.0	
+org.apache.aries.samples.blueprint.helloworld.client.HelloWorldClient	1	1.0	
+org.apache.aries.quiesce.manager.QuiesceCallback	3	0.2	0.3	1.0	
+org.apache.aries.util.filesystem.IFile	2	0.3	1.0	
+org.apache.aries.jpa.container.impl.PersistenceDescriptorImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BundleRevisionResource	1	1.0	
+org.osgi.jmx.framework.FrameworkMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ModelledResourceManagerImpl	2	0.3	1.0	
+org.apache.aries.proxy.impl.interfaces.ProxyClassLoader	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.QuoteDataBean	1	1.0	
+twitter4j.org.json.JSONWriter	1	1.0	
+org.osgi.jmx.service.cm.ConfigurationAdminMBean	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.reflect.PropsMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Init	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.server.PersonIDVerifierComplexImpl	1	1.0	
+org.objectweb.howl.log.LogRecord	4	0.1	0.2	0.3	1.0	
+twitter4j.org.json.CookieList	1	1.0	
+org.apache.aries.blueprint.mutable.MutableValueMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.XidFactoryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.internal.DataSourceMCFFactory	1	1.0	
+org.apache.aries.jpa.container.impl.QuiesceParticipantImpl	3	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.PropsMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.PersistenceDescriptorParser	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.common.WovenProxyAbstractMethodAdapter	1	1.0	
+org.apache.aries.blueprint.plugin.model.OsgiServiceBean	1	1.0	
+org.apache.aries.application.utils.manifest.ManifestHeaderProcessor	3	0.1	0.2	0.3	
+org.apache.aries.jpa.container.annotation.impl.AnnotationScannerFactory	1	1.0	
+org.apache.aries.blueprint.annotation.Inject	2	0.3	1.0	
+org.apache.aries.blueprint.compendium.cm.BaseManagedServiceFactory	1	1.0	
+org.apache.aries.blueprint.reflect.CollectionMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.internal.PackageRequirementMerger	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TregistrationListener	1	1.0	
+org.apache.aries.application.management.spi.repository.ContextException	2	0.3	1.0	
+org.apache.aries.jpa.blueprint.itest.entities.Car	2	0.3	1.0	
+org.apache.aries.ejb.modelling.impl.EJBLocationUnavailable	1	1.0	
+org.apache.aries.transaction.internal.XidFactoryImpl	1	1.0	
+org.apache.aries.jpa.container.unit.impl.PersistenceUnitInfoImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Unregister	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Targument	1	1.0	
+org.apache.aries.subsystem.core.internal.ResourceUninstaller	1	1.0	
+org.apache.aries.jpa.container.impl.EntityManagerWrapper	3	0.2	0.3	1.0	
+org.apache.aries.jmx.agent.JMXAgentImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.PersistenceUnitConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.InterfaceB	2	0.3	1.0	
+org.apache.aries.blueprint.sample.InterfaceA	2	0.3	1.0	
+org.apache.aries.jmx.Logger	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.AbstractProxyManager	2	0.3	1.0	
+org.apache.aries.samples.blog.api.comment.persistence.BlogCommentService	1	1.0	
+twitter4j.http.PostParameter	1	1.0	
+org.apache.aries.jndi.url.BlueprintURLContextFactory	2	0.3	1.0	
+org.apache.aries.jmx.framework.ServiceState	4	0.1	0.2	0.3	1.0	
+org.apache.aries.quiesce.manager.impl.QuiesceManagerImpl	3	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionBranchInfoImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.deployment.management.internal.MessageUtil	1	0.3	
+org.apache.aries.jmx.codec.BatchInstallResult	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.weaving.impl.TransformerRegistry	1	1.0	
+org.apache.aries.blueprint.container.DependencyGraph	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.services.BlueprintExtenderService	1	1.0	
+org.apache.aries.subsystem.core.archive.ManifestVersionHeader	1	1.0	
+org.apache.aries.blueprint.BeanProcessor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.DefaultMethodCallHandlers	2	0.3	1.0	
+org.apache.aries.jmx.JMXThreadFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.internal.MessageUtil	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jexl.evaluator.JexlPropertyEvaluator	2	0.3	1.0	
+org.apache.aries.samples.blog.web.AddCommentForm	1	1.0	
+org.apache.aries.subsystem.core.archive.ProvideBundleCapability	1	1.0	
+org.apache.aries.subsystem.core.archive.AbstractParameter	1	1.0	
+org.apache.aries.jmx.framework.BundleState	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.PooledConnectionFactory	1	1.0	
+org.apache.aries.proxy.impl.gen.ProxySubclassGenerator	2	0.3	1.0	
+org.apache.aries.application.deployment.management.impl.DefaultPostResolveTransformer	1	1.0	
+org.apache.aries.jmx.util.TypeUtils	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.web.util.FormatChecker	1	1.0	
+org.apache.aries.application.runtime.framework.BundleFrameworkFactoryImpl	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.LocalRepository	1	1.0	
+org.osgi.jmx.framework.ServiceStateMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.ExtendedReferenceListMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.weaving.WovenProxy	2	0.3	1.0	
+twitter4j.http.HttpClient	1	1.0	
+javax.transaction.InvalidTransactionException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.unit.impl.DelayedLookupDataSource	3	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.Clause	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingSession3	1	1.0	
+org.apache.aries.samples.blog.comment.ejb.CommentImpl	1	1.0	
+org.apache.aries.transaction.jdbc.RecoverableDataSource	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingSession2	1	1.0	
+org.apache.aries.blueprint.ext.ExtNamespaceHandler	3	0.1	0.2	0.3	
+org.apache.aries.samples.ariestrader.web.prims.PingSession1	1	1.0	
+org.apache.aries.proxy.UnableToProxyException	2	0.3	1.0	
+org.objectweb.howl.log.BlockLogBufferSink	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.compendium.cm.ManagedObjectManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.NamespaceTranslator	1	1.0	
+org.apache.aries.application.management.spi.framework.BundleFrameworkConfigurationFactory	2	0.3	1.0	
+org.apache.aries.jndi.ContextManagerServiceFactory	3	0.2	0.3	1.0	
+org.objectweb.howl.log.Configuration	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.AriesApplicationManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.utils.threading.ScheduledExecutorServiceWrapper	2	0.3	1.0	
+org.apache.aries.application.utils.manifest.ManifestProcessor	3	0.1	0.2	0.3	
+org.apache.aries.transaction.jdbc.internal.ManagedDataSourceFactory	1	1.0	
+org.apache.aries.samples.ariestrader.entities.QuoteDataBeanImpl	1	1.0	
+org.apache.aries.jndi.url.AbstractServiceRegistryContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.persistence.jdbc.entity.AuthorImpl	1	1.0	
+org.apache.aries.jpa.container.advanced.itest.bundle.entities.Car	1	1.0	
+org.osgi.service.blueprint.reflect.ServiceReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.web.BlueprintContextListener	1	1.0	
+twitter4j.IDs	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.VerifierServiceReferenceListener	1	1.0	
+org.apache.aries.application.resolver.obr.impl.MapToDictionary	4	0.1	0.2	0.3	1.0	
+org.apache.aries.versioning.check.SemanticVersioningChecker	1	1.0	
+org.apache.aries.blueprint.container.ServiceListener	3	0.1	0.2	0.3	
+org.apache.aries.subsystem.core.archive.VersionAttribute	1	1.0	
+org.apache.aries.jmx.MBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.plugin.FilteredClassFinder	1	1.0	
+org.objectweb.howl.log.util.InitLog	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.annotation.impl.AnnotationScanner	1	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemGraph	1	1.0	
+org.objectweb.howl.log.LogFile	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.util.KeyBlock	1	1.0	
+twitter4j.User	1	1.0	
+org.apache.aries.samples.blog.web.util.HTMLOutput	1	1.0	
+org.apache.aries.blueprint.testquiescebundle.TestBean	2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerSix	1	1.0	
+org.apache.aries.transaction.jms.internal.RecoverableConnectionPool	1	1.0	
+org.apache.aries.proxy.impl.common.TypeMethod	2	0.3	1.0	
+org.apache.aries.jpa.container.context.JTAPersistenceContextManager	1	1.0	
+org.apache.aries.proxy.impl.interfaces.InterfaceCombiningClassAdapter	2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.CapabilityHeader	1	1.0	
+org.apache.aries.ejb.openejb.extender.AriesPersistenceContextIntegration	1	1.0	
+org.apache.aries.util.nls.MessageUtil	2	0.3	1.0	
+org.apache.aries.application.noop.platform.repo.impl.DefaultPlatformRepository	1	0.3	
+org.apache.aries.subsystem.core.archive.GenericClause	1	1.0	
+org.apache.aries.transaction.jdbc.ConnectionWrapper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.TransactionManagerService	3	0.1	0.2	0.3	
+org.apache.aries.jpa.blueprint.aries.impl.NSHandler	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.ConnectionWrapper	1	1.0	
+org.apache.aries.jmx.blueprint.codec.BPServiceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.noop.impl.NoOpResolver	2	0.3	1.0	
+org.apache.aries.jpa.container.weaving.impl.JPAWeavingHook	1	1.0	
+org.apache.aries.util.internal.FrameworkUtilWorker	2	0.3	1.0	
+org.apache.aries.transaction.BundleWideTxDataUtil	3	0.2	0.3	1.0	
+org.apache.aries.transaction.jdbc.internal.Reflections	1	1.0	
+org.apache.aries.blueprint.proxy.ProxySubclassHierarchyAdapter	2	0.1	0.2	
+org.apache.aries.proxy.impl.gen.Constants	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2IncludeRcv	1	1.0	
+org.apache.geronimo.transaction.manager.WrapperNamedXAResource	4	0.1	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.interfaces.InterfaceUsingWovenProxyAdapter	2	0.3	1.0	
+org.apache.aries.itest.AbstractIntegrationTest	2	0.3	1.0	
+org.apache.aries.jmx.Activator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.repository.ApplicationRepository	2	0.3	1.0	
+org.apache.aries.proxy.impl.interfaces.InterfaceUsingWovenProxyMethodAdapter	1	0.3	
+org.apache.aries.transaction.jms.internal.IOExceptionSupport	1	1.0	
+org.apache.aries.blueprint.annotation.RegistrationListener	2	0.3	1.0	
+org.osgi.service.subsystem.SubsystemPermissionCollection	1	1.0	
+org.apache.aries.blueprint.jaxb.Tmap	1	1.0	
+org.apache.aries.blueprint.proxy.WrapperedObject	2	0.1	0.2	
+org.apache.aries.jmx.blueprint.codec.BPRegistrationListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Element	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tinterfaces	1	1.0	
+org.apache.aries.subsystem.core.archive.GenericDirective	1	1.0	
+org.apache.aries.application.modelling.impl.DeployedBundlesImpl	2	0.3	1.0	
+org.apache.aries.jndi.url.BlueprintURLContextServiceFactory	2	0.3	1.0	
+org.apache.aries.ejb.modelling.EJBLocator	1	1.0	
+twitter4j.examples.SendDirectMessage	1	1.0	
+org.apache.aries.util.filesystem.impl.ZipFileImpl	2	0.3	1.0	
+javax.transaction.TransactionRolledbackException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.TransferObject	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.impl.RegistrationStandardMBean	2	0.1	0.2	
+org.apache.aries.subsystem.core.archive.ClauseTokenizer	1	1.0	
+org.apache.aries.samples.ariestrader.web.TradeScenarioServlet	1	1.0	
+org.apache.aries.util.ManifestHeaderUtils	2	0.3	1.0	
+org.apache.aries.itest.RichBundleContext	2	0.3	1.0	
+org.apache.aries.jpa.container.unit.impl.BundleDelegatingClassLoader	3	0.1	0.2	0.3	
+org.osgi.jmx.service.provisioning.ProvisioningServiceMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.AriesApplicationResolver	2	0.1	0.2	
+org.apache.aries.jmx.framework.FrameworkMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.sample.HelloWorld	2	0.3	1.0	
+org.tranql.connector.jdbc.StatementHandle	1	1.0	
+org.apache.aries.util.filesystem.FileUtils	2	0.3	1.0	
+javax.transaction.TransactionRequiredException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.entities.AccountProfileDataBeanImpl	1	1.0	
+org.apache.aries.samples.blog.biz.BloggingServiceImpl	1	1.0	
+org.osgi.service.jndi.JNDIContextManager	3	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.SessionPool	1	1.0	
+org.apache.aries.web.converter.impl.ClassPathBuilder	2	0.3	1.0	
+org.apache.aries.blueprint.container.BlueprintContainerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.RollbackTask	2	0.3	1.0	
+org.apache.aries.subsystem.obr.internal.FelixResourceAdapter	1	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingBean	1	1.0	
+org.apache.aries.subsystem.core.archive.VersionHeader	1	1.0	
+org.apache.aries.application.modelling.ModellingManager	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingJDBCRead	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemImportServiceHeader	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.server.SimpleVerifierRegistrationListener	1	1.0	
+org.apache.aries.application.modelling.impl.ParsedServiceElementsImpl	2	0.3	1.0	
+org.apache.aries.samples.blog.web.CreateBlogEntryForm	1	1.0	
+org.apache.aries.jmx.codec.ServiceEventData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.web.url.WARConnection	2	0.3	1.0	
+org.apache.aries.blueprint.container.DestroyCallback	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.codec.BundleData	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.TreferenceList	1	1.0	
+org.apache.aries.subsystem.core.archive.Directive	1	1.0	
+org.apache.aries.proxy.impl.interfaces.InterfaceProxyGenerator	2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ParserProxyImpl	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.core.TradeDBManagerImpl	1	1.0	
+org.apache.aries.subsystem.core.archive.BundleSymbolicNameHeader	1	1.0	
+org.apache.aries.blueprint.proxy.CgLibInterceptorWrapper	2	0.1	0.2	
+org.apache.aries.samples.ariestrader.beans.OrderDataBeanImpl	1	1.0	
+org.apache.aries.application.utils.FilterUtils	2	0.3	1.0	
+org.apache.aries.proxy.impl.SingleInstanceDispatcher	2	0.3	1.0	
+twitter4j.AsyncTwitter	1	1.0	
+org.apache.aries.blueprint.proxy.ProxyClassDefinitionException	2	0.1	0.2	
+org.apache.aries.proxy.impl.gen.ProxyClassBytecodeGenerationException	2	0.3	1.0	
+org.objectweb.howl.log.LogState	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.PersistenceDescriptorParserException	4	0.1	0.2	0.3	1.0	
+javax.transaction.xa.XAException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.parsing.impl.PersistenceUnitImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.exception.TransactionRollbackException	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionManagerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.ProxySubclassMethodHashSet	2	0.1	0.2	
+org.apache.aries.application.filesystem.IFile	3	0.1	0.2	0.3	
+org.apache.aries.samples.blueprint.idverifier.api.PersonIDVerifier	1	1.0	
+org.apache.aries.subsystem.core.archive.Attribute	1	1.0	
+org.apache.aries.samples.blueprint.idverifier.server.PersonIDVerifierSimpleImpl	1	1.0	
+org.osgi.service.blueprint.reflect.ReferenceListMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.services.ExtendedBlueprintContainer	2	0.3	1.0	
+org.apache.aries.proxy.impl.weaving.WovenProxyGenerator	2	0.3	1.0	
+org.apache.aries.jmx.codec.BatchResult	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.OSGiBlueprintEvent	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SecurityManager	1	1.0	
+org.apache.aries.jmx.codec.BundleWiringData	1	1.0	
+org.apache.aries.transaction.jms.internal.PooledSessionEventListener	1	1.0	
+org.apache.aries.application.modelling.DeploymentMFElement	2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.XaConnectionPool	1	1.0	
+org.apache.aries.subsystem.obr.internal.OsgiIdentityCapability	1	1.0	
+org.apache.aries.jndi.DelegateContextFactory	1	0.1	
+org.apache.aries.application.modelling.ServiceModeller	1	1.0	
+org.apache.aries.subsystem.core.archive.PreferredProviderRequirement	1	1.0	
+org.apache.aries.jpa.container.weaving.impl.WrappingTransformer	1	1.0	
+org.apache.aries.jmx.blueprint.codec.BPTarget	4	0.1	0.2	0.3	1.0	
+twitter4j.org.json.XMLTokener	1	1.0	
+org.apache.aries.blueprint.container.NamespaceHandlerRegistry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.core.whiteboard.Activator	1	1.0	
+org.apache.aries.blueprint.reflect.MapMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.utils.threading.impl.WrappedScheduledFuture	2	0.3	1.0	
+org.objectweb.howl.log.xa.XACommittingTx	4	0.1	0.2	0.3	1.0	
+org.osgi.service.subsystem.SubsystemPermission	1	1.0	
+org.apache.aries.samples.blog.api.BlogAuthor	1	1.0	
+org.apache.aries.proxy.impl.JdkProxyManager	2	0.3	1.0	
+org.apache.aries.blueprint.ext.PropertyPlaceholder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogAuthorManagerImpl	1	1.0	
+org.apache.aries.jpa.container.impl.EntityManagerFactoryManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.quiesce.manager.impl.Activator	3	0.2	0.3	1.0	
+org.apache.aries.proxy.impl.gen.ProxySubclassHierarchyAdapter	2	0.3	1.0	
+org.apache.aries.jpa.container.impl.PersistenceBundleManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.tracker.InternalRecursiveBundleTracker	3	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableRegistrationListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.OSGiObjectFactoryBuilder	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.io.IOUtils	2	0.3	1.0	
+org.apache.aries.samples.blueprint.helloworld.api.HelloWorldService	1	1.0	
+org.apache.aries.blueprint.proxy.UnableToLoadProxyException	2	0.1	0.2	
+javax.transaction.SystemException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.ValueMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.AttributeFactory	1	1.0	
+org.apache.aries.versioning.check.BundleCompatibility	1	1.0	
+org.apache.aries.transaction.jms.internal.PooledTopicPublisher	1	1.0	
+javax.transaction.Status	4	0.1	0.2	0.3	1.0	
+org.apache.aries.ejb.openejb.extender.AriesProxyService	1	1.0	
+org.apache.aries.jndi.services.ServiceHelper	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableMapEntry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.ejb.modelling.impl.EJBLocatorFactory	1	1.0	
+org.apache.aries.application.utils.internal.MessageUtil	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ModelledResourceImpl	2	0.3	1.0	
+org.apache.aries.samples.blog.web.AddComment	1	1.0	
+org.apache.aries.application.deployment.management.impl.DeploymentManifestManagerImpl	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet	1	1.0	
+org.apache.aries.blueprint.jaxb.TinlinedReference	1	1.0	
+org.apache.aries.blueprint.jaxb.Tproperty	1	1.0	
+twitter4j.RateLimitStatus	1	1.0	
+org.apache.aries.subsystem.core.internal.AbstractRequirement	1	1.0	
+org.apache.aries.blueprint.sample.DefaultRunnable	2	0.3	1.0	
+twitter4j.Status	1	1.0	
+org.apache.aries.application.management.spi.repository.RepositoryGenerator	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.RecoveryImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.BlueprintExtender	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.framework.BundleStateMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.context.impl.PersistenceContextManager	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.RecoverableTransactionManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServlet2Servlet	1	1.0	
+org.apache.aries.jndi.JREInitialContextFactoryBuilder	3	0.2	0.3	1.0	
+org.apache.aries.unittest.mocks.MethodCallHandler	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.impl.BlueprintState	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableRefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.ProviderAdminService	3	0.2	0.3	1.0	
+org.apache.aries.mocks.BundleMock	2	0.3	1.0	
+org.apache.aries.application.runtime.isolated.impl.ApplicationContextImpl	2	0.3	1.0	
+org.apache.aries.samples.blog.persistence.jdbc.Statements	1	1.0	
+org.apache.aries.blueprint.ext.ComponentFactoryMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.management.AriesApplicationContextManager	2	0.1	0.2	
+org.apache.aries.samples.ariestrader.beans.AccountDataBeanImpl	1	1.0	
+org.apache.aries.blueprint.testquiescebundle.Activator	2	0.3	1.0	
+org.apache.aries.jmx.codec.BatchActionResult	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tblueprint	1	1.0	
+org.apache.aries.blueprint.utils.ServiceListener	2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ImportedBundleImpl	2	0.3	1.0	
+org.apache.aries.quiesce.participant.QuiesceParticipant	3	0.2	0.3	1.0	
+org.apache.aries.application.modelling.ResourceType	2	0.3	1.0	
+org.apache.aries.jpa.container.unit.impl.TempBundleDelegatingClassLoader	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.ResultSetHandle	1	1.0	
+org.tranql.connector.DissociatableConnectionHandle	1	1.0	
+org.osgi.jmx.service.useradmin.UserAdminMBean	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.OBRCapability	2	0.3	1.0	
+org.apache.aries.util.internal.DefaultWorker	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.Activator	1	1.0	
+org.apache.aries.jmx.useradmin.UserAdmin	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.annotation.Unbind	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.PreferredProviderRepository	1	1.0	
+org.apache.aries.application.utils.filesystem.FileSystem	3	0.1	0.2	0.3	
+org.apache.aries.transaction.jdbc.Activator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tvalue	1	1.0	
+org.objectweb.howl.log.LogBufferStatus	4	0.1	0.2	0.3	1.0	
+org.osgi.service.blueprint.reflect.NonNullMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.plugin.model.JavaxTransactionFactory	1	1.0	
+org.apache.aries.subsystem.core.internal.StartAction	1	1.0	
+org.tranql.connector.jdbc.PreparedStatementHandle	1	1.0	
+org.apache.aries.application.management.AriesApplicationContext	4	0.1	0.2	0.3	1.0	
+twitter4j.org.json.Test	1	1.0	
+org.apache.aries.subsystem.core.archive.DirectiveFactory	1	1.0	
+org.apache.aries.subsystem.core.internal.GetBundleContextAction	1	1.0	
+org.apache.aries.proxy.impl.gen.ProxySubclassAdapter	2	0.3	1.0	
+twitter4j.org.json.Cookie	1	1.0	
+org.apache.aries.mocks.MockInitialContextFactoryBuilder	2	0.3	1.0	
+org.apache.aries.web.converter.impl.CaseInsensitiveMap	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemManifestValidator	1	1.0	
+org.apache.aries.jpa.container.tx.impl.OSGiTransactionManager	1	1.0	
+org.apache.aries.subsystem.core.internal.AbstractCapability	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemContentHeader	1	1.0	
+org.apache.aries.blueprint.mutable.MutableReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.util.BundleToClassLoaderAdapter	2	0.1	0.2	
+org.tranql.connector.DissociatableConnectionHandleFactory	1	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemExportServiceCapability	1	1.0	
+org.apache.aries.jmx.blueprint.codec.BPValueMetadata	4	0.1	0.2	0.3	1.0	
+twitter4j.examples.GetTimelines	1	1.0	
+org.apache.aries.blueprint.utils.BundleDelegatingClassLoader	3	0.1	0.2	1.0	
+org.apache.aries.blueprint.proxy.FinalModifierException	2	0.1	0.2	
+org.apache.aries.jmx.blueprint.Item	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.BeanRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogAuthorImpl	1	1.0	
+twitter4j.org.json.JSONArray	1	1.0	
+org.apache.aries.application.modelling.ModelledResourceManager	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.TradeBuildDB	1	1.0	
+twitter4j.TwitterStream	1	1.0	
+org.apache.aries.blueprint.mutable.MutableReferenceListMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.web.url.WAR_URLServiceHandler	2	0.3	1.0	
+org.objectweb.howl.log.InvalidLogBufferException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.DodgyListener	2	0.3	1.0	
+org.apache.aries.blueprint.utils.PlaceholdersUtils	1	0.3	
+org.apache.aries.subsystem.core.archive.VersionRangeAttribute	1	1.0	
+org.objectweb.howl.log.LogFileOverflowException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.CollaboratorFactory	1	1.0	
+org.apache.aries.web.converter.impl.WarToWabConverterService	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.CompositeRepository	1	1.0	
+org.objectweb.howl.log.LogClosedException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.utils.DynamicCollection	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.framework.ServiceStateMBeanHandler	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.ExplicitGC	1	1.0	
+org.apache.aries.blueprint.plugin.model.TransactionalDef	1	1.0	
+org.apache.aries.application.runtime.framework.management.BundleFrameworkManagerImpl	2	0.3	1.0	
+org.apache.aries.transaction.annotations.TransactionPropagationType	1	1.0	
+org.apache.aries.application.utils.service.ExportedServiceHelper	1	1.0	
+org.apache.aries.subsystem.core.internal.BundleResourceUninstaller	1	1.0	
+org.apache.aries.subsystem.core.archive.DeployedContentHeader	1	1.0	
+javax.transaction.xa.XAResource	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.InterfaceWithDependency	2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.ListBindingListener	2	0.3	1.0	
+org.apache.aries.util.tracker.RecursiveBundleTracker	3	0.2	0.3	1.0	
+twitter4j.Trend	1	1.0	
+org.apache.aries.application.modelling.ExportedService	2	0.3	1.0	
+org.apache.aries.proxy.weavinghook.ProxyWeavingController	1	1.0	
+javax.transaction.TransactionSynchronizationRegistry	4	0.1	0.2	0.3	1.0	
+twitter4j.org.json.JSONString	1	1.0	
+org.osgi.jmx.Item	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundleb.BeanForBeanProcessorTest	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemServiceRegistrar	1	1.0	
+org.apache.aries.proxy.impl.ProxyHandler	2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.BundleEventHook	1	1.0	
+org.apache.aries.jmx.blueprint.JmxConstants	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.DeploymentMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.NSHandlerOne	2	0.3	1.0	
+twitter4j.org.json.JSONTokener	1	1.0	
+org.apache.aries.blueprint.jexl.evaluator.JexlExpressionParser	2	0.3	1.0	
+org.apache.aries.jndi.priv.Activator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.sample.Account	2	0.3	1.0	
+org.apache.aries.application.runtime.framework.management.SharedBundleFramework	2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.ResourceImpl	1	0.1	
+org.apache.aries.jmx.provisioning.ProvisioningService	4	0.1	0.2	0.3	1.0	
+twitter4j.http.HTMLEntity	1	1.0	
+twitter4j.org.json.HTTP	1	1.0	
+org.apache.aries.blueprint.Interceptor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.context.impl.QuiesceParticipantImpl	3	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.EffectiveDirective	1	1.0	
+org.apache.aries.samples.blog.web.ViewBlog	1	1.0	
+org.apache.aries.jmx.framework.wiring.BundleWiringStateMBeanHandler	1	1.0	
+org.apache.aries.blueprint.di.CircularDependencyException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.ServiceProcessor	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jpa.container.impl.NLS	1	1.0	
+twitter4j.Query	1	1.0	
+org.apache.aries.subsystem.core.archive.TypeAttribute	1	1.0	
+org.apache.geronimo.transaction.manager.ImportedTransactionActiveException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.di.ExecutionContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.proxy.Collaborator	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.impl.BlueprintMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.versioning.utils.SemanticVersioningClassVisitor	1	1.0	
+org.apache.aries.application.management.spi.resolve.AriesApplicationResolver	2	0.3	1.0	
+org.apache.aries.blueprint.jaxb.Tservice	1	1.0	
+org.apache.aries.blueprint.ext.impl.ExtNamespaceHandler	1	1.0	
+org.apache.geronimo.transaction.log.XidImpl2	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.AbstractCompendiumHandler	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.LocalDataSourceWrapper	1	1.0	
+org.apache.aries.jpa.container.weaving.impl.TransformerRegistryFactory	1	1.0	
+org.apache.aries.util.log.Logger	1	1.0	
+org.apache.aries.application.management.spi.convert.BundleConverter	2	0.3	1.0	
+twitter4j.examples.GetDirectMessages	1	1.0	
+org.apache.aries.jpa.container.context.transaction.impl.JTAPersistenceContextRegistry	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.container.ServiceRecipe	4	0.1	0.2	0.3	1.0	
+org.apache.aries.transaction.internal.AriesTransactionManagerImpl	1	1.0	
+org.apache.aries.application.resolve.transform.cm.ConfigurationPostResolveTransformerImpl	1	1.0	
+org.apache.aries.application.runtime.framework.utils.EquinoxFrameworkUtils	2	0.3	1.0	
+org.apache.aries.application.utils.manifest.ManifestDefaultsInjector	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.SubsystemManifest	1	1.0	
+org.apache.aries.blueprint.sample.BindingListener	2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutablePropsMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.prims.PingServletWriter	1	1.0	
+twitter4j.QueryResult	1	1.0	
+org.apache.aries.samples.blog.biz.BlogCommentImpl	1	1.0	
+org.apache.aries.subsystem.obr.internal.OsgiResourceAdapter	1	1.0	
+org.apache.aries.blueprint.jaxb.TserviceProperties	1	1.0	
+javax.transaction.xa.Xid	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.codec.BPServiceReferenceMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jmx.blueprint.impl.RegistrableStandardEmitterMBean	2	0.3	1.0	
+org.apache.aries.unittest.mocks.annotations.Singleton	2	0.3	1.0	
+org.osgi.service.jndi.JNDIConstants	3	0.2	0.3	1.0	
+org.apache.aries.transaction.jms.internal.PooledSession	1	1.0	
+org.apache.aries.subsystem.core.internal.SubsystemIdentifier	1	1.0	
+org.apache.aries.web.converter.impl.JSPImportParser	2	0.3	1.0	
+org.apache.aries.transaction.Constants	3	0.2	0.3	1.0	
+org.apache.aries.sample.twitter.TwitterQuery	1	1.0	
+org.apache.aries.versioning.utils.GenericDeclaration	1	1.0	
+org.objectweb.howl.log.InvalidLogKeyException	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.deployment.management.impl.MessageUtil	1	1.0	
+twitter4j.TwitterSupport	1	1.0	
+org.apache.aries.application.resolver.internal.DefaultPlatformRepository	1	1.0	
+twitter4j.org.json.CDL	1	1.0	
+org.apache.aries.ejb.openejb.extender.AllCollection	1	1.0	
+org.apache.aries.blueprint.reflect.BeanMetadataImpl	4	0.1	0.2	0.3	1.0	
+org.apache.geronimo.transaction.manager.TransactionImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.resolver.obr.impl.ModelledBundleResource	1	0.3	
+org.apache.aries.subsystem.core.archive.DeploymentManifest	1	1.0	
+twitter4j.org.json.JSONException	1	1.0	
+org.apache.aries.jmx.agent.JMXAgentContext	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.archive.ImportPackageRequirement	1	1.0	
+org.apache.aries.subsystem.core.archive.ExportPackageHeader	1	1.0	
+org.apache.aries.subsystem.core.internal.SystemRepository	1	1.0	
+org.apache.aries.application.runtime.impl.ApplicationContextManagerImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.testbundlea.Activator	2	0.3	1.0	
+org.apache.aries.samples.ariestrader.web.TradeServletAction	1	1.0	
+twitter4j.org.json.JSONML	1	1.0	
+org.osgi.service.blueprint.reflect.NullMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.subsystem.core.internal.GetSubsystemHeadersAction	1	1.0	
+org.apache.aries.blueprint.proxy.UnableToProxyException	2	0.1	0.2	
+org.apache.aries.jndi.legacy.support.Activator	2	0.3	1.0	
+org.apache.geronimo.transaction.manager.RecoverTask	2	0.3	1.0	
+org.apache.aries.samples.blog.web.EditAuthor	1	1.0	
+org.apache.aries.proxy.impl.common.WovenProxyConcreteMethodAdapter	1	1.0	
+org.apache.aries.jpa.container.context.transaction.impl.JTAEntityManager	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.reflect.BeanPropertyImpl	4	0.1	0.2	0.3	1.0	
+org.apache.aries.application.modelling.impl.ExportedServiceImpl	2	0.3	1.0	
+org.osgi.service.blueprint.reflect.IdRefMetadata	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.parser.Parser	2	0.3	1.0	
+org.apache.aries.samples.blueprint.idverifier.client.BankInfo	1	1.0	
+org.apache.aries.subsystem.obr.internal.FelixProperty	1	1.0	
+org.osgi.service.blueprint.container.Converter	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndiurl.itest.beans.ConfigBean	2	0.3	1.0	
+org.apache.aries.jndi.urls.URLObjectFactoryFinder	2	0.3	1.0	
+org.apache.aries.versioning.utils.ClassDeclaration	1	1.0	
+org.apache.aries.jndi.Tuple	2	0.3	1.0	
+org.apache.aries.samples.blog.biz.BlogEntryManagerImpl	1	1.0	
+org.apache.aries.samples.ariestrader.api.persistence.HoldingDataBean	1	1.0	
+org.objectweb.howl.log.LogEventListener	4	0.1	0.2	0.3	1.0	
+org.apache.aries.jndi.url.OsgiURLContextFactory	4	0.1	0.2	0.3	1.0	
+org.apache.aries.blueprint.mutable.MutableReferenceListener	4	0.1	0.2	0.3	1.0	
+org.tranql.connector.jdbc.ConnectionHandle	1	1.0	
+org.apache.aries.web.converter.WabConversion	2	0.3	1.0	
+twitter4j.Twitter	1	1.0	
+org.apache.aries.blueprint.services.ParserService	2	0.3	1.0	
+org.apache.aries.blueprint.annotation.List	2	0.3	1.0	

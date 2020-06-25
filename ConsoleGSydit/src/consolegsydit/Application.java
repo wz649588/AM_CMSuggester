@@ -7,13 +7,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,6 +35,8 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import com.google.gson.Gson;
+
 import ch.uzh.ifi.seal.changedistiller.ChangeDistiller;
 import ch.uzh.ifi.seal.changedistiller.distilling.FileDistiller;
 import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
@@ -41,6 +46,8 @@ import edu.vt.cs.changes.ChangeDistillerClient;
 import edu.vt.cs.changes.ChangeFact;
 import edu.vt.cs.changes.CommitComparatorClient;
 import edu.vt.cs.changes.RosePrediction;
+import edu.vt.cs.changes.TARMAQPrediction;
+import edu.vt.cs.changes.TransARPrediction;
 import edu.vt.cs.diffparser.ChangeParser;
 import edu.vt.cs.editscript.TreeMatchRecorder;
 import edu.vt.cs.sql.SqliteManager;
@@ -72,6 +79,18 @@ public class Application implements IApplication{
 		case "mahout":
 			codeFolder = "/Users/zijianjiang/Documents/NaM/commits/mahout/";
 			break;
+		case "activemq":
+			codeFolder = "/Users/zijianjiang/Downloads/commits/activemq/";
+			break;
+		case "carbondata":
+			codeFolder = "/Users/zijianjiang/Downloads/commits/carbondata/";
+			break;
+		case "groovy":
+			codeFolder = "/Users/zijianjiang/Downloads/commits/groovy/";
+			break;
+		case "uima":
+			codeFolder = "/Users/zijianjiang/Downloads/commits/uima/";
+			break;
 		}
 		return codeFolder;
 	}
@@ -80,7 +99,104 @@ public class Application implements IApplication{
 	
 	public static String afPredictTable = null;
 	
+	public static String afRosePredictTable = null;
+	public static String afTARMAQPredictTable = null;
+	public static String afTARPredictTable = null;
+	
 	public static String roseTable = null;
+	
+	public Object start(IApplicationContext arg0) throws Exception {
+		String[] projects = {"aries", "derby", "mahout", "cassandra", "activemq", "uima"};
+		String preTxt = "";
+		String recTxt = "";
+		String fscTxt = "";
+		PrintWriter preWriter = new PrintWriter("/Users/zijianjiang/Desktop/" + "afTARpre.txt", "UTF-8");
+		PrintWriter recWriter = new PrintWriter("/Users/zijianjiang/Desktop/" + "afTARrec.txt", "UTF-8");
+		PrintWriter fscWriter = new PrintWriter("/Users/zijianjiang/Desktop/" + "afTARfsc.txt", "UTF-8");
+		for (String project : projects) {
+			String table = "af_predict_1A1C_TAR_" + project;
+			
+			Connection conn = SqliteManager.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + table);
+			rs.next();
+			int totalNum = rs.getInt(1);
+			stmt.close();
+			conn.close();
+			for(int offset = 0; offset < totalNum; offset++) {
+				conn = SqliteManager.getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("SELECT precision, recall FROM " + table + " LIMIT 1 OFFSET " + offset);
+				String pre = rs.getString(1);
+				System.out.println(pre);
+				String rec = rs.getString(2);
+				if (pre != null) {
+					int precision = Integer.valueOf(pre);
+					int recall = Integer.valueOf(rec);
+					
+					int fscore = precision == 0 || recall == 0 ? 0 : 2 * precision * recall/(precision + recall);
+					preTxt += precision + "\n";
+					recTxt += recall +"\n";
+					fscTxt += fscore + "\n";
+					
+				}
+				stmt.close();
+				conn.close();
+			}
+		}
+		preWriter.write(preTxt);
+		recWriter.write(recTxt);
+		fscWriter.write(fscTxt);
+		preWriter.close();
+		recWriter.close();
+		fscWriter.close();
+		
+		return null;
+	}
+	
+	
+	public Object startScript(IApplicationContext arg0) throws Exception {
+		String afOrAm = "am_predict_rose_1A3C_";
+		String project = "uima";
+		String table = afOrAm + project;
+		Connection conn = SqliteManager.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + table);
+		rs.next();
+		int totalNum = rs.getInt(1);
+		stmt.close();
+		conn.close();
+		
+		int task = 0, precision = 0, recall = 0;
+		for (int offset = 0; offset < totalNum; offset++) {
+			conn = SqliteManager.getConnection();
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery("SELECT precision, recall FROM " + table + " LIMIT 1 OFFSET " + offset);
+			String pre = rs.getString(1);
+			System.out.println(pre);
+			String rec = rs.getString(2);
+			if (pre != null) {
+				task++;
+				precision += Integer.valueOf(pre);
+				recall += Integer.valueOf(rec);
+			}
+			
+			stmt.close();
+			conn.close();
+		}
+		double prec = (double) precision / task;
+		double reca = (double) recall / task;
+		double fsco = 2 * prec * reca / (prec + reca);
+		System.out.println(task + "/" + totalNum);
+		System.out.println("coverage: " + (double) task / totalNum);
+		System.out.println("precision: " + prec);
+		System.out.println("recall: " + reca);
+		System.out.println("f-score: " + fsco);
+		
+		
+		return null;
+	}
 	
 	// 05/05/2018, 20 examples 
 	public Object start15(IApplicationContext arg0) throws Exception {
@@ -297,8 +413,8 @@ public class Application implements IApplication{
 	}
 	
 	// 04/12/2018, prepare data for ROSE
-	public Object start11(IApplicationContext arg0) throws Exception {
-		String[] projects = {"aries", "cassandra", "derby", "mahout"};
+	public Object startForRose(IApplicationContext arg0) throws Exception {
+		String[] projects = {"activemq", "uima"};
 		for (String project: projects) {
 			Connection conn = SqliteManager.getConnection();
 			Statement stmt = conn.createStatement();
@@ -318,7 +434,7 @@ public class Application implements IApplication{
 			String uniqueCommitTable = "unique_commits_" + project;
 			if (project.equals("derby"))
 				uniqueCommitTable = "unique_bug";
-			
+//			
 			ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + uniqueCommitTable);
 			rs.next();
 			int totalNum = rs.getInt(1);
@@ -357,17 +473,21 @@ public class Application implements IApplication{
 	}
 	
 	// 04/01/2018, AF-CM prediction
-	public Object start10(IApplicationContext arg0) throws Exception {
-		String[] projects = {"aries", "cassandra", "derby", "mahout"};
+	public Object startAFCM(IApplicationContext arg0) throws Exception {
+//		String[] projects = {"aries", "cassandra", "derby", "mahout"};
+		String[] projects = {"derby","cassandra","aries","mahout"};
 		for (String project: projects) {
 			afCommitTable = "af_commit_" + project;
 			Connection conn = SqliteManager.getConnection();
 			Statement stmt = conn.createStatement();
 			
-			afPredictTable = "af_predict_" + project;
-			roseTable = "af_rose_" + project;
+			afPredictTable = "af_predict_1A1C_TAR_" + project;
 			
 			RosePrediction.commitOrderTable = "af_commit_order_" + project;
+			TARMAQPrediction.commitOrderTable = "af_commit_order_" + project;
+			TransARPrediction.commitOrderTable = "af_commit_order_" + project;
+			roseTable = "af_rose_" + project;
+			
 			
 			String codeFolder = getCodeFolder(project);
 			
@@ -402,31 +522,50 @@ public class Application implements IApplication{
 				processBug(project, codeFolder, bugName);
 			}
 		}
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3; j++){
+				if (j == 0) prpr[i][j] = predictTable[i] / tasks[i];
+				else if (j == 1) prpr[i][j] = recallTable[i] / tasks[i];
+				else prpr[i][j] = 2 * prpr[i][0] * prpr[i][1] / (prpr[i][0] + prpr[i][1]);
+			}
+		}
+		double fscore = 0;
+		int totalTask = 0;
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3; j++){
+				System.out.println(prpr[i][j] + "ok");
+			}
+			System.out.println(tasks[i] + "ok");
+			fscore += tasks[i] * prpr[i][2];
+			totalTask += tasks[i];
+		}
+		System.out.println("weighted fscore is " + fscore / totalTask + "OK");
 		return null;
 	}
 	
 	
-//	added by Zijian 02/04/2019
-	public static String amPredictTable = null;
-	public Object start(IApplicationContext arg0) throws Exception {
-		String[] projects = {"aries", "cassandra", "derby", "mahout"};
+	public Object startOther(IApplicationContext arg0) throws Exception {
+		String[] projects = {"activemq"};
+		System.out.println("Everythiing OK?");
 		for (String project: projects) {
 			amCommitTable = "am_commit_" + project;
 			Connection conn = SqliteManager.getConnection();
 			Statement stmt = conn.createStatement();
 			
 			amPredictTable = "am_predict_" + project;
-//			roseTable = "af_rose_" + project;
+			roseTable = "af_rose_" + project;
 			
-//			RosePrediction.commitOrderTable = "af_commit_order_" + project;
+			RosePrediction.commitOrderTable = "af_commit_order_" + project;
+			TARMAQPrediction.commitOrderTable = "af_commit_order_" + project;
+			TransARPrediction.commitOrderTable = "af_commit_order_" + project;
 			
 			String codeFolder = getCodeFolder(project);
 			
 			if (executeFromFirstBug)
 				stmt.executeUpdate("DROP TABLE IF EXISTS " + amPredictTable);
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + amPredictTable
-					+ " (bug_name TEXT,am_sig TEXT,used_cm TEXT,real_other_cm TEXT,"
-					+ "predicted_cm TEXT,precision INTEGER,recall TEXT)");
+					+ " (bug_name TEXT,am_sig TEXT,used_cm TEXT,real_other_cm TEXT,am_par TEXT,am_ret TEXT,cm_types TEXT,"
+					+ "predicted_cm TEXT,precision INTEGER,recall TEXT, ground_truth_size INTEGER, predicted_size INTEGER, true_positive_size INTEGER)");
 //					+ "access_precision INTEGER,access_detail TEXT, access_fields TEXT)");
 			
 			ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + amCommitTable);
@@ -449,6 +588,7 @@ public class Application implements IApplication{
 				
 				System.out.println(offset + 1 + "/" + totalNum);
 				System.out.println(bugName);
+//				if(bugName.equals("595047_DERBY-3172")) continue;
 				
 				processBug(project, codeFolder, bugName);
 			}
@@ -456,6 +596,138 @@ public class Application implements IApplication{
 		return null;
 	}
 	
+//	added by Zijian 02/04/2019
+	public static String amPredictTable = null;
+	public static int[] tasks = new int[4];
+	public static double[] predictTable = new double[4];
+	public static double[] recallTable = new double[4];
+	public static double[][] prpr = new double[4][3];
+	
+	
+	
+	public Object startMain(IApplicationContext arg0) throws Exception {
+		String[] projects = {"aries", "derby", "mahout", "cassandra"};
+		System.out.println("Everythiing OK?");
+		for (String project: projects) {
+			amCommitTable = "am_commit_" + project;
+			Connection conn = SqliteManager.getConnection();
+			Statement stmt = conn.createStatement();
+			
+			amPredictTable = "am_predict_TAR_1A1C_" + project;
+			roseTable = "af_rose_" + project;
+			
+			RosePrediction.commitOrderTable = "af_commit_order_" + project;
+			TARMAQPrediction.commitOrderTable = "af_commit_order_" + project;
+			TransARPrediction.commitOrderTable = "af_commit_order_" + project;
+			
+			String codeFolder = getCodeFolder(project);
+			
+			if (executeFromFirstBug)
+				stmt.executeUpdate("DROP TABLE IF EXISTS " + amPredictTable);
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + amPredictTable
+					+ " (bug_name TEXT,am_sig TEXT,used_cm TEXT,real_other_cm TEXT,am_par TEXT,am_ret TEXT,cm_types TEXT,"
+					+ "predicted_cm TEXT,precision INTEGER,recall TEXT, ground_truth_size INTEGER, predicted_size INTEGER, true_positive_size INTEGER)");
+//					+ "access_precision INTEGER,access_detail TEXT, access_fields TEXT)");
+			
+			ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + amCommitTable);
+			rs.next();
+			int totalNum = rs.getInt(1);
+			stmt.close();
+			conn.close();
+			
+			for (int offset = 0; offset < totalNum; offset++) {
+//				if (offset == 14) continue;
+				conn = SqliteManager.getConnection();
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery("SELECT bug_name FROM " + amCommitTable + " LIMIT 1 OFFSET " + offset);
+				String bugName = rs.getString(1);
+				rs.close();
+				
+				stmt.close();
+				conn.close();
+				
+				
+				System.out.println(offset + 1 + "/" + totalNum);
+				System.out.println(bugName);
+//				if(bugName.equals("595047_DERBY-3172")) continue;
+				
+				processBug(project, codeFolder, bugName);
+			}
+		}
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3; j++){
+				if (j == 0) prpr[i][j] = predictTable[i] / tasks[i];
+				else if (j == 1) prpr[i][j] = recallTable[i] / tasks[i];
+				else prpr[i][j] = 2 * prpr[i][0] * prpr[i][1] / (prpr[i][0] + prpr[i][1]);
+			}
+		}
+		double fscore = 0;
+		int totalTask = 0;
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3; j++){
+				System.out.println(prpr[i][j] + "ok");
+			}
+			System.out.println(tasks[i] + "ok");
+			fscore += tasks[i] * prpr[i][2];
+			totalTask += tasks[i];
+		}
+		System.out.println("weighted fscore is " + fscore / totalTask + "OK");
+		return null;
+	}
+	
+	
+	public Object startpeermethodschecking(IApplicationContext arg0) throws Exception {
+		String[] projects = {"derby"};
+		System.out.println("Everythiing OK?");
+		for (String project: projects) {
+			amCommitTable = "am_commit_" + project;
+			Connection conn = SqliteManager.getConnection();
+			Statement stmt = conn.createStatement();
+			
+			amCmTable = "am_Cm_" + project;
+//			roseTable = "af_rose_" + project;
+			
+//			RosePrediction.commitOrderTable = "af_commit_order_" + project;
+			
+			String codeFolder = getCodeFolder(project);
+			
+			if (executeFromFirstBug)
+				stmt.executeUpdate("DROP TABLE IF EXISTS " + amCmTable);
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + amCmTable
+					+ " (bug_name TEXT, am_sig TEXT,used_cm TEXT,"
+					+ "peermethods TEXT)");
+//					+ "access_precision INTEGER,access_detail TEXT, access_fields TEXT)");
+//			
+			ResultSet rs = stmt.executeQuery("SELECT count(*) FROM " + amCommitTable);
+			rs.next();
+			int totalNum = rs.getInt(1);
+			stmt.close();
+			conn.close();
+			
+			for (int offset = 0; offset < totalNum; offset++) {
+				conn = SqliteManager.getConnection();
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery("SELECT bug_name FROM " + amCommitTable + " LIMIT 1 OFFSET " + offset);
+				String bugName = rs.getString(1);
+				rs.close();
+				
+				stmt.close();
+				conn.close();
+				
+				
+				System.out.println(offset + 1 + "/" + totalNum);
+				System.out.println(bugName);
+
+				
+				processBug(project, codeFolder, bugName);
+			}
+		}
+		return null;
+	}
+	
+	public static String amCmTable = null;
 	public static String afCommitTable = null;
 //	added by zijianjiang 02/01/2019
 	public static String amCommitTable = null;
@@ -821,17 +1093,67 @@ public class Application implements IApplication{
 		
 		return null;
 	}
+	
+	public Object startForGetUniqueTable(IApplicationContext arg0) throws Exception{
+		String[] projects = {"umia", "carbondata", "groovy", "activemq"};
+		for (String project : projects) {
+			String codeFolder = getCodeFolder(project);
+			Connection conn = SqliteManager.getConnection();
+			Statement stmt = conn.createStatement();
+			String uniqueTable = "unique_commits_" + project;
+			stmt.executeUpdate("DROP TABLE IF EXISTS " + uniqueTable);
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + uniqueTable + "(bug_name TEXT)");
+			stmt.close();
+			conn.close();
+			File commits = new File(codeFolder);
+			String[] directories = commits.list(new FilenameFilter() {
+			  @Override
+			  public boolean accept(File current, String name) {
+			    return new File(current, name).isDirectory();
+			  }
+			});
+			
+			for(String commit : directories) {
+				if(commit.contains("Bug")) {
+					conn = SqliteManager.getConnection();
+					try {
+						PreparedStatement ps = conn.prepareStatement("INSERT INTO "
+								+ uniqueTable + " (bug_name) VALUES (?)");
+						ps.setString(1, commit);
+						ps.executeUpdate();
+						ps.close();
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						System.exit(-1);
+					}
+				}
+			}
+			
+		
+		}	
+		return null;
+	}
+	
+	
 //	added by zijianjiang 02/01/2019
-	public Object start16(IApplicationContext arg0) throws Exception{
-		String[] projects = {"cassandra", "aries", "mahout"};
+	public Object startToExtract(IApplicationContext arg0) throws Exception{
+		String[] projects = {"uima"};
 		for (String project: projects) {
+			afCommitTable = "af_commit_" + project;
+			
+			
 			amCommitTable = "am_commit_" + project;
+			String visited = "af_commit_visited_" + project;
 			Connection conn = SqliteManager.getConnection();
 			Statement stmt = conn.createStatement();
 
-			if (executeFromFirstBug)
+			if (executeFromFirstBug){
 				stmt.executeUpdate("DROP TABLE IF EXISTS " + amCommitTable);
+				stmt.executeUpdate("DROP TABLE IF EXISTS " + afCommitTable);
+			}
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + amCommitTable + "(bug_name TEXT,am_cms TEXT)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + afCommitTable + "(bug_name TEXT,af_cms TEXT)");
 
 			String codeFolder = getCodeFolder(project);
 
@@ -846,7 +1168,17 @@ public class Application implements IApplication{
 			rs.close();
 
 			stmt.close();
+			
+//			debug
+			stmt = conn.createStatement();
+			if (executeFromFirstBug)
+				stmt.executeUpdate("DROP TABLE IF EXISTS " + visited);
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + visited + "(bug_name TEXT, am_cms INTEGER)");
+			stmt.close();
+			
 			conn.close();
+			
+			
 
 			for (int offset = 0; offset < totalNum; offset++) {
 				conn = SqliteManager.getConnection();
@@ -856,10 +1188,27 @@ public class Application implements IApplication{
 				if(rs.next())
 					bugName = rs.getString(1);
 				stmt.close();
+				
+				try{
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO "
+							+ visited + " (bug_name,am_cms) VALUES (?,?)");
+					ps.setString(1, bugName);
+					ps.setInt(2, offset);
+					ps.executeUpdate();
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.exit(-1);
+				}
+				
+				
 				conn.close();
 
 				System.out.println(offset + 1 + "/" + totalNum);
 				System.out.println(bugName);
+				
+				
+				
 
 				processBug(project, codeFolder, bugName);
 
@@ -1209,6 +1558,7 @@ public class Application implements IApplication{
 		CommitComparatorClient client2 = new CommitComparatorClient();
 		client2.analyzeCommit(cfList, folderName);
 	}
+	
 	
 	@Override
 	public void stop() {

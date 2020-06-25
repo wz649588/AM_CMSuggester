@@ -97,10 +97,17 @@ import edu.vt.cs.prediction.VariableTemplate;
 import edu.vt.cs.prediction.ml.MethodAnalyzer;
 import edu.vt.cs.prediction.neo.AstComparer;
 import edu.vt.cs.prediction.neo.FieldNameVisitor;
+import edu.vt.cs.prediction.neo.MethodNameVisitor;
+import edu.vt.cs.prediction.neo.NeoMethodVisitor;
+import edu.vt.cs.prediction.neo.NeoMethodNameVisitor;
+import edu.vt.cs.prediction.neo.AmCmMethodNameVisitor;
 import edu.vt.cs.prediction.neo.FieldReplacementChecker;
 import edu.vt.cs.prediction.neo.FieldReplacementDatabaseInserter;
 import edu.vt.cs.prediction.neo.NearStmtFinder;
+import edu.vt.cs.prediction.neo.ReturnAndParameterVisitor;
 import edu.vt.cs.prediction.neo.SimilarStatementMethodChecker;
+import edu.vt.cs.prediction.neo.TypeInTheCm;
+import edu.vt.cs.prediction.neo.TypeInTheCm2;
 import edu.vt.cs.sql.SqliteManager;
 import edu.vt.cs.append.TopDownTreeMatcher;
 import edu.vt.cs.changes.api.LineRange;
@@ -730,7 +737,7 @@ public class ChangeGrouper {
 		}
 		
 		
-//		Map<String, Set<String>> afCmsMap = getAfCmsDetail();
+		Map<String, Set<String>> afCmsMap = getAfCmsDetail();
 		Map<String, Set<String>> amCmsMap = getAmCmsDetail();//added by zijianjiang 02/04/2019
 		
 		
@@ -739,8 +746,11 @@ public class ChangeGrouper {
 		List<String> graphDataValues = new ArrayList<>();
 		List<String> editScriptValues = new ArrayList<>();
 		Gson gson = new Gson();
-		Map<String, Set<String>> predictionDataset = new HashMap<>();
+		Map<String, Set<String>> AMPredictionDataset = new HashMap<>();
+		Map<String, Set<String>> AFPredictionDataset = new HashMap<>();
+		
 		for (int i = 0; i < impactGraphs.size(); i++) {
+			
 			// write XML file
 //			writeRelationGraph(impactGraphs.get(i), dir + "impact_" + i);
 			
@@ -819,22 +829,22 @@ public class ChangeGrouper {
 			// Predict CMs
 			// ***************************************
 			//added by zijianjiang 02/04/2019
-			for (ReferenceNode node: jgrapht.vertexSet()) {
-				if (node.type != ReferenceNode.AM)
-					continue;
-				MethodReference amRef = (MethodReference) node.ref;
-				String amSig = amRef.getSignature();
-				if (!amCmsMap.containsKey(amSig))
-					continue;
-				Set<String> cmSigSet = amCmsMap.get(amSig);
 //			for (ReferenceNode node: jgrapht.vertexSet()) {
-//				if (node.type != ReferenceNode.AF)
+//				if (node.type != ReferenceNode.AM)
 //					continue;
-//				FieldReference afRef = (FieldReference) node.ref;
-//				String afSig = afRef.getSignature();
-//				if (!afCmsMap.containsKey(afSig))
+//				MethodReference amRef = (MethodReference) node.ref;
+//				String amSig = amRef.getSignature();
+//				if (!amCmsMap.containsKey(amSig))
 //					continue;
-//				Set<String> cmSigSet = afCmsMap.get(afSig);
+//				Set<String> cmSigSet = amCmsMap.get(amSig);
+			for (ReferenceNode node: jgrapht.vertexSet()) {
+				if (node.type != ReferenceNode.AF)
+					continue;
+				FieldReference afRef = (FieldReference) node.ref;
+				String afSig = afRef.getSignature();
+				if (!afCmsMap.containsKey(afSig))
+					continue;
+				Set<String> cmSigSet = afCmsMap.get(afSig);
 				
 //				predictCmOption(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
 //						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
@@ -856,13 +866,13 @@ public class ChangeGrouper {
 //						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
 //						oldMethodRefToMatch, newMethodRefToMatch, oMRefToAST, nMRefToAST, oldMethodRefToRose,
 //						true, true, true, "rose");
-				
-				predictCmforzijian(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
-						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
-						oldMethodRefToMatch, newMethodRefToMatch, oMRefToAST, nMRefToAST, oldMethodRefToRose);
-//				predictMultiCm(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
+//				
+//				predictCMPeerMethods(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
 //						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
 //						oldMethodRefToMatch, newMethodRefToMatch, oMRefToAST, nMRefToAST, oldMethodRefToRose);
+				predictCm(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
+						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
+						oldMethodRefToMatch, newMethodRefToMatch, oMRefToAST, nMRefToAST, oldMethodRefToRose);
 //				ExampleFinder.execute(node, cmSigSet, jgrapht, newToOldMethodRefMap, oldToNewMethodRefMap,
 //						leftEngine, rightEngine, allFoundClasses, oldMRefToClient, newMRefToClient,
 //						oldMethodRefToMatch, newMethodRefToMatch, oMRefToAST, nMRefToAST, oldMethodRefToRose);
@@ -885,7 +895,7 @@ public class ChangeGrouper {
 //					continue;
 //				FieldReference afRef = (FieldReference) node.ref;
 //				String afSig = afRef.getSignature();
-//				predictionDataset.put(afSig, cms);
+//				AFPredictionDataset.put(afSig, cms);
 //			}
 			// ***************************************
 			
@@ -904,7 +914,7 @@ public class ChangeGrouper {
 //					continue;
 //				MethodReference amRef = (MethodReference) node.ref;
 //				String amSig = amRef.getSignature();
-//				predictionDataset.put(amSig, cms);
+//				AMPredictionDataset.put(amSig, cms);
 //			}
 			//****************************************
 			
@@ -912,13 +922,13 @@ public class ChangeGrouper {
 		
 		// Construct new new AF-CM prediction dataset
 		// ***************************************
-//		if (!predictionDataset.isEmpty())
-//			insertAfDataset(predictionDataset);
-		// ***************************************
+//		if (!AFPredictionDataset.isEmpty())
+//			insertAfDataset(AFPredictionDataset);
+//		// ***************************************
 //		added by zijianjiang 02/01/2019
-		if (!predictionDataset.isEmpty())
-			insertAmDataset(predictionDataset);
-		
+//		if (!AMPredictionDataset.isEmpty())
+//			insertAmDataset(AMPredictionDataset);
+//		
 		//###########DO NOT DELETE, EDIT SCRIPT TABLE#################
 		/*
 		final boolean withCommitType = true;
@@ -1195,8 +1205,9 @@ public class ChangeGrouper {
 	private void insertAmDataset(Map<String, Set<String>> predictionDataset) {
 		Connection conn = SqliteManager.getConnection();
 		try {
-//			String tableName = Application.amCommitTable;
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO am_commit_derby (bug_name, am_cms) VALUES (?,?)");
+			String tableName = Application.amCommitTable;
+			System.out.println("Yes! We can insert some data!");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO " + tableName + " (bug_name, am_cms) VALUES (?,?)");
 			ps.setString(1, CommitComparator.bugName);
 			Gson gson = new Gson();
 			String detailJson = gson.toJson(predictionDataset);
@@ -1773,8 +1784,6 @@ public class ChangeGrouper {
 		}
 		
 	}
-	
-	// 04/01/2018, predict CM
 	private void predictCm(ReferenceNode afNode, Set<String> cmSigSet,
 			Graph<ReferenceNode, ReferenceEdge> jgrapht,
 			Map<MethodReference, MethodReference> newToOldMethodRefMap,
@@ -1896,179 +1905,183 @@ public class ChangeGrouper {
 			}
 		}
 		
+		boolean useRose = true;
+		
 		// iterate over every CM
 		for (MethodReference usedCmRef: cmSet) {
-			MethodReference usedCmRefNew = oldToNewMethodRefMap.get(usedCmRef);
-			ClientMethod oldClient = oldMRefToClient.get(usedCmRef);
-			ClientMethod newClient = newMRefToClient.get(usedCmRefNew);
-			ASTNode oldAstNode = oldClient.methodbody;
-			ASTNode newAstNode = newClient.methodbody;
-			
-			// ----- important options-----
-			boolean shouldCheckAccessMode = true; // care read and write access
-			boolean shouldCheckNamingPattern = true;
-			
-			// Inside the CM, get the fields whose class is the same as AF
-			boolean afIsConstantNamingPattern = isConstantNamingPattern(afName); 
-			Set<String> targetPeerFieldSet = null;
-			FieldNameVisitor fieldNameVisitor = new FieldNameVisitor(oldAstNode, afClassSig);
-			fieldNameVisitor.execute();
-			Set<String> readFieldsInUsedCm = fieldNameVisitor.getReadFields();
-			Set<String> writtenFieldsInUsedCm = fieldNameVisitor.getWrittenFields();
-			Set<String> toBeDeletedReadFieldsInUsedCm = new HashSet<>();
-			for (String n: readFieldsInUsedCm) {
-				if (isConstantNamingPattern(n) != afIsConstantNamingPattern)
-					toBeDeletedReadFieldsInUsedCm.add(n);
-			}
-			if (shouldCheckNamingPattern)
-				readFieldsInUsedCm.removeAll(toBeDeletedReadFieldsInUsedCm);
-			Set<String> toBeDeletedWrittenFieldsInUsedCm = new HashSet<>();
-			for (String n: writtenFieldsInUsedCm) {
-				if (isConstantNamingPattern(n) != afIsConstantNamingPattern)
-					toBeDeletedWrittenFieldsInUsedCm.add(n);
-			}
-			if (shouldCheckNamingPattern)
-				writtenFieldsInUsedCm.removeAll(toBeDeletedWrittenFieldsInUsedCm);
-			
-			FieldNameVisitor fVisitor = new FieldNameVisitor(newAstNode, afClassSig);
-			fVisitor.execute();
-			boolean afIsRead = fVisitor.getReadFields().contains(afName);
-			boolean afIsWritten = fVisitor.getWrittenFields().contains(afName);
-			
-			Set<String> readAndWrittenTargetPeerFields = new HashSet<>();
-			Set<String> onlyReadTargetPeerFields = new HashSet<>();
-			Set<String> onlyWrittenTargetPeerFields = new HashSet<>();
-			if (afIsRead && afIsWritten) {
-				readAndWrittenTargetPeerFields.addAll(readFieldsInUsedCm);
-				readAndWrittenTargetPeerFields.retainAll(writtenFieldsInUsedCm);
-				targetPeerFieldSet = readAndWrittenTargetPeerFields;
-			} else if (afIsRead) {
-				onlyReadTargetPeerFields.addAll(readFieldsInUsedCm);
-				onlyReadTargetPeerFields.removeAll(writtenFieldsInUsedCm);
-				targetPeerFieldSet = onlyReadTargetPeerFields;
-			} else if (afIsWritten) {
-				onlyWrittenTargetPeerFields.addAll(writtenFieldsInUsedCm);
-				onlyWrittenTargetPeerFields.removeAll(readFieldsInUsedCm);
-				targetPeerFieldSet = onlyWrittenTargetPeerFields;
-			} else {
-				targetPeerFieldSet = Collections.emptySet();
-			}
-			
-			
-			
-			
-			
-			if (!shouldCheckAccessMode) { // ignore the access mode
-				if (shouldCheckNamingPattern) {
-					targetPeerFieldSet = new HashSet<>();
-					targetPeerFieldSet.addAll(readFieldsInUsedCm);
-					targetPeerFieldSet.addAll(writtenFieldsInUsedCm);
-				} else
-					targetPeerFieldSet = fieldNameVisitor.getFields();
-			}
-			
 			Set<MethodReference> predictedCm = new HashSet<>();
-			
-			// Check every method candidate
 			Map<MethodReference, Set<String>> refToFieldsMap = new HashMap<>();
 			Map<MethodReference, String> refToPredictedAccessMode = new HashMap<>();  // 3 access modes: "r", "w", "rw"
 			Map<MethodReference, Set<String>> methodToAccessFields = new HashMap<>();
-			for (MethodReference mRef: methodCandidateSet) {
-				if (mRef.equals(usedCmRef))
-					continue;
-				Set<String> peerFieldSet = null;
-				ASTNode ast = oMRefToAST.get(mRef);
-				if (ast == null) {
-					continue;
+			if(!useRose) {
+				MethodReference usedCmRefNew = oldToNewMethodRefMap.get(usedCmRef);
+				ClientMethod oldClient = oldMRefToClient.get(usedCmRef);
+				ClientMethod newClient = newMRefToClient.get(usedCmRefNew);
+				ASTNode oldAstNode = oldClient.methodbody;
+				ASTNode newAstNode = newClient.methodbody;
+				
+				// ----- important options-----
+				boolean shouldCheckAccessMode = true; // care read and write access
+				boolean shouldCheckNamingPattern = true;
+				
+				// Inside the CM, get the fields whose class is the same as AF
+				boolean afIsConstantNamingPattern = isConstantNamingPattern(afName); 
+				Set<String> targetPeerFieldSet = null;
+				FieldNameVisitor fieldNameVisitor = new FieldNameVisitor(oldAstNode, afClassSig);
+				fieldNameVisitor.execute();
+				Set<String> readFieldsInUsedCm = fieldNameVisitor.getReadFields();
+				Set<String> writtenFieldsInUsedCm = fieldNameVisitor.getWrittenFields();
+				Set<String> toBeDeletedReadFieldsInUsedCm = new HashSet<>();
+				for (String n: readFieldsInUsedCm) {
+					if (isConstantNamingPattern(n) != afIsConstantNamingPattern)
+						toBeDeletedReadFieldsInUsedCm.add(n);
 				}
-				FieldNameVisitor fieldVisitor = new FieldNameVisitor(ast, afClassSig);
-				fieldVisitor.execute();
-//				peerFieldSet = fieldVisitor.getFields();
-				Set<String> readFields = fieldVisitor.getReadFields();
-				Set<String> writtenFields = fieldVisitor.getWrittenFields();
+				if (shouldCheckNamingPattern)
+					readFieldsInUsedCm.removeAll(toBeDeletedReadFieldsInUsedCm);
+				Set<String> toBeDeletedWrittenFieldsInUsedCm = new HashSet<>();
+				for (String n: writtenFieldsInUsedCm) {
+					if (isConstantNamingPattern(n) != afIsConstantNamingPattern)
+						toBeDeletedWrittenFieldsInUsedCm.add(n);
+				}
+				if (shouldCheckNamingPattern)
+					writtenFieldsInUsedCm.removeAll(toBeDeletedWrittenFieldsInUsedCm);
 				
-//				boolean considerAccessInPotentialCM = false;
+				FieldNameVisitor fVisitor = new FieldNameVisitor(newAstNode, afClassSig);
+				fVisitor.execute();
+				boolean afIsRead = fVisitor.getReadFields().contains(afName);
+				boolean afIsWritten = fVisitor.getWrittenFields().contains(afName);
+				
+				Set<String> readAndWrittenTargetPeerFields = new HashSet<>();
+				Set<String> onlyReadTargetPeerFields = new HashSet<>();
+				Set<String> onlyWrittenTargetPeerFields = new HashSet<>();
+				if (afIsRead && afIsWritten) {
+					readAndWrittenTargetPeerFields.addAll(readFieldsInUsedCm);
+					readAndWrittenTargetPeerFields.retainAll(writtenFieldsInUsedCm);
+					targetPeerFieldSet = readAndWrittenTargetPeerFields;
+				} else if (afIsRead) {
+					onlyReadTargetPeerFields.addAll(readFieldsInUsedCm);
+					onlyReadTargetPeerFields.removeAll(writtenFieldsInUsedCm);
+					targetPeerFieldSet = onlyReadTargetPeerFields;
+				} else if (afIsWritten) {
+					onlyWrittenTargetPeerFields.addAll(writtenFieldsInUsedCm);
+					onlyWrittenTargetPeerFields.removeAll(readFieldsInUsedCm);
+					targetPeerFieldSet = onlyWrittenTargetPeerFields;
+				} else {
+					targetPeerFieldSet = Collections.emptySet();
+				}
 				
 				
 				
-				if (shouldCheckAccessMode) {
-					
-					Set<String> onlyReadPeerSet = new HashSet<>();
-					onlyReadPeerSet.addAll(readFields);
-					onlyReadPeerSet.removeAll(writtenFields);
-					onlyReadPeerSet.retainAll(targetPeerFieldSet);
-					
-					Set<String> onlyWrittenPeerSet = new HashSet<>();
-					onlyWrittenPeerSet.addAll(writtenFields);
-					onlyWrittenPeerSet.removeAll(readFields);
-					onlyWrittenPeerSet.retainAll(targetPeerFieldSet);
-					
-					Set<String> readAndWrittenPeerSet = new HashSet<>();
-					readAndWrittenPeerSet.addAll(readFields);
-					readAndWrittenPeerSet.retainAll(writtenFields);
-					readAndWrittenPeerSet.retainAll(targetPeerFieldSet);
-					
-					if (onlyReadPeerSet.size() == 0
-							&& onlyWrittenPeerSet.size() == 0
-							&& readAndWrittenPeerSet.size() == 0) {
-						peerFieldSet = Collections.emptySet();
-					} else {
-						Comparator<Set<String>> comparator = new Comparator<Set<String>>() {
-							@Override
-							public int compare(Set<String> o1, Set<String> o2) {
-								return o2.size() - o1.size();
-							}};
-						PriorityQueue<Set<String>> queue = new PriorityQueue<>(3, comparator);
-						queue.add(onlyReadPeerSet);
-						queue.add(onlyWrittenPeerSet);
-						queue.add(readAndWrittenPeerSet);
-						peerFieldSet = queue.peek();
-						
-						methodToAccessFields.put(mRef, peerFieldSet);
-						
-						// predict the access mode of AF, which be the same as that of peers
-						if (peerFieldSet == onlyReadPeerSet)
-							refToPredictedAccessMode.put(mRef, "r");
-						else if (peerFieldSet == onlyWrittenPeerSet)
-							refToPredictedAccessMode.put(mRef, "w");
-						else
-							refToPredictedAccessMode.put(mRef, "rw");
-						
-						Set<String> largestPeerSet = queue.poll();
-						Set<String> secondLargestPeerSet = queue.poll();
-						if (largestPeerSet.size() == secondLargestPeerSet.size())
-							refToPredictedAccessMode.put(mRef, "NA");
+				
+				
+				if (!shouldCheckAccessMode) { // ignore the access mode
+					if (shouldCheckNamingPattern) {
+						targetPeerFieldSet = new HashSet<>();
+						targetPeerFieldSet.addAll(readFieldsInUsedCm);
+						targetPeerFieldSet.addAll(writtenFieldsInUsedCm);
+					} else
+						targetPeerFieldSet = fieldNameVisitor.getFields();
+				}
+				
+				
+				
+				// Check every method candidate
+				for (MethodReference mRef: methodCandidateSet) {
+					if (mRef.equals(usedCmRef))
+						continue;
+					Set<String> peerFieldSet = null;
+					ASTNode ast = oMRefToAST.get(mRef);
+					if (ast == null) {
+						continue;
 					}
+					FieldNameVisitor fieldVisitor = new FieldNameVisitor(ast, afClassSig);
+					fieldVisitor.execute();
+	//				peerFieldSet = fieldVisitor.getFields();
+					Set<String> readFields = fieldVisitor.getReadFields();
+					Set<String> writtenFields = fieldVisitor.getWrittenFields();
+					
+	//				boolean considerAccessInPotentialCM = false;
 					
 					
+					
+					if (shouldCheckAccessMode) {
+						
+						Set<String> onlyReadPeerSet = new HashSet<>();
+						onlyReadPeerSet.addAll(readFields);
+						onlyReadPeerSet.removeAll(writtenFields);
+						onlyReadPeerSet.retainAll(targetPeerFieldSet);
+						
+						Set<String> onlyWrittenPeerSet = new HashSet<>();
+						onlyWrittenPeerSet.addAll(writtenFields);
+						onlyWrittenPeerSet.removeAll(readFields);
+						onlyWrittenPeerSet.retainAll(targetPeerFieldSet);
+						
+						Set<String> readAndWrittenPeerSet = new HashSet<>();
+						readAndWrittenPeerSet.addAll(readFields);
+						readAndWrittenPeerSet.retainAll(writtenFields);
+						readAndWrittenPeerSet.retainAll(targetPeerFieldSet);
+						
+						if (onlyReadPeerSet.size() == 0
+								&& onlyWrittenPeerSet.size() == 0
+								&& readAndWrittenPeerSet.size() == 0) {
+							peerFieldSet = Collections.emptySet();
+						} else {
+							Comparator<Set<String>> comparator = new Comparator<Set<String>>() {
+								@Override
+								public int compare(Set<String> o1, Set<String> o2) {
+									return o2.size() - o1.size();
+								}};
+							PriorityQueue<Set<String>> queue = new PriorityQueue<>(3, comparator);
+							queue.add(onlyReadPeerSet);
+							queue.add(onlyWrittenPeerSet);
+							queue.add(readAndWrittenPeerSet);
+							peerFieldSet = queue.peek();
+							
+							methodToAccessFields.put(mRef, peerFieldSet);
+							
+							// predict the access mode of AF, which be the same as that of peers
+							if (peerFieldSet == onlyReadPeerSet)
+								refToPredictedAccessMode.put(mRef, "r");
+							else if (peerFieldSet == onlyWrittenPeerSet)
+								refToPredictedAccessMode.put(mRef, "w");
+							else
+								refToPredictedAccessMode.put(mRef, "rw");
+							
+							Set<String> largestPeerSet = queue.poll();
+							Set<String> secondLargestPeerSet = queue.poll();
+							if (largestPeerSet.size() == secondLargestPeerSet.size())
+								refToPredictedAccessMode.put(mRef, "NA");
+						}
+						
+						
+					}
+					peerFieldSet = fieldVisitor.getFields();
+					peerFieldSet.retainAll(targetPeerFieldSet);
+					refToFieldsMap.put(mRef, peerFieldSet);
 				}
-				peerFieldSet = fieldVisitor.getFields();
-				peerFieldSet.retainAll(targetPeerFieldSet);
-				refToFieldsMap.put(mRef, peerFieldSet);
-			}
-			
-			// Find the method candidate with most peer fields
-			int maxPeerFieldsNum = -1;
-			for (Set<String> peerFieldSet: refToFieldsMap.values()) {
-				if (peerFieldSet.size() > maxPeerFieldsNum)
-					maxPeerFieldsNum = peerFieldSet.size();
-			}
-			
-			if (maxPeerFieldsNum >= 2) {
-				for (MethodReference mRef: refToFieldsMap.keySet()) {
-					Set<String> peerFieldSet = refToFieldsMap.get(mRef);
-					if (peerFieldSet.size() == maxPeerFieldsNum)
-						predictedCm.add(mRef);
+				
+				// Find the method candidate with most peer fields
+				int maxPeerFieldsNum = -1;
+				for (Set<String> peerFieldSet: refToFieldsMap.values()) {
+					if (peerFieldSet.size() > maxPeerFieldsNum)
+						maxPeerFieldsNum = peerFieldSet.size();
+				}
+				
+				if (maxPeerFieldsNum >= 2) {
+					for (MethodReference mRef: refToFieldsMap.keySet()) {
+						Set<String> peerFieldSet = refToFieldsMap.get(mRef);
+						if (peerFieldSet.size() == maxPeerFieldsNum)
+							predictedCm.add(mRef);
+					}
 				}
 			}
 			
 			// ----- important options-----
-			boolean useRose = false;
-			if (useRose) { // use Tom Zimmerman's tool ROSE
+			else { // use Tom Zimmerman's tool ROSE
 				predictedCm = new HashSet<>();
 				List<String> evidenceMethods = new ArrayList<>();
 				evidenceMethods.add(oldMethodRefToRose.get(usedCmRef));
-				List<String> roseResult = RosePrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+				List<String> roseResult = TransARPrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
 				Map<String, MethodReference> roseToMethodRef = new HashMap<>();
 				for (MethodReference ref: oldMethodRefToRose.keySet()) {
 					String rose = oldMethodRefToRose.get(ref);
@@ -2109,19 +2122,19 @@ public class ChangeGrouper {
 					tpVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
 					
 					// process predict_access and access_precision
-					String realAccess = refToRealAccessMode.get(mRef);
-					String predictedAccess = refToPredictedAccessMode.get(mRef);
-					if (!predictedAccess.equals("NA")) {
-						Map<String, String> realAndPredictedAccess = new HashMap<>();
-						realAndPredictedAccess.put("real", realAccess);
-						realAndPredictedAccess.put("predicted", predictedAccess);
-						accessDetail.put(mRef.getSignature(), realAndPredictedAccess);
-						if (realAccess.equals(predictedAccess)) {
-							correctAccessPrediction.add(mRef.getSignature());
-						}
-						predictionWithAccess.add(mRef.getSignature());
-						accessFields.put(mRef.getSignature(), methodToAccessFields.get(mRef));
-					}
+//					String realAccess = refToRealAccessMode.get(mRef);
+//					String predictedAccess = refToPredictedAccessMode.get(mRef);
+//					if (!predictedAccess.equals("NA")) {
+//						Map<String, String> realAndPredictedAccess = new HashMap<>();
+//						realAndPredictedAccess.put("real", realAccess);
+//						realAndPredictedAccess.put("predicted", predictedAccess);
+//						accessDetail.put(mRef.getSignature(), realAndPredictedAccess);
+//						if (realAccess.equals(predictedAccess)) {
+//							correctAccessPrediction.add(mRef.getSignature());
+//						}
+//						predictionWithAccess.add(mRef.getSignature());
+//						accessFields.put(mRef.getSignature(), methodToAccessFields.get(mRef));
+//					}
 				
 				} else {
 					falseNegatives.add(mRef.getSignature());
@@ -2175,7 +2188,29 @@ public class ChangeGrouper {
 				ps.setString(9, gson.toJson(accessDetail));
 				ps.setString(10, gson.toJson(accessFields));
 					
-				
+				if(!predictedCmSigs.isEmpty()){
+					if(Application.afPredictTable.equals("af_predict_aries")){
+						Application.tasks[0]++;
+						Application.predictTable[0] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[0] += 1.0 * truePositives.size()/(cmSet.size() - 1);
+					}
+					else if(Application.afPredictTable.equals("af_predict_cassandra")){
+						Application.tasks[1]++;
+						Application.predictTable[1] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[1] += 1.0 * truePositives.size()/(cmSet.size() - 1);
+					}
+					else if(Application.afPredictTable.contains("activemq")){
+						Application.tasks[2]++;
+						Application.predictTable[2] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[2] += 1.0 * truePositives.size()/(cmSet.size() - 1);
+					}
+					else{
+						Application.tasks[3]++;
+						Application.predictTable[3] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[3] += 1.0 * truePositives.size()/(cmSet.size() - 1);
+					}
+				}
+
 				
 				
 				ps.executeUpdate();
@@ -2190,7 +2225,6 @@ public class ChangeGrouper {
 		}
 		
 	}
-	
 	
 	// 04/22/2018, predict with multiple CMs
 	private void predictMultiCm(ReferenceNode afNode, Set<String> cmSigSet,
@@ -2538,7 +2572,7 @@ public class ChangeGrouper {
 				}
 			}
 			
-			int recall = 100 * truePositives.size() / (cmSet.size() - 1);
+			int recall = 100 * truePositives.size() / (cmSet.size() - evidenceSize);
 			int precision = -1;
 			if (!predictedCmSigs.isEmpty())
 				precision = 100 * truePositives.size() / predictedCmSigs.size();
@@ -2571,7 +2605,28 @@ public class ChangeGrouper {
 					ps.setInt(7, recall);
 				}
 					
-				
+				if(!predictedCmSigs.isEmpty() && !(precision == 5 && recall == 2)){
+					if(Application.afPredictTable.equals("af_predict_aries")){
+						Application.tasks[0]++;
+						Application.predictTable[0] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[0] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else if(Application.afPredictTable.equals("af_predict_cassandra")){
+						Application.tasks[1]++;
+						Application.predictTable[1] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[1] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else if(Application.afPredictTable.contains("activemq")){
+						Application.tasks[2]++;
+						Application.predictTable[2] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[2] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else{
+						Application.tasks[3]++;
+						Application.predictTable[3] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[3] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+				}
 				
 				
 				ps.executeUpdate();
@@ -3057,6 +3112,8 @@ public class ChangeGrouper {
 				else
 					ps.setInt(17, accessPrecision);
 				ps.setString(18, gson.toJson(accessDetail));
+				
+				
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
@@ -4897,12 +4954,12 @@ public class ChangeGrouper {
 		String amClassSig = amClass.getName().toString().substring(1).replace('/', '.');
 		
 		//get all the peerfileds in the AM
-		Set<String> peerAmFieldSet = null;
-		ClientMethod newAmClient = newMRefToClient.get(amRef);
-		ASTNode newAmAstNode = newAmClient.methodbody;
-		FieldNameVisitor fAmVisitor = new FieldNameVisitor(newAmAstNode, amClassSig);
-		fAmVisitor.execute();
-		peerAmFieldSet = fAmVisitor.getFields();
+//		Set<String> peerAmFieldSet = null;
+//		ClientMethod newAmClient = newMRefToClient.get(amRef);
+//		ASTNode newAmAstNode = newAmClient.methodbody;
+//		FieldNameVisitor fAmVisitor = new FieldNameVisitor(newAmAstNode, amClassSig);
+//		fAmVisitor.execute();
+//		peerAmFieldSet = fAmVisitor.getFields();
 		
 		// get CM set, old version
 		Set<MethodReference> cmSet = new HashSet<>();
@@ -4924,7 +4981,8 @@ public class ChangeGrouper {
 			FieldNameVisitor fieldNameVisitor = new FieldNameVisitor(oldAstNode, amClassSig);
 			fieldNameVisitor.execute();
 			targetPeerFieldSet = fieldNameVisitor.getFields();
-			targetPeerFieldSet.addAll(peerAmFieldSet);
+//			if(targetPeerFieldSet.size() == 0) continue;
+//			targetPeerFieldSet.addAll(peerAmFieldSet);
 			
 			if(targetPeerFieldSet.size() >= 2)
 				cmSet.add(oldCmRef);
@@ -5034,7 +5092,18 @@ public class ChangeGrouper {
 			FieldNameVisitor fieldNameVisitor = new FieldNameVisitor(oldAstNode, amClassSig);
 			fieldNameVisitor.execute();
 			targetPeerFieldSet = fieldNameVisitor.getFields();
-			targetPeerFieldSet.addAll(peerAmFieldSet);
+//			targetPeerFieldSet.addAll(peerAmFieldSet);
+			
+//			get the targetPeerMethodSet
+//			Set<String> targetPeerMethodSet = null;
+//			MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+//			methodNameVisitor.execute();
+//			targetPeerMethodSet = methodNameVisitor.getMethods();
+//			if(targetPeerMethodSet != null && targetPeerMethodSet.size() > 0) 
+//				System.out.println("Not empty, Goodddddddddd");
+//			else System.out.println("It's totally empty, you did something wrong");
+			
+			
 //			Set<String> readFieldsInUsedCm = fieldNameVisitor.getReadFields();
 //			Set<String> writtenFieldsInUsedCm = fieldNameVisitor.getWrittenFields();
 //			Set<String> toBeDeletedReadFieldsInUsedCm = new HashSet<>();
@@ -5093,16 +5162,23 @@ public class ChangeGrouper {
 			
 			// Check every method candidate
 			Map<MethodReference, Set<String>> refToFieldsMap = new HashMap<>();
+			Map<MethodReference, Set<String>> refToMethodsMap = new HashMap<>();
 //			Map<MethodReference, String> refToPredictedAccessMode = new HashMap<>();  // 3 access modes: "r", "w", "rw"
 //			Map<MethodReference, Set<String>> methodToAccessFields = new HashMap<>();
 			for (MethodReference mRef: methodCandidateSet) {
 				if (mRef.equals(usedCmRef))
 					continue;
 				Set<String> peerFieldSet = null;
+//				Set<String> peerMethodSet = null;
 				ASTNode ast = oMRefToAST.get(mRef);
 				if (ast == null) {
 					continue;
 				}
+//				MethodNameVisitor methodVisitor = new MethodNameVisitor(ast, amClassSig);
+//				methodVisitor.execute();
+//				peerMethodSet = methodVisitor.getMethods();
+//				peerMethodSet.retainAll(targetPeerMethodSet);
+//				refToMethodsMap.put(mRef, peerMethodSet);
 				FieldNameVisitor fieldVisitor = new FieldNameVisitor(ast, amClassSig);
 				fieldVisitor.execute();
 //				peerFieldSet = fieldVisitor.getFields();
@@ -5169,16 +5245,30 @@ public class ChangeGrouper {
 				refToFieldsMap.put(mRef, peerFieldSet);
 			}
 			
-			// Find the method candidate with most peer fields
-			int maxPeerFieldsNum = -1;
+			// Find the method candidate with most or second most peer fields
+			int maxPeerFieldsNum = -1, secMax = -1, maxPeerMethodsNum = -1;
 			for (Set<String> peerFieldSet: refToFieldsMap.values()) {
-				if (peerFieldSet.size() > maxPeerFieldsNum)
+				if (peerFieldSet.size() > maxPeerFieldsNum){
+					secMax = maxPeerFieldsNum;
 					maxPeerFieldsNum = peerFieldSet.size();
+				}
+				else if(peerFieldSet.size() < maxPeerFieldsNum){
+					secMax = Math.max(secMax, peerFieldSet.size());
+				}
 			}
+			
+//			for(Set<String> peerMethodSet : refToMethodsMap.values()){
+//				if(peerMethodSet.size() > maxPeerMethodsNum) maxPeerMethodsNum = peerMethodSet.size();
+//			}
 			
 			if (maxPeerFieldsNum >= 2) {
 				for (MethodReference mRef: refToFieldsMap.keySet()) {
 					Set<String> peerFieldSet = refToFieldsMap.get(mRef);
+//					Set<String> peerMethodSet = refToMethodsMap.get(mRef);
+//					if (peerFieldSet.size() == maxPeerFieldsNum)
+//					if (peerFieldSet.size() >= 2)
+//					if(peerFieldSet.size() == maxPeerFieldsNum || (secMax >= 2 && peerFieldSet.size() >= secMax) || peerMethodSet.size() > 0 && peerMethodSet.equals(
+//							targetPeerMethodSet))
 					if (peerFieldSet.size() == maxPeerFieldsNum)
 						predictedCm.add(mRef);
 				}
@@ -5272,9 +5362,9 @@ public class ChangeGrouper {
 			Connection conn = SqliteManager.getConnection();
 			try {
 				PreparedStatement ps = conn.prepareStatement("INSERT INTO " + Application.amPredictTable
-						+ " (bug_name,am_sig,used_cm,real_other_cm,predicted_cm,precision,recall)"
+						+ " (bug_name,am_sig,used_cm,real_other_cm,predicted_cm,precision,recall, ground_truth_size, predicted_size, true_positive_size)"
 //						+ "access_precision,access_detail, access_fields)"
-						+ " VALUES (?,?,?,?,?,?,?)");
+						+ " VALUES (?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, CommitComparator.bugName);
 				ps.setString(2, amSig);
 				ps.setString(3, usedCmRef.getSignature());
@@ -5290,6 +5380,10 @@ public class ChangeGrouper {
 					ps.setInt(6, precision);
 					ps.setInt(7, recall);
 				}
+				ps.setInt(8, cmSet.size() - 1);
+				ps.setInt(9, predictedCmSigs.size());
+				ps.setInt(10, truePositives.size());
+				
 //				if (accessPrecision == -1)
 //					ps.setNull(8, java.sql.Types.INTEGER);
 //				else
@@ -5312,4 +5406,1367 @@ public class ChangeGrouper {
 		}
 		
 	}
+	
+	
+	private void predictCMPeerMethods(ReferenceNode amNode, Set<String> cmSigSet,
+			Graph<ReferenceNode, ReferenceEdge> jgrapht,
+			Map<MethodReference, MethodReference> newToOldMethodRefMap,
+			Map<MethodReference, MethodReference> oldToNewMethodRefMap,
+			DataFlowAnalysisEngine leftEngine, DataFlowAnalysisEngine rightEngine,
+			Set<IClass> allFoundClasses, Map<MethodReference, ClientMethod> oldMRefToClient,
+			Map<MethodReference, ClientMethod> newMRefToClient,
+			Map<MethodReference, HashSet<NodePair>> oldMethodRefToMatch,
+			Map<MethodReference, HashSet<NodePair>> newMethodRefToMatch,
+			Map<MethodReference, ASTNode> oMRefToAST,
+			Map<MethodReference, ASTNode> nMRefToAST,
+			Map<MethodReference, String> oldMethodRefToRose) {
+		MethodReference amRef = (MethodReference) amNode.ref;
+//		String amType = returnTypeOfAm(amRef);
+/*
+ * Add on Mar. 5 for get a whole name of the return type of the AM, by using ReturnANdParameterVisitor() method.
+ */
+		ClientMethod amClient = newMRefToClient.get(amRef);
+		ASTNode amASTNode = amClient.methodbody;
+		ReturnAndParameterVisitor amVisitor = new ReturnAndParameterVisitor(amASTNode);
+		amVisitor.execute();
+		String amType = amVisitor.getReturnType();
+//		These 4 lines may not be right, just try it now.
+		
+		System.out.println(amType + "123456789123456789");
+//		this amArg doesn't have list<type>
+//		Set<String> amArg = argumentsTypeOfAm(amRef);
+		Set<String> amArg = amVisitor.getParameters();
+		System.out.println("what is the size of amArg here? " + amArg.size());
+		
+		String amSig = amRef.getSignature();
+		TypeReference amClass = amRef.getDeclaringClass();
+		String amClassName = amClass.getName().getClassName().toString();
+		String amName = amRef.getName().toString();
+		String amClassSig = amClass.getName().toString().substring(1).replace('/', '.');
+		
+		// get CM set, old version
+		Set<MethodReference> cmSet = new HashSet<>();
+		
+
+		for (ReferenceEdge edge: jgrapht.edgesOf(amNode)) {
+			if (edge.type != ReferenceEdge.METHOD_INVOKE)
+				continue;
+			ReferenceNode srcNode = edge.from;
+			if (srcNode.type != ReferenceNode.CM)
+				continue;
+			MethodReference oldCmRef = (MethodReference) srcNode.ref;
+			String cmSig = oldCmRef.getSignature();
+			if (!cmSigSet.contains(cmSig))
+				continue;
+			ClientMethod oldClient = oldMRefToClient.get(oldCmRef);
+			ASTNode oldAstNode = oldClient.methodbody;
+			Set<String> pMSet = null;
+
+			MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+
+			methodNameVisitor.execute();
+			pMSet = methodNameVisitor.getMethods();
+
+			if(pMSet.size() >= 1) cmSet.add(oldCmRef);
+
+		}
+		if(cmSet.size() < 2) 
+			return;
+
+		IClassHierarchy leftHierarchy = leftEngine.getClassHierarchy();
+		IClassHierarchy rightHierarchy = rightEngine.getClassHierarchy();
+		IMethod iMethod = rightHierarchy.resolveMethod(amRef);
+		IClass amIClass = leftHierarchy.lookupClass(amClass);
+		if (amIClass == null)
+			amIClass = rightHierarchy.lookupClass(amClass);
+		String methodAccess = null;
+		if (iMethod.isPrivate())
+			methodAccess = "private";
+		else if (iMethod.isProtected())
+			methodAccess = "protected";
+		else if (iMethod.isPublic() || amIClass.isInterface())
+			methodAccess = "public";
+		else
+			methodAccess = "package";
+		
+		
+		// Build method to class map
+		Map<MethodReference, IClass> mRefToIClassMap = new HashMap<>();
+		for (IClass iClass: allFoundClasses) {
+			Collection<IMethod> declaredMethods = iClass.getDeclaredMethods();
+			for (IMethod iOldMethod: declaredMethods) {
+				MethodReference ref = iOldMethod.getReference();
+				mRefToIClassMap.put(ref, iClass);
+			}
+		}
+		
+		// Find classes of methods candidates
+		Set<IClass> classesToProcess = new HashSet<>();
+		if (methodAccess.equals("private")) {
+			classesToProcess.add(amIClass);
+		} else if (methodAccess.equals("protected") || methodAccess.equals("package")) {
+			// classes in the same package
+			String methodPackage = this.getPackageOfClass(amIClass);
+			for (IClass klass: allFoundClasses) {
+				String packageName = this.getPackageOfClass(klass);
+				if (methodPackage.equals(packageName))
+					classesToProcess.add(klass);
+			}
+			if (methodAccess.equals("protected")) {
+				// subclasses
+				for (IClass klass: allFoundClasses) {
+					IClass superClass = klass;
+					do {
+						superClass = superClass.getSuperclass();
+						if (amIClass.equals(superClass)) {
+							classesToProcess.add(klass);
+							break;
+						}
+					} while (superClass != null);
+				}
+			}
+		} else if (methodAccess.equals("public")) {
+			classesToProcess.addAll(allFoundClasses);
+		}
+		
+		// Find method candidates
+		Set<MethodReference> methodCandidateSet = new HashSet<>();
+		for (IClass klass: classesToProcess) {
+			for (IMethod iOldMethod: klass.getDeclaredMethods()) {
+				if (iOldMethod.isClinit())
+					continue;
+				MethodReference mRef = iOldMethod.getReference();
+				methodCandidateSet.add(mRef);
+			}
+		}		
+		boolean useRose = true;
+		boolean useTARMAQ = false;
+		boolean useTransAR = false;
+		
+		// iterate over every CM
+		if(cmSet.size() >= 2){
+			for (MethodReference usedCmRef: cmSet) {
+				Set<MethodReference> predictedCm = new HashSet<>();
+				if (!useRose){
+					MethodReference usedCmRefNew = oldToNewMethodRefMap.get(usedCmRef);
+					ClientMethod oldClient = oldMRefToClient.get(usedCmRef);
+					ClientMethod newClient = newMRefToClient.get(usedCmRefNew);
+					ASTNode oldAstNode = oldClient.methodbody;
+					ASTNode newAstNode = newClient.methodbody;
+					
+		
+		
+					Set<String> targetPeerMethodSet = null;		
+					MethodNameVisitor visitor = new MethodNameVisitor(oldAstNode, amClassSig);
+					visitor.execute();
+					targetPeerMethodSet = visitor.getMethods();
+					
+					TypeInTheCm typeInUsedCm = new TypeInTheCm(oldAstNode);
+					typeInUsedCm.execute();
+					Set<String> typesInUsed = typeInUsedCm.getTypesAll();
+	
+	//				Set<MethodReference> predictedCm = new HashSet<>();
+					
+					// Check every method candidate
+	
+					Map<MethodReference, Set<String>> refToMethodsMap = new HashMap<>();
+					for (MethodReference mRef: methodCandidateSet) {
+						if (mRef.equals(usedCmRef))
+							continue;
+	
+						Set<String> peerMethodSet = null;
+						ASTNode ast = oMRefToAST.get(mRef);
+						if (ast == null) {
+							continue;
+						}
+						MethodNameVisitor methodVisitor = new MethodNameVisitor(ast, amClassSig);
+	
+						methodVisitor.execute();
+						peerMethodSet = methodVisitor.getMethods();
+						peerMethodSet.retainAll(targetPeerMethodSet);
+						refToMethodsMap.put(mRef, peerMethodSet);
+					}
+					
+					// Find the method candidate with most or second most peer methods
+					int maxPeerFieldsNum = -1, secMax = -1, maxPeerMethodsNum = -1;
+					for (Set<String> peerMethodSet: refToMethodsMap.values()) {
+						if (peerMethodSet.size() > maxPeerMethodsNum){
+							maxPeerMethodsNum = peerMethodSet.size();
+						}
+					}
+					
+					if (maxPeerMethodsNum >= 1){
+						for (MethodReference mRef: refToMethodsMap.keySet()) {
+							Set<String> peerMethodSet = refToMethodsMap.get(mRef);
+							ASTNode mRefAst = oMRefToAST.get(mRef);
+							TypeInTheCm typeInmRef = new TypeInTheCm(mRefAst);
+							
+							typeInmRef.execute();
+							Set<String> typesAllHere = typeInmRef.getTypesAll();
+							Set<String> parAllHere = typeInmRef.getTypesPar();
+							if(typesAllHere.size() > 0) {
+								for(String types : typesAllHere)
+									System.out.println(types + " 123456");
+							}
+							Set<String> amArguments = new HashSet<>();
+							for(String arg : amArg){
+								amArguments.add(arg);
+							}
+							System.out.println("what the fuck is the size of amArguments? " + amArguments.size());
+							int sizeOfAmArg = amArguments.size();
+							amArguments.retainAll(parAllHere);
+							
+//							if (peerMethodSet.size() == maxPeerMethodsNum)
+//								predictedCm.add(mRef);
+	//						if (peerMethodSet.size() == maxPeerMethodsNum && amArguments.size() >= sizeOfAmArg - 1)
+	//						if (peerMethodSet.size() == maxPeerMethodsNum && (amType == null || amType.equals("void") || typesAllHere.contains(amType)))
+							/*
+							 * real one below
+							 */
+							if (peerMethodSet.size() == maxPeerMethodsNum && /*amArguments.size() >= sizeOfAmArg - 1*/ amArguments.size() >= sizeOfAmArg - 1 && (amType == null || amType.equals("void") || typesAllHere.contains(amType)))
+								predictedCm.add(mRef);
+						}
+					}
+				}
+
+				else{
+				 
+//				Set<MethodReference> predictedCm = new HashSet<>();
+					List<String> evidenceMethods = new ArrayList<>();
+					evidenceMethods.add(oldMethodRefToRose.get(usedCmRef));
+					List<String> roseResult = TransARPrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+					Map<String, MethodReference> roseToMethodRef = new HashMap<>();
+					for (MethodReference ref: oldMethodRefToRose.keySet()) {
+						String rose = oldMethodRefToRose.get(ref);
+						roseToMethodRef.put(rose, ref);
+					}
+					for (String rose: roseResult) {
+						MethodReference ref = roseToMethodRef.get(rose);
+						if (ref != null)
+							predictedCm.add(ref);
+					}
+				}
+					
+				
+	
+				List<String> predictedCmSigs = new ArrayList<>();
+				for (MethodReference m: predictedCm) {
+					predictedCmSigs.add(m.getSignature());
+				}
+				
+//				ASTNode usedmRefAst = oMRefToAST.get(mRef);
+//				TypeInTheCm typeInmRef = new TypeInTheCm(mRefAst);
+//				typeInmRef.execute();
+////				Set<String> typesLeftHere = typeInmRef.getTypes();
+//				Set<String> typesAllHere = typeInmRef.getTypesAll();
+//				if(typesAllHere.size() > 0) {
+//					for(String types : typesAllHere)
+//						System.out.println(types + " 123456");
+//				}
+				
+				Set<String> truePositives = new HashSet<>();
+				Set<String> falsePositives = new HashSet<>();
+				Set<String> falseNegatives = new HashSet<>();
+				Map<String, Set<String>> tpVars = new HashMap<>();
+				Map<String, Set<String>> fpVars = new HashMap<>();
+				Map<String, Set<String>> fnVars = new HashMap<>();
+				Set<String> correctAccessPrediction = new HashSet<>();
+				Set<String> predictionWithAccess = new HashSet<>();
+				Map<String, Map<String, String>> accessDetail = new HashMap<>();
+				
+				Map<String, Set<String>> accessFields = new HashMap<>();
+				
+				// methodToAccessFields
+				Set<String> realOtherCms = new HashSet<>();
+//				realOtherCms.remove(usedCmRef.getSignature());
+				Set<String> cmSigSet2 = new HashSet<>();
+				for (MethodReference mRef: cmSet) {
+					cmSigSet2.add(mRef.getSignature());
+				}
+				
+				for (String predicted : predictedCmSigs) {
+					if (!cmSigSet2.contains(predicted)) {
+						realOtherCms.add(predicted);
+					}
+				}
+				
+				for (MethodReference mRef: cmSet) {
+					if (mRef.equals(usedCmRef))
+						continue;
+					if (predictedCmSigs.contains(mRef.getSignature())) {
+						truePositives.add(mRef.getSignature());
+	//					tpVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+						
+						// process predict_access and access_precision
+	//					String realAccess = refToRealAccessMode.get(mRef);
+	//					String predictedAccess = refToPredictedAccessMode.get(mRef);
+	//					if (!predictedAccess.equals("NA")) {
+	//						Map<String, String> realAndPredictedAccess = new HashMap<>();
+	//						realAndPredictedAccess.put("real", realAccess);
+	//						realAndPredictedAccess.put("predicted", predictedAccess);
+	//						accessDetail.put(mRef.getSignature(), realAndPredictedAccess);
+	//						if (realAccess.equals(predictedAccess)) {
+	//							correctAccessPrediction.add(mRef.getSignature());
+	//						}
+	//						predictionWithAccess.add(mRef.getSignature());
+	//						accessFields.put(mRef.getSignature(), methodToAccessFields.get(mRef));
+	//					}
+					
+					} else {
+						falseNegatives.add(mRef.getSignature());
+	//					fnVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+					}
+				}
+	//			for (MethodReference mRef: predictedCm) {
+	//				if (!cmSet.contains(mRef)) {
+	//					falsePositives.add(mRef.getSignature());
+	//					fpVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+	//					
+	//				}
+	//			}
+				
+				int recall = 100 * truePositives.size() / (cmSet.size() - 1);
+				int precision = -1;
+				if (!predictedCmSigs.isEmpty())
+					precision = 100 * truePositives.size() / predictedCmSigs.size();
+				
+				int accessPrecision = -1;
+				if (!predictionWithAccess.isEmpty())
+					accessPrecision = 100 * correctAccessPrediction.size() / predictionWithAccess.size();
+				
+				// Insert data into database
+				Gson gson = new Gson();
+				Connection conn = SqliteManager.getConnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO " + Application.amPredictTable
+							+ " (bug_name,am_sig,used_cm,real_other_cm,am_par,am_ret,cm_types,predicted_cm,precision,recall, ground_truth_size, predicted_size, true_positive_size)"
+	//						+ "access_precision,access_detail, access_fields)"
+							+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					ps.setString(1, CommitComparator.bugName);
+					ps.setString(2, amSig);
+					ps.setString(3, usedCmRef.getSignature());
+//					Set<String> realOtherCms = new HashSet<>(cmSigSet);
+//					realOtherCms.remove(usedCmRef.getSignature());
+					ps.setString(4, gson.toJson(realOtherCms));
+					System.out.println("what is the size of amArg here? " + amArg.size());
+					ps.setString(5, gson.toJson(amArg));
+					ps.setString(6, amType);
+					ps.setString(7, /*gson.toJson(typesInUsed)*/amType);
+					ps.setString(8, gson.toJson(predictedCmSigs));
+					if (precision == -1) {
+						ps.setNull(9, java.sql.Types.INTEGER);
+						ps.setNull(10, java.sql.Types.INTEGER);
+					}
+					else {
+						ps.setInt(9, precision);
+						ps.setInt(10, recall);
+					}
+					ps.setInt(11, cmSet.size() - 1);
+					ps.setInt(12, predictedCmSigs.size());
+					ps.setInt(13, truePositives.size());
+					if(!predictedCmSigs.isEmpty()){
+						if(Application.amPredictTable.equals("am_predict_aries")){
+							Application.tasks[0]++;
+							Application.predictTable[0] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[0] += 1.0 * recall / 100;
+						}
+						else if(Application.amPredictTable.equals("am_predict_cassandra")){
+							Application.tasks[1]++;
+							Application.predictTable[1] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[1] += 1.0 * recall / 100;
+						}
+						else if(Application.amPredictTable.contains("activemq")){
+							Application.tasks[2]++;
+							Application.predictTable[2] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[2] += 1.0 * recall / 100;
+						}
+						else{
+							Application.tasks[3]++;
+							Application.predictTable[3] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[3] += 1.0 * recall / 100;
+						}
+					}
+	//				if (accessPrecision == -1)
+	//					ps.setNull(8, java.sql.Types.INTEGER);
+	//				else
+	//					ps.setInt(8, accessPrecision);
+	//				ps.setString(9, gson.toJson(accessDetail));
+	//				ps.setString(10, gson.toJson(accessFields));
+						
+					
+					
+					
+					ps.executeUpdate();
+					ps.close();
+					conn.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				//--------------------------------
+			}
+		}
+		
+	}
+	
+	String getCmClassSig(MethodReference usedCmRef){
+		String cmSig = usedCmRef.getSignature();
+		TypeReference cmClass = usedCmRef.getDeclaringClass();
+		String cmClassName = cmClass.getName().getClassName().toString();
+		String cmName = usedCmRef.getName().toString();
+		String cmClassSig = cmClass.getName().toString().substring(1).replace('/', '.');
+		return cmClassSig;
+	}
+	
+	private void predictMultiCMPeerMethods(ReferenceNode amNode, Set<String> cmSigSet,
+			Graph<ReferenceNode, ReferenceEdge> jgrapht,
+			Map<MethodReference, MethodReference> newToOldMethodRefMap,
+			Map<MethodReference, MethodReference> oldToNewMethodRefMap,
+			DataFlowAnalysisEngine leftEngine, DataFlowAnalysisEngine rightEngine,
+			Set<IClass> allFoundClasses, Map<MethodReference, ClientMethod> oldMRefToClient,
+			Map<MethodReference, ClientMethod> newMRefToClient,
+			Map<MethodReference, HashSet<NodePair>> oldMethodRefToMatch,
+			Map<MethodReference, HashSet<NodePair>> newMethodRefToMatch,
+			Map<MethodReference, ASTNode> oMRefToAST,
+			Map<MethodReference, ASTNode> nMRefToAST,
+			Map<MethodReference, String> oldMethodRefToRose) {
+		MethodReference amRef = (MethodReference) amNode.ref;
+		
+		ClientMethod amClient = newMRefToClient.get(amRef);
+		ASTNode amASTNode = amClient.methodbody;
+		ReturnAndParameterVisitor amVisitor = new ReturnAndParameterVisitor(amASTNode);
+		amVisitor.execute();
+		String amType = amVisitor.getReturnType();
+		System.out.println(amType + "123456789123456789");
+		Set<String> amArg = amVisitor.getParameters();
+		System.out.println("what is the size of amArg here? " + amArg.size());
+		
+		
+		
+		String amSig = amRef.getSignature();
+		TypeReference amClass = amRef.getDeclaringClass();
+		String amClassName = amClass.getName().getClassName().toString();
+		String amName = amRef.getName().toString();
+		String amClassSig = amClass.getName().toString().substring(1).replace('/', '.');
+		
+
+		
+		
+		// get CM set, old version
+		Set<MethodReference> cmSet = new HashSet<>();
+		for (ReferenceEdge edge: jgrapht.edgesOf(amNode)) {
+			if (edge.type != ReferenceEdge.METHOD_INVOKE)
+				continue;
+			ReferenceNode srcNode = edge.from;
+			if (srcNode.type != ReferenceNode.CM)
+				continue;
+			MethodReference oldCmRef = (MethodReference) srcNode.ref;
+			String cmSig = oldCmRef.getSignature();
+			if (!cmSigSet.contains(cmSig))
+				continue;
+//			MethodReference newCmRef = oldToNewMethodRefMap.get(oldCmRef);
+			ClientMethod oldClient = oldMRefToClient.get(oldCmRef);
+			ASTNode oldAstNode = oldClient.methodbody;
+			Set<String> targetPeerMethodSet = null;
+			String cmClassSig = getCmClassSig(oldCmRef);
+			MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+//			AmCmMethodNameVisitor methodNameVisitor = new AmCmMethodNameVisitor(oldAstNode, amClassSig, cmClassSig);
+			methodNameVisitor.execute();
+			targetPeerMethodSet = methodNameVisitor.getMethods();
+//			if(targetPeerFieldSet.size() == 0) continue;
+//			targetPeerMethodSet.addAll(peerAmMethodSet);
+			
+			if(targetPeerMethodSet.size() >= 1)
+				cmSet.add(oldCmRef);
+			
+			// check AF access mode
+//			ClientMethod newClient = newMRefToClient.get(newCmRef);
+//			ASTNode newAstNode = newClient.methodbody;
+//			FieldNameVisitor fieldNameVisitor = new FieldNameVisitor(newAstNode, afClassSig);
+//			fieldNameVisitor.execute();
+//			Set<String> readFields = fieldNameVisitor.getReadFields();
+//			Set<String> writtenFields = fieldNameVisitor.getWrittenFields();
+//			if (readFields.contains(afName) && writtenFields.contains(afName))
+//				refToRealAccessMode.put(oldCmRef, "rw");
+//			else if (readFields.contains(afName))
+//				refToRealAccessMode.put(oldCmRef, "r");
+//			else
+//				refToRealAccessMode.put(oldCmRef, "w");
+			
+		}
+		if (cmSet.size() < 2)
+			return;
+		
+		// Check accessibility of AM
+		IClassHierarchy leftHierarchy = leftEngine.getClassHierarchy();
+		IClassHierarchy rightHierarchy = rightEngine.getClassHierarchy();
+		IMethod iMethod = rightHierarchy.resolveMethod(amRef);
+		IClass amIClass = leftHierarchy.lookupClass(amClass);
+		if (amIClass == null)
+			amIClass = rightHierarchy.lookupClass(amClass);
+		String methodAccess = null;
+		if (iMethod.isPrivate())
+			methodAccess = "private";
+		else if (iMethod.isProtected())
+			methodAccess = "protected";
+		else if (iMethod.isPublic() || amIClass.isInterface())
+			methodAccess = "public";
+		else
+			methodAccess = "package";
+		
+		
+		// Build method to class map
+		Map<MethodReference, IClass> mRefToIClassMap = new HashMap<>();
+		for (IClass iClass: allFoundClasses) {
+			Collection<IMethod> declaredMethods = iClass.getDeclaredMethods();
+			for (IMethod iOldMethod: declaredMethods) {
+				MethodReference ref = iOldMethod.getReference();
+				mRefToIClassMap.put(ref, iClass);
+			}
+		}
+		
+		// Find classes of methods candidates
+		Set<IClass> classesToProcess = new HashSet<>();
+		if (methodAccess.equals("private")) {
+			classesToProcess.add(amIClass);
+		} else if (methodAccess.equals("protected") || methodAccess.equals("package")) {
+			// classes in the same package
+			String methodPackage = this.getPackageOfClass(amIClass);
+			for (IClass klass: allFoundClasses) {
+				String packageName = this.getPackageOfClass(klass);
+				if (methodPackage.equals(packageName))
+					classesToProcess.add(klass);
+			}
+			if (methodAccess.equals("protected")) {
+				// subclasses
+				for (IClass klass: allFoundClasses) {
+					IClass superClass = klass;
+					do {
+						superClass = superClass.getSuperclass();
+						if (amIClass.equals(superClass)) {
+							classesToProcess.add(klass);
+							break;
+						}
+					} while (superClass != null);
+				}
+			}
+		} else if (methodAccess.equals("public")) {
+			classesToProcess.addAll(allFoundClasses);
+		}
+		
+		// Find method candidates
+		Set<MethodReference> methodCandidateSet = new HashSet<>();
+		for (IClass klass: classesToProcess) {
+			for (IMethod iOldMethod: klass.getDeclaredMethods()) {
+				if (iOldMethod.isClinit())
+					continue;
+				MethodReference mRef = iOldMethod.getReference();
+				methodCandidateSet.add(mRef);
+			}
+		}	
+		
+		int evidenceSize = 2;
+		if(cmSet.size() <= evidenceSize) return;
+		
+		Map<List<MethodReference>, List<MethodReference>> evidenceToReal = DivisionUtil.divide(cmSet, evidenceSize);
+		
+		boolean useRose = false;
+		boolean useTARMAQ = false;
+		boolean useTransAR = true;
+		for(List<MethodReference> evidenceCms : evidenceToReal.keySet()) {
+			List<MethodReference> realOtherCmRefs = evidenceToReal.get(evidenceCms);
+			Set<MethodReference> predictedCm = new HashSet<>();
+			if (useRose) { // use Tom Zimmerman's tool ROSE
+				List<String> evidenceMethods = new ArrayList<>();
+				for (MethodReference m: evidenceCms)
+					evidenceMethods.add(oldMethodRefToRose.get(m));
+				List<String> roseResult = RosePrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+				Map<String, MethodReference> roseToMethodRef = new HashMap<>();
+				for (MethodReference ref: oldMethodRefToRose.keySet()) {
+					String rose = oldMethodRefToRose.get(ref);
+					roseToMethodRef.put(rose, ref);
+				}
+				for (String rose: roseResult) {
+					MethodReference ref = roseToMethodRef.get(rose);
+					if (ref != null)
+						predictedCm.add(ref);
+				}
+			} 
+			else if (useTARMAQ) {
+				List<String> evidenceMethods = new ArrayList<>();
+				for (MethodReference m: evidenceCms)
+					evidenceMethods.add(oldMethodRefToRose.get(m));
+				List<String> TARMAQResult = TARMAQPrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+				Map<String, MethodReference> TARToMethodRef = new HashMap<>();
+				for (MethodReference ref: oldMethodRefToRose.keySet()) {
+					String rose = oldMethodRefToRose.get(ref);
+					TARToMethodRef.put(rose, ref);
+				}
+				for (String TAR: TARMAQResult) {
+					MethodReference ref = TARToMethodRef.get(TAR);
+					if (ref != null)
+						predictedCm.add(ref);
+				}
+			}
+			else if (useTransAR) {
+				List<String> evidenceMethods = new ArrayList<>();
+				for (MethodReference m: evidenceCms)
+					evidenceMethods.add(oldMethodRefToRose.get(m));
+				List<String> roseResult = TransARPrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+				Map<String, MethodReference> roseToMethodRef = new HashMap<>();
+				for (MethodReference ref: oldMethodRefToRose.keySet()) {
+					String rose = oldMethodRefToRose.get(ref);
+					roseToMethodRef.put(rose, ref);
+				}
+				for (String rose: roseResult) {
+					MethodReference ref = roseToMethodRef.get(rose);
+					if (ref != null)
+						predictedCm.add(ref);
+				}
+			}
+			else {
+				for (MethodReference usedCmRef : evidenceCms) {
+					MethodReference usedCmRefNew = oldToNewMethodRefMap.get(usedCmRef);
+					ClientMethod oldClient = oldMRefToClient.get(usedCmRef);
+					ClientMethod newClient = newMRefToClient.get(usedCmRefNew);
+					ASTNode oldAstNode = oldClient.methodbody;
+					ASTNode newAstNode = newClient.methodbody;
+	//				get the target peer method set
+					Set<String> targetPeerMethodSet = null;
+					String cmClassSig = getCmClassSig(usedCmRef);
+					MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+	//				AmCmMethodNameVisitor methodNameVisitor = new AmCmMethodNameVisitor(oldAstNode, amClassSig, cmClassSig);
+	//				MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+					methodNameVisitor.execute();
+					targetPeerMethodSet = methodNameVisitor.getMethods();
+					
+					
+					Set<MethodReference> currentPredictedCm = new HashSet<>();
+					
+	//				check every method candidate
+					Map<MethodReference, Set<String>> refToMethodsMap = new HashMap<>();
+					for (MethodReference mRef: methodCandidateSet) {
+						if (mRef.equals(usedCmRef))
+							continue;
+	//					Set<String> peerFieldSet = null;
+						Set<String> peerMethodSet = null;
+						ASTNode ast = oMRefToAST.get(mRef);
+						if (ast == null) {
+							continue;
+						}
+	
+	//					MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+	//					AmCmMethodNameVisitor methodVisitor = new AmCmMethodNameVisitor(ast, amClassSig, cmClassSig);
+						MethodNameVisitor methodVisitor = new MethodNameVisitor(ast, amClassSig);
+						methodVisitor.execute();
+						peerMethodSet = methodVisitor.getMethods();
+						peerMethodSet.retainAll(targetPeerMethodSet);
+						refToMethodsMap.put(mRef, peerMethodSet);
+					}
+					
+	//				Find the method candidates with most peer methods
+					int maxPeerMethodsNum = -1;
+					for (Set<String> peerMethodSet: refToMethodsMap.values()) {
+						if (peerMethodSet.size() > maxPeerMethodsNum){
+							maxPeerMethodsNum = peerMethodSet.size();
+						}
+					}
+					if (maxPeerMethodsNum >= 1) {
+						for (MethodReference mRef: refToMethodsMap.keySet()) {
+							Set<String> peerMethodSet = refToMethodsMap.get(mRef);
+							ASTNode mRefAst = oMRefToAST.get(mRef);
+							TypeInTheCm typeInmRef = new TypeInTheCm(mRefAst);
+							typeInmRef.execute();
+							Set<String> typesAllHere = typeInmRef.getTypesAll();
+							Set<String> parAllHere = typeInmRef.getTypesPar();
+							Set<String> amArguments = new HashSet<>();
+							for(String arg : amArg){
+								amArguments.add(arg);
+							}
+							int sizeOfAmArg = amArguments.size();
+							amArguments.retainAll(parAllHere);
+							if (peerMethodSet.size() == maxPeerMethodsNum && amArguments.size() >= sizeOfAmArg - 1 && (amType == null || amType.equals("void") || typesAllHere.contains(amType)))
+								currentPredictedCm.add(mRef);
+	//						if (peerMethodSet.size() == maxPeerMethodsNum)
+	//							currentPredictedCm.add(mRef);
+						}
+					}
+					
+					predictedCm.addAll(currentPredictedCm);
+				}
+			}
+			
+			List<String> predictedCmSigs = new ArrayList<>();
+			for (MethodReference m: predictedCm) {
+				predictedCmSigs.add(m.getSignature());
+			}
+			Set<String> truePositives = new HashSet<>();
+			Set<String> falsePositives = new HashSet<>();
+			Set<String> falseNegatives = new HashSet<>();
+			Map<String, Set<String>> tpVars = new HashMap<>();
+			Map<String, Set<String>> fpVars = new HashMap<>();
+			Map<String, Set<String>> fnVars = new HashMap<>();
+			Set<String> correctAccessPrediction = new HashSet<>();
+			Set<String> predictionWithAccess = new HashSet<>();
+			Map<String, Map<String, String>> accessDetail = new HashMap<>();
+			
+			
+			for (MethodReference mRef: cmSet) {
+				if (evidenceCms.contains(mRef))
+					continue;
+				if (predictedCmSigs.contains(mRef.getSignature())) {
+					truePositives.add(mRef.getSignature());
+//					
+				} else {
+					falseNegatives.add(mRef.getSignature());
+//					fnVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+				}
+			}
+			
+			int recall = 100 * truePositives.size() / (cmSet.size() - evidenceSize);
+			int precision = -1;
+			if (!predictedCmSigs.isEmpty())
+				precision = 100 * truePositives.size() / predictedCmSigs.size();
+			
+			
+			Gson gson = new Gson();
+			Connection conn = SqliteManager.getConnection();
+			try {
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO " + Application.amPredictTable
+						+ " (bug_name,am_sig,used_cm,real_other_cm,predicted_cm,precision,recall, ground_truth_size, predicted_size, true_positive_size)"
+//						+ "access_precision,access_detail, access_fields)"
+						+ " VALUES (?,?,?,?,?,?,?,?,?,?)");
+				ps.setString(1, CommitComparator.bugName);
+				ps.setString(2, amSig);
+				List<String> evidenceCmSigs = new ArrayList<>();
+				for (MethodReference m: evidenceCms)
+					evidenceCmSigs.add(m.getSignature());
+				ps.setString(3, gson.toJson(evidenceCmSigs));
+				Set<String> realOtherCms = new HashSet<>();
+				for (MethodReference m: realOtherCmRefs)
+					realOtherCms.add(m.getSignature());
+				ps.setString(4, gson.toJson(realOtherCms));
+				ps.setString(5, gson.toJson(predictedCmSigs));
+				if (precision == -1) {
+					ps.setNull(6, java.sql.Types.INTEGER);
+					ps.setNull(7, java.sql.Types.INTEGER);
+				}
+				else {
+					ps.setInt(6, precision);
+					ps.setInt(7, recall);
+				}
+				ps.setInt(8, cmSet.size() - evidenceSize);
+				ps.setInt(9, predictedCmSigs.size());
+				ps.setInt(10, truePositives.size());
+				if(!predictedCmSigs.isEmpty()){
+					if(Application.amPredictTable.equals("am_predict_aries")){
+						Application.tasks[0]++;
+						Application.predictTable[0] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[0] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else if(Application.amPredictTable.equals("am_predict_cassandra")){
+						Application.tasks[1]++;
+						Application.predictTable[1] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[1] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else if(Application.amPredictTable.contains("activemq")){
+						Application.tasks[2]++;
+						Application.predictTable[2] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[2] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+					else{
+						Application.tasks[3]++;
+						Application.predictTable[3] += 1.0 * truePositives.size()/predictedCmSigs.size();
+						Application.recallTable[3] += 1.0 * truePositives.size()/(cmSet.size() - evidenceSize);
+					}
+				}
+
+				ps.executeUpdate();
+				ps.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void checkAmCm(ReferenceNode amNode, Set<String> cmSigSet,
+			Graph<ReferenceNode, ReferenceEdge> jgrapht,
+			Map<MethodReference, MethodReference> newToOldMethodRefMap,
+			Map<MethodReference, MethodReference> oldToNewMethodRefMap,
+			DataFlowAnalysisEngine leftEngine, DataFlowAnalysisEngine rightEngine,
+			Set<IClass> allFoundClasses, Map<MethodReference, ClientMethod> oldMRefToClient,
+			Map<MethodReference, ClientMethod> newMRefToClient,
+			Map<MethodReference, HashSet<NodePair>> oldMethodRefToMatch,
+			Map<MethodReference, HashSet<NodePair>> newMethodRefToMatch,
+			Map<MethodReference, ASTNode> oMRefToAST,
+			Map<MethodReference, ASTNode> nMRefToAST,
+			Map<MethodReference, String> oldMethodRefToRose) {
+		MethodReference amRef = (MethodReference) amNode.ref;
+		String amSig = amRef.getSignature();
+		TypeReference amClass = amRef.getDeclaringClass();
+		String amClassName = amClass.getName().getClassName().toString();
+		String amName = amRef.getName().toString();
+		String amClassSig = amClass.getName().toString().substring(1).replace('/', '.');
+		
+		//get all the peerfileds in the AM
+//		Set<String> peerAmMethodSet = null;
+//		ClientMethod newAmClient = newMRefToClient.get(amRef);
+//		ASTNode newAmAstNode = newAmClient.methodbody;
+//		MethodNameVisitor fAmVisitor = new MethodNameVisitor(newAmAstNode, amClassSig);
+//		fAmVisitor.execute();
+//		peerAmMethodSet = fAmVisitor.getMethods();
+//		if(peerAmMethodSet == null || peerAmMethodSet.size() == 0) return;
+		
+		
+		// get CM set, old version
+		Set<MethodReference> cmSet = new HashSet<>();
+//		Map<MethodReference, String> refToRealAccessMode = new HashMap<>();  // old reference to AF access mode
+		for (ReferenceEdge edge: jgrapht.edgesOf(amNode)) {
+			if (edge.type != ReferenceEdge.METHOD_INVOKE)
+				continue;
+			ReferenceNode srcNode = edge.from;
+			if (srcNode.type != ReferenceNode.CM)
+				continue;
+			MethodReference oldCmRef = (MethodReference) srcNode.ref;
+			String cmSig = oldCmRef.getSignature();
+			if (!cmSigSet.contains(cmSig))
+				continue;
+//			MethodReference newCmRef = oldToNewMethodRefMap.get(oldCmRef);
+			ClientMethod oldClient = oldMRefToClient.get(oldCmRef);
+			ASTNode oldAstNode = oldClient.methodbody;
+			Set<String> targetPeerMethodSet = null;
+//			String cmClassSig = getCmClassSig(oldCmRef);
+			MethodNameVisitor methodNameVisitor = new MethodNameVisitor(oldAstNode, amClassSig);
+//			AmCmMethodNameVisitor methodNameVisitor = new AmCmMethodNameVisitor(oldAstNode, amClassSig, cmClassSig);
+			methodNameVisitor.execute();
+			targetPeerMethodSet = methodNameVisitor.getMethods();
+//			if(targetPeerFieldSet.size() == 0) continue;
+//			targetPeerMethodSet.addAll(peerAmMethodSet);
+			if(targetPeerMethodSet.size() >= 1){
+				Gson gson = new Gson();
+				Connection conn = SqliteManager.getConnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO " + Application.amCmTable
+							+ " (bug_name,am_sig,used_cm,peermethods)"
+	//						+ "access_precision,access_detail, access_fields)"
+							+ " VALUES (?,?,?,?)");
+					ps.setString(1, CommitComparator.bugName);
+					ps.setString(2, amSig);
+					ps.setString(3, cmSig);
+					ps.setString(4, gson.toJson(targetPeerMethodSet));
+	
+					ps.executeUpdate();
+					ps.close();
+					conn.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
+	
+	private void predictWithoutAm(ReferenceNode amNode, Set<String> cmSigSet,
+			Graph<ReferenceNode, ReferenceEdge> jgrapht,
+			Map<MethodReference, MethodReference> newToOldMethodRefMap,
+			Map<MethodReference, MethodReference> oldToNewMethodRefMap,
+			DataFlowAnalysisEngine leftEngine, DataFlowAnalysisEngine rightEngine,
+			Set<IClass> allFoundClasses, Map<MethodReference, ClientMethod> oldMRefToClient,
+			Map<MethodReference, ClientMethod> newMRefToClient,
+			Map<MethodReference, HashSet<NodePair>> oldMethodRefToMatch,
+			Map<MethodReference, HashSet<NodePair>> newMethodRefToMatch,
+			Map<MethodReference, ASTNode> oMRefToAST,
+			Map<MethodReference, ASTNode> nMRefToAST,
+			Map<MethodReference, String> oldMethodRefToRose) {
+		MethodReference amRef = (MethodReference) amNode.ref;
+		String amSig = amRef.getSignature();
+		TypeReference amClass = amRef.getDeclaringClass();
+		String amClassName = amClass.getName().getClassName().toString();
+		String amName = amRef.getName().toString();
+		String amClassSig = amClass.getName().toString().substring(1).replace('/', '.');
+		
+		//get all the peerfileds in the AM
+//		Set<String> peerAmMethodSet = null;
+//		ClientMethod newAmClient = newMRefToClient.get(amRef);
+//		ASTNode newAmAstNode = newAmClient.methodbody;
+//		MethodNameVisitor fAmVisitor = new MethodNameVisitor(newAmAstNode, amClassSig);
+//		fAmVisitor.execute();
+//		peerAmMethodSet = fAmVisitor.getMethods();
+//		if(peerAmMethodSet == null || peerAmMethodSet.size() == 0) return;
+		
+		// get CM set, old version
+		
+		Set<MethodReference> cmOtherSet = new HashSet<>();
+//		Map<MethodReference, String> refToRealAccessMode = new HashMap<>();  // old reference to AF access mode
+		for (ReferenceEdge edge: jgrapht.edgesOf(amNode)) {
+			if (edge.type != ReferenceEdge.METHOD_INVOKE)
+				continue;
+			ReferenceNode srcNode = edge.from;
+			if (srcNode.type != ReferenceNode.CM)
+				continue;
+			MethodReference oldCmRef = (MethodReference) srcNode.ref;
+			String cmSig = oldCmRef.getSignature();
+			if (!cmSigSet.contains(cmSig))
+				continue;
+//			MethodReference newCmRef = oldToNewMethodRefMap.get(oldCmRef);
+			ClientMethod oldClient = oldMRefToClient.get(oldCmRef);
+			ASTNode oldAstNode = oldClient.methodbody;
+			Set<String> pMSet = null;
+//			String cmClassSig = getCmClassSig(oldCmRef);
+			NeoMethodVisitor methodNameVisitor = new NeoMethodVisitor(oldAstNode);
+//			AmCmMethodNameVisitor methodNameVisitor = new AmCmMethodNameVisitor(oldAstNode, amClassSig, cmClassSig);
+			methodNameVisitor.execute();
+			pMSet = methodNameVisitor.getMethods();
+//			if(targetPeerFieldSet.size() == 0) continue;
+//			targetPeerMethodSet.addAll(peerAmMethodSet);
+			if (pMSet.size() >= 4) {
+				cmOtherSet.add(oldCmRef);
+			}
+				
+		}
+		if(cmOtherSet.size() < 2) 
+			return;
+		
+//		if (cmSet.size() < 2)
+//			return;
+		
+		// Check accessibility of AF
+		IClassHierarchy leftHierarchy = leftEngine.getClassHierarchy();
+		IClassHierarchy rightHierarchy = rightEngine.getClassHierarchy();
+		IMethod iMethod = rightHierarchy.resolveMethod(amRef);
+		IClass amIClass = leftHierarchy.lookupClass(amClass);
+		if (amIClass == null)
+			amIClass = rightHierarchy.lookupClass(amClass);
+		String methodAccess = null;
+		if (iMethod.isPrivate())
+			methodAccess = "private";
+		else if (iMethod.isProtected())
+			methodAccess = "protected";
+		else if (iMethod.isPublic() || amIClass.isInterface())
+			methodAccess = "public";
+		else
+			methodAccess = "package";
+		
+		
+		// Build method to class map
+		Map<MethodReference, IClass> mRefToIClassMap = new HashMap<>();
+		for (IClass iClass: allFoundClasses) {
+			Collection<IMethod> declaredMethods = iClass.getDeclaredMethods();
+			for (IMethod iOldMethod: declaredMethods) {
+				MethodReference ref = iOldMethod.getReference();
+				mRefToIClassMap.put(ref, iClass);
+			}
+		}
+		
+		// Find classes of methods candidates
+		Set<IClass> classesToProcess = new HashSet<>();
+		if (methodAccess.equals("private")) {
+			classesToProcess.add(amIClass);
+		} else if (methodAccess.equals("protected") || methodAccess.equals("package")) {
+			// classes in the same package
+			String methodPackage = this.getPackageOfClass(amIClass);
+			for (IClass klass: allFoundClasses) {
+				String packageName = this.getPackageOfClass(klass);
+				if (methodPackage.equals(packageName))
+					classesToProcess.add(klass);
+			}
+			if (methodAccess.equals("protected")) {
+				// subclasses
+				for (IClass klass: allFoundClasses) {
+					IClass superClass = klass;
+					do {
+						superClass = superClass.getSuperclass();
+						if (amIClass.equals(superClass)) {
+							classesToProcess.add(klass);
+							break;
+						}
+					} while (superClass != null);
+				}
+			}
+		} else if (methodAccess.equals("public")) {
+			classesToProcess.addAll(allFoundClasses);
+		}
+		
+		// Find method candidates
+		Set<MethodReference> methodCandidateSet = new HashSet<>();
+		for (IClass klass: classesToProcess) {
+			for (IMethod iOldMethod: klass.getDeclaredMethods()) {
+				if (iOldMethod.isClinit())
+					continue;
+				MethodReference mRef = iOldMethod.getReference();
+				methodCandidateSet.add(mRef);
+			}
+		}		
+		
+		
+		
+		if(cmOtherSet.size() >= 2){
+			for (MethodReference usedCmRef: cmOtherSet) {
+	//			MethodReference amRef = (MethodReference) amNode.ref;
+	//			String cmSig = usedCmRef.getSignature();
+	//			TypeReference cmClass = usedCmRef.getDeclaringClass();
+	//			String cmClassName = cmClass.getName().getClassName().toString();
+	//			String cmName = usedCmRef.getName().toString();
+	//			String cmClassSig = cmClass.getName().toString().substring(1).replace('/', '.');
+				
+	//			String cmClassSig = getCmClassSig(usedCmRef);
+				
+				MethodReference usedCmRefNew = oldToNewMethodRefMap.get(usedCmRef);
+				ClientMethod oldClient = oldMRefToClient.get(usedCmRef);
+				ClientMethod newClient = newMRefToClient.get(usedCmRefNew);
+				ASTNode oldAstNode = oldClient.methodbody;
+				ASTNode newAstNode = newClient.methodbody;
+				
+	
+	
+				Set<String> targetPeerMethodSet = null;
+	//			
+				NeoMethodVisitor visitor = new NeoMethodVisitor(oldAstNode);
+	//			AmCmMethodNameVisitor visitor = new AmCmMethodNameVisitor(oldAstNode, amClassSig,cmClassSig);
+				visitor.execute();
+				targetPeerMethodSet = visitor.getMethods();
+	//			targetPeerMethodSet.addAll(peerAmMethodSet);
+				
+				
+				Set<MethodReference> predictedCm = new HashSet<>();
+				
+				// Check every method candidate
+	//			Map<MethodReference, Set<String>> refToFieldsMap = new HashMap<>();
+				Map<MethodReference, Set<String>> refToMethodsMap = new HashMap<>();
+	//			Map<MethodReference, String> refToPredictedAccessMode = new HashMap<>();  // 3 access modes: "r", "w", "rw"
+	//			Map<MethodReference, Set<String>> methodToAccessFields = new HashMap<>();
+				for (MethodReference mRef: methodCandidateSet) {
+					if (mRef.equals(usedCmRef))
+						continue;
+	//				Set<String> peerFieldSet = null;
+					Set<String> peerMethodSet = null;
+					ASTNode ast = oMRefToAST.get(mRef);
+					if (ast == null) {
+						continue;
+					}
+					NeoMethodVisitor methodVisitor = new NeoMethodVisitor(ast);
+	//				AmCmMethodNameVisitor methodVisitor = new AmCmMethodNameVisitor(ast, amClassSig,cmClassSig);
+					methodVisitor.execute();
+					peerMethodSet = methodVisitor.getMethods();
+					peerMethodSet.retainAll(targetPeerMethodSet);
+					refToMethodsMap.put(mRef, peerMethodSet);
+	//				FieldNameVisitor fieldVisitor = new FieldNameVisitor(ast, amClassSig);
+	//				fieldVisitor.execute();
+	//				peerFieldSet = fieldVisitor.getFields();
+	//				Set<String> readFields = fieldVisitor.getReadFields();
+	//				Set<String> writtenFields = fieldVisitor.getWrittenFields();
+					
+	//				boolean considerAccessInPotentialCM = false;
+					
+					
+					
+	//				if (shouldCheckAccessMode) {
+	//					
+	//					Set<String> onlyReadPeerSet = new HashSet<>();
+	//					onlyReadPeerSet.addAll(readFields);
+	//					onlyReadPeerSet.removeAll(writtenFields);
+	//					onlyReadPeerSet.retainAll(targetPeerFieldSet);
+	//					
+	//					Set<String> onlyWrittenPeerSet = new HashSet<>();
+	//					onlyWrittenPeerSet.addAll(writtenFields);
+	//					onlyWrittenPeerSet.removeAll(readFields);
+	//					onlyWrittenPeerSet.retainAll(targetPeerFieldSet);
+	//					
+	//					Set<String> readAndWrittenPeerSet = new HashSet<>();
+	//					readAndWrittenPeerSet.addAll(readFields);
+	//					readAndWrittenPeerSet.retainAll(writtenFields);
+	//					readAndWrittenPeerSet.retainAll(targetPeerFieldSet);
+	//					
+	//					if (onlyReadPeerSet.size() == 0
+	//							&& onlyWrittenPeerSet.size() == 0
+	//							&& readAndWrittenPeerSet.size() == 0) {
+	//						peerFieldSet = Collections.emptySet();
+	//					} else {
+	//						Comparator<Set<String>> comparator = new Comparator<Set<String>>() {
+	//							@Override
+	//							public int compare(Set<String> o1, Set<String> o2) {
+	//								return o2.size() - o1.size();
+	//							}};
+	//						PriorityQueue<Set<String>> queue = new PriorityQueue<>(3, comparator);
+	//						queue.add(onlyReadPeerSet);
+	//						queue.add(onlyWrittenPeerSet);
+	//						queue.add(readAndWrittenPeerSet);
+	//						peerFieldSet = queue.peek();
+	//						
+	//						methodToAccessFields.put(mRef, peerFieldSet);
+	//						
+	//						// predict the access mode of AF, which be the same as that of peers
+	//						if (peerFieldSet == onlyReadPeerSet)
+	//							refToPredictedAccessMode.put(mRef, "r");
+	//						else if (peerFieldSet == onlyWrittenPeerSet)
+	//							refToPredictedAccessMode.put(mRef, "w");
+	//						else
+	//							refToPredictedAccessMode.put(mRef, "rw");
+	//						
+	//						Set<String> largestPeerSet = queue.poll();
+	//						Set<String> secondLargestPeerSet = queue.poll();
+	//						if (largestPeerSet.size() == secondLargestPeerSet.size())
+	//							refToPredictedAccessMode.put(mRef, "NA");
+	//					}
+	//					
+	//					
+	//				}
+	//				peerFieldSet = fieldVisitor.getFields();
+	//				peerFieldSet.retainAll(targetPeerFieldSet);
+	//				refToFieldsMap.put(mRef, peerFieldSet);
+				}
+				
+				// Find the method candidate with most or second most peer methods
+				int maxPeerFieldsNum = -1, secMax = -1, maxPeerMethodsNum = -1;
+				for (Set<String> peerMethodSet: refToMethodsMap.values()) {
+					if (peerMethodSet.size() > maxPeerMethodsNum){
+	//					secMax = maxPeerMethodsNum;
+						maxPeerMethodsNum = peerMethodSet.size();
+					}
+	//				else if(peerMethodSet.size() < maxPeerMethodsNum){
+	//					secMax = Math.max(secMax, peerMethodSet.size());
+	//				}
+				}
+				
+	//			for(Set<String> peerMethodSet : refToMethodsMap.values()){
+	//				if(peerMethodSet.size() > maxPeerMethodsNum) maxPeerMethodsNum = peerMethodSet.size();
+	//			}
+				
+				if (maxPeerMethodsNum >= 4) {
+					for (MethodReference mRef: refToMethodsMap.keySet()) {
+	//					Set<String> peerSet = refToFieldsMap.get(mRef);
+						Set<String> peerMethodSet = refToMethodsMap.get(mRef);
+	//					if (peerFieldSet.size() == maxPeerFieldsNum)
+						if (peerMethodSet.size() == maxPeerMethodsNum)
+	//					if(peerMethodSet.size() == maxPeerMethodsNum || (secMax >= 1 && peerMethodSet.size() >= secMax))
+							predictedCm.add(mRef);
+					}
+				}
+				
+				// ----- important options-----
+	//			boolean useRose = false;
+	//			if (useRose) { // use Tom Zimmerman's tool ROSE
+	//				predictedCm = new HashSet<>();
+	//				List<String> evidenceMethods = new ArrayList<>();
+	//				evidenceMethods.add(oldMethodRefToRose.get(usedCmRef));
+	//				List<String> roseResult = RosePrediction.execute(evidenceMethods, Application.roseTable, CommitComparator.bugName);
+	//				Map<String, MethodReference> roseToMethodRef = new HashMap<>();
+	//				for (MethodReference ref: oldMethodRefToRose.keySet()) {
+	//					String rose = oldMethodRefToRose.get(ref);
+	//					roseToMethodRef.put(rose, ref);
+	//				}
+	//				for (String rose: roseResult) {
+	//					MethodReference ref = roseToMethodRef.get(rose);
+	//					if (ref != null)
+	//						predictedCm.add(ref);
+	//				}
+	//				
+	//			}
+	
+				List<String> predictedCmSigs = new ArrayList<>();
+				for (MethodReference m: predictedCm) {
+					predictedCmSigs.add(m.getSignature());
+				}
+				
+				Set<String> truePositives = new HashSet<>();
+				Set<String> falsePositives = new HashSet<>();
+				Set<String> falseNegatives = new HashSet<>();
+				Map<String, Set<String>> tpVars = new HashMap<>();
+				Map<String, Set<String>> fpVars = new HashMap<>();
+				Map<String, Set<String>> fnVars = new HashMap<>();
+				Set<String> correctAccessPrediction = new HashSet<>();
+				Set<String> predictionWithAccess = new HashSet<>();
+				Map<String, Map<String, String>> accessDetail = new HashMap<>();
+				
+				Map<String, Set<String>> accessFields = new HashMap<>();
+				
+				// methodToAccessFields
+				
+				for (MethodReference mRef: cmOtherSet) {
+					if (mRef.equals(usedCmRef))
+						continue;
+					if (predictedCmSigs.contains(mRef.getSignature())) {
+						truePositives.add(mRef.getSignature());
+	//					tpVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+						
+						// process predict_access and access_precision
+	//					String realAccess = refToRealAccessMode.get(mRef);
+	//					String predictedAccess = refToPredictedAccessMode.get(mRef);
+	//					if (!predictedAccess.equals("NA")) {
+	//						Map<String, String> realAndPredictedAccess = new HashMap<>();
+	//						realAndPredictedAccess.put("real", realAccess);
+	//						realAndPredictedAccess.put("predicted", predictedAccess);
+	//						accessDetail.put(mRef.getSignature(), realAndPredictedAccess);
+	//						if (realAccess.equals(predictedAccess)) {
+	//							correctAccessPrediction.add(mRef.getSignature());
+	//						}
+	//						predictionWithAccess.add(mRef.getSignature());
+	//						accessFields.put(mRef.getSignature(), methodToAccessFields.get(mRef));
+	//					}
+					
+					} else {
+						falseNegatives.add(mRef.getSignature());
+	//					fnVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+					}
+				}
+	//			for (MethodReference mRef: predictedCm) {
+	//				if (!cmSet.contains(mRef)) {
+	//					falsePositives.add(mRef.getSignature());
+	//					fpVars.put(mRef.getSignature(), refToFieldsMap.get(mRef));
+	//					
+	//				}
+	//			}
+				
+				int recall = 100 * truePositives.size() / (cmOtherSet.size() - 1);
+				int precision = -1;
+				if (!predictedCmSigs.isEmpty())
+					precision = 100 * truePositives.size() / predictedCmSigs.size();
+				
+				int accessPrecision = -1;
+				if (!predictionWithAccess.isEmpty())
+					accessPrecision = 100 * correctAccessPrediction.size() / predictionWithAccess.size();
+				
+				// Insert data into database
+				Gson gson = new Gson();
+				Connection conn = SqliteManager.getConnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO " + Application.amPredictTable
+							+ " (bug_name,am_sig,used_cm,real_other_cm,predicted_cm,precision,recall, ground_truth_size, predicted_size, true_positive_size)"
+	//						+ "access_precision,access_detail, access_fields)"
+							+ " VALUES (?,?,?,?,?,?,?,?,?,?)");
+					ps.setString(1, CommitComparator.bugName);
+					ps.setString(2, amSig);
+					ps.setString(3, usedCmRef.getSignature());
+					Set<String> realOtherCms = new HashSet<>(cmSigSet);
+					realOtherCms.remove(usedCmRef.getSignature());
+					ps.setString(4, gson.toJson(realOtherCms));
+					ps.setString(5, gson.toJson(predictedCmSigs));
+					if (precision == -1) {
+						ps.setNull(6, java.sql.Types.INTEGER);
+						ps.setNull(7, java.sql.Types.INTEGER);
+					}
+					else {
+						ps.setInt(6, precision);
+						ps.setInt(7, recall);
+					}
+					ps.setInt(8, cmOtherSet.size() - 1);
+					ps.setInt(9, predictedCmSigs.size());
+					ps.setInt(10, truePositives.size());
+					if(!predictedCmSigs.isEmpty()){
+						if(Application.amPredictTable.equals("am_predict_aries")){
+							Application.tasks[0]++;
+							Application.predictTable[0] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[0] += 1.0 * recall / 100;
+						}
+						else if(Application.amPredictTable.equals("am_predict_cassandra")){
+							Application.tasks[1]++;
+							Application.predictTable[1] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[1] += 1.0 * recall / 100;
+						}
+						else if(Application.amPredictTable.equals("am_predict_derby")){
+							Application.tasks[2]++;
+							Application.predictTable[2] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[2] += 1.0 * recall / 100;
+						}
+						else{
+							Application.tasks[3]++;
+							Application.predictTable[3] += 1.0 * truePositives.size()/predictedCmSigs.size();
+							Application.recallTable[3] += 1.0 * recall / 100;
+						}
+					}
+	//				if (accessPrecision == -1)
+	//					ps.setNull(8, java.sql.Types.INTEGER);
+	//				else
+	//					ps.setInt(8, accessPrecision);
+	//				ps.setString(9, gson.toJson(accessDetail));
+	//				ps.setString(10, gson.toJson(accessFields));
+						
+					
+					
+					
+					ps.executeUpdate();
+					ps.close();
+					conn.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				//--------------------------------
+			}
+		}
+		
+		
+	}
+	
+	
+	boolean compareName(MethodReference m1, MethodReference m2){
+		String m1Name = "" + m1.getName(), m2Name = "" + m2.getName();
+		if(m1Name.equals(m2Name) || m1Name.contains(m2Name) || m2Name.contains(m1Name)) return true;
+		int pre = m2Name.length();
+		while (pre > 0 && !m1Name.contains(m2Name.substring(0, pre))) pre--;
+		int post = 0;
+		while (post < m2Name.length() && !m1Name.contains(m2Name.substring(post))) post++;
+		if(pre > 3 || post < m2Name.length() - 3) return true;
+		return false;
+	}
+	
+	boolean hasSameReturnType(MethodReference m1, MethodReference m2){
+		String sig1 = m1.getSignature(), sig2 = m2.getSignature();
+		int index1 = sig1.indexOf(')'), index2 = sig2.indexOf(')');
+		return sig1.substring(index1 + 1).equals(sig2.substring(index2 + 1));
+	}
+	
+	String returnTypeOfAm(MethodReference am){
+		String res =  ("" + am.getReturnType().getName()).replace('/', '.');
+		return dealWithType(res);
+	}
+	
+	Set<String> argumentsTypeOfAm(MethodReference am){
+		Set<String> set = new HashSet<>();
+		int number = am.getNumberOfParameters();
+		for (int i = 0; i < number ; i++){
+			String res = ("" + am.getParameterType(i).getName()).replace('/', '.');
+			set.add(dealWithType(res));
+		}
+		return set;
+	}
+	
+	String dealWithType(String res){
+		boolean isArray = false;
+		if (res.charAt(0) == '[') {
+			isArray = true;
+			res = res.substring(1);
+		}
+//		if (res.contains("Ljava")){
+//			res = res.replace("Ljava", "java");
+//		}
+//		if (res.contains("Lorg")) {
+//			res = res.replace("Lorg", "org");
+//		}
+//		if (res.contains("LUNKNOWN")) {
+//			res = res.replace("LUNKNOWNP", "UNKNOWNP");
+//		}
+//		  
+		if (res.charAt(0) == 'L' && !res.contains("UNKNOWN")) {
+			res = res.substring(1);
+		}
+
+		if(res.equals("V"))  res = "void";
+		else if(res.equals("I")) res = "int";
+		else if(res.equals("Z")) res = "boolean";
+		else if(res.equals("J")) res = "long";
+		else if(res.equals("F")) res = "float";
+		else if(res.equals("D")) res = "double";
+		else if(res.equals("B")) res = "byte";
+		else if(res.equals("C")) res = "char";
+		else if(res.equals("S")) res = "short";
+		return isArray? res + "[]" : res;
+	}
+	
 }
